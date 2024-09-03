@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DoctorAppoitmentAPICRUD.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace DoctorAppoitmentAPICRUD.Models
+namespace DoctorAppoitmentAPICRUD.Data
 {
     public class HospitalContext : DbContext
     {

@@ -1,4 +1,5 @@
-using DoctorAppoitmentAPICRUD.Models;
+using DoctorAppoitmentAPICRUD.Data;
+using DoctorAppoitmentAPICRUD.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 

@@ -1,4 +1,6 @@
-﻿using DoctorAppoitmentAPICRUD.Models;
+﻿using DoctorAppoitmentAPICRUD.Dtos;
+using DoctorAppoitmentAPICRUD.Models;
+using DoctorAppoitmentAPICRUD.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,14 +41,14 @@ namespace DoctorAppoitmentAPICRUD.Controllers
 
         // POST: api/bookings
         [HttpPost]
-        public async Task<IActionResult> CreateBooking( Booking booking)
+        public async Task<IActionResult> CreateBooking([FromBody] BookingDto bookingDto)
         {
-            if (booking == null)
+            if (bookingDto == null)
             {
                 return BadRequest(new { message = "Invalid booking data" }); // Return 400 Bad Request if the provided data is null
             }
 
-            var createdBooking = await _bookingRepository.AddAsync(booking);
+            var createdBooking = await _bookingRepository.AddAsync(bookingDto);
 
             // Return 201 Created with the URI of the new resource and the created booking
             return CreatedAtAction(nameof(GetBooking), new { id = createdBooking.BookingId }, createdBooking);
@@ -54,14 +56,11 @@ namespace DoctorAppoitmentAPICRUD.Controllers
 
         // PUT: api/bookings/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateBooking(int id, Booking booking)
+        public async Task<IActionResult> UpdateBooking(int id, [FromBody] BookingDto bookingDto)
         {
-            if (id != booking.BookingId)
-            {
-                return BadRequest(new { message = "Booking ID mismatch" }); // Return 400 Bad Request if the ID in URL doesn't match the ID in the body
-            }
+            
 
-            var updatedBooking = await _bookingRepository.UpdateAsync(booking);
+            var updatedBooking = await _bookingRepository.UpdateAsync(bookingDto,id);
             return Ok(updatedBooking); // Return 200 OK with the updated booking details
         }
 
@@ -80,4 +79,5 @@ namespace DoctorAppoitmentAPICRUD.Controllers
             }
         }
     }
+
 }

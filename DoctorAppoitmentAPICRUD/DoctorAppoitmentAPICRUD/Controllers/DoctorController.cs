@@ -1,4 +1,6 @@
-﻿using DoctorAppoitmentAPICRUD.Models;
+﻿using DoctorAppoitmentAPICRUD.Dtos;
+using DoctorAppoitmentAPICRUD.Models;
+using DoctorAppoitmentAPICRUD.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,16 +39,28 @@ namespace DoctorAppoitmentAPICRUD.Controllers
             return Ok(doctor); // Return 200 OK with the doctor details
         }
 
-        // PUT: api/doctors/{id}
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateDoctor(int id, Doctor doctor)
+        // POST: api/doctors
+        [HttpPost]
+        public async Task<IActionResult> CreateDoctor([FromBody] DoctorDto doctorDto)
         {
-            if (id != doctor.DoctorId)
+            if (doctorDto == null)
             {
-                return BadRequest(new { message = "Doctor ID mismatch" }); // Return 400 Bad Request if the ID in URL doesn't match the ID in the body
+                return BadRequest(new { message = "Invalid doctor data" }); // Return 400 Bad Request if the provided data is null
             }
 
-            var updatedDoctor = await _doctorRepository.UpdateAsync(doctor);
+            var createdDoctor = await _doctorRepository.AddAsync(doctorDto);
+
+            // Return 201 Created with the URI of the new resource and the created doctor
+            return CreatedAtAction(nameof(GetDoctor), new { id = createdDoctor.DoctorId }, createdDoctor);
+        }
+
+        // PUT: api/doctors/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateDoctor(int id, [FromBody] DoctorDto doctorDto)
+        {
+           
+
+            var updatedDoctor = await _doctorRepository.UpdateAsync(doctorDto,id);
             return Ok(updatedDoctor); // Return 200 OK with the updated doctor details
         }
 
@@ -59,28 +73,9 @@ namespace DoctorAppoitmentAPICRUD.Controllers
             {
                 return Ok(new { message = "Doctor deleted successfully" }); // Return 200 OK with success message
             }
-            else
-            {
-                return NotFound(new { message = "Doctor not found" }); // Return 404 Not Found if doctor does not exist
-            }
+          
+            return NotFound(new { message = "Doctor not found" }); // Return 404 Not Found if doctor does not exist
+            
         }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateDoctor(Doctor doctor)
-        {
-            if (doctor == null)
-            {
-                return BadRequest(new { message = "Invalid doctor data" }); // Return 400 Bad Request if the provided data is null
-            }
-
-            // Optionally validate the doctor object here (e.g., check required fields)
-
-            // Add the doctor to the repository
-            await _doctorRepository.AddAsync(doctor);
-
-            // Return 201 Created with the URI of the new resource and the created doctor
-            return CreatedAtAction(nameof(GetDoctor), new { id = doctor.DoctorId }, doctor);
-        }
-
     }
 }

@@ -14,20 +14,40 @@ namespace DoctorAppoitmentAPICRUD.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Booking>> GetAllAsync()
+        public async Task<IEnumerable<BookingGetDto>> GetAllAsync()
         {
-            return await _context.Bookings
-                                 .Include(b => b.Doctor)
-                                 .Include(b => b.Patient)
-                                 .ToListAsync();
+            var bookings = _context.Bookings
+                           .Include(b => b.Doctor)
+                           .Include(b => b.Patient)
+                           .Select(b => new BookingGetDto
+                           {
+                               BookingId = b.BookingId,
+                               BookingDate = b.BookingDate,
+                               Status = b.Status,
+                               DoctorName = b.Doctor.Name,
+                               PatientName = b.Patient.Name
+                           }).ToList();
+
+            return bookings;
         }
 
-        public async Task<Booking> GetByIdAsync(int id)
+        public async Task<BookingGetDto> GetByIdAsync(int id)
         {
-            return await _context.Bookings
-                                 .Include(b => b.Doctor)
-                                 .Include(b => b.Patient)
-                                 .FirstOrDefaultAsync(b => b.BookingId == id);
+            var booking = await _context.Bookings
+                       .Include(b => b.Doctor)
+                       .Include(b => b.Patient)
+                       .Where(b => b.BookingId == id) // Filter by ID
+                       .Select(b => new BookingGetDto
+                       {
+                           BookingId = b.BookingId,
+                           BookingDate = b.BookingDate,
+                           Status = b.Status,
+                           DoctorName = b.Doctor.Name,
+                           PatientName = b.Patient.Name
+                       })
+                       .FirstOrDefaultAsync(); // Get the first (and only) result
+
+            return booking;
         }
 
         public async Task<Booking> AddAsync(BookingDto bookingDto)

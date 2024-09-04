@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoctorAppoitmentAPICRUD.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    [Migration("20240903150854_InitialCase")]
+    [Migration("20240904055935_InitialCase")]
     partial class InitialCase
     {
         /// <inheritdoc />

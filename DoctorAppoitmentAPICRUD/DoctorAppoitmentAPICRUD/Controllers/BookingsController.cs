@@ -19,7 +19,7 @@ namespace DoctorAppoitmentAPICRUD.Controllers
 
         // GET: api/bookings
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Booking>>> GetBookings()
+        public async Task<ActionResult<IEnumerable<BookingGetDto>>> GetBookings()
         {
             var bookings = await _bookingRepository.GetAllAsync();
             return Ok(bookings); // Return 200 OK with the list of bookings
@@ -27,7 +27,7 @@ namespace DoctorAppoitmentAPICRUD.Controllers
 
         // GET: api/bookings/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Booking>> GetBooking(int id)
+        public async Task<ActionResult<BookingGetDto>> GetBooking(int id)
         {
             var booking = await _bookingRepository.GetByIdAsync(id);
 

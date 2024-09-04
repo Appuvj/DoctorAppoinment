@@ -1,5 +1,15 @@
 [
   {
+    "ContainingType": "DoctorAppoitmentAPICRUD.Controllers.AdminController",
+    "Method": "GetDashboardStats",
+    "RelativePath": "api/Admin/dashboard-stats",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "DoctorAppoitmentAPICRUD.Controllers.BookingsController",
     "Method": "GetBookings",
     "RelativePath": "api/Bookings",
@@ -9,7 +19,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[DoctorAppoitmentAPICRUD.Models.Booking, DoctorAppoitmentAPICRUD, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[DoctorAppoitmentAPICRUD.Dtos.BookingGetDto, DoctorAppoitmentAPICRUD, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -28,8 +38,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "booking",
-        "Type": "DoctorAppoitmentAPICRUD.Models.Booking",
+        "Name": "bookingDto",
+        "Type": "DoctorAppoitmentAPICRUD.Dtos.BookingDto",
         "IsRequired": true
       }
     ],
@@ -51,7 +61,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "DoctorAppoitmentAPICRUD.Models.Booking",
+        "Type": "DoctorAppoitmentAPICRUD.Dtos.BookingGetDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -75,8 +85,8 @@
         "IsRequired": true
       },
       {
-        "Name": "booking",
-        "Type": "DoctorAppoitmentAPICRUD.Models.Booking",
+        "Name": "bookingDto",
+        "Type": "DoctorAppoitmentAPICRUD.Dtos.BookingDto",
         "IsRequired": true
       }
     ],
@@ -127,8 +137,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "doctor",
-        "Type": "DoctorAppoitmentAPICRUD.Models.Doctor",
+        "Name": "doctorDto",
+        "Type": "DoctorAppoitmentAPICRUD.Dtos.DoctorDto",
         "IsRequired": true
       }
     ],
@@ -174,8 +184,8 @@
         "IsRequired": true
       },
       {
-        "Name": "doctor",
-        "Type": "DoctorAppoitmentAPICRUD.Models.Doctor",
+        "Name": "doctorDto",
+        "Type": "DoctorAppoitmentAPICRUD.Dtos.DoctorDto",
         "IsRequired": true
       }
     ],
@@ -199,25 +209,35 @@
   },
   {
     "ContainingType": "DoctorAppoitmentAPICRUD.Controllers.PatientController",
-    "Method": "GetAll",
+    "Method": "GetPatients",
     "RelativePath": "api/Patient",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[DoctorAppoitmentAPICRUD.Models.Patient, DoctorAppoitmentAPICRUD, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "DoctorAppoitmentAPICRUD.Controllers.PatientController",
-    "Method": "Create",
+    "Method": "CreatePatient",
     "RelativePath": "api/Patient",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "patient",
-        "Type": "DoctorAppoitmentAPICRUD.Models.Patient",
+        "Name": "patientDto",
+        "Type": "DoctorAppoitmentAPICRUD.Dtos.PatientDto",
         "IsRequired": true
       }
     ],
@@ -225,7 +245,7 @@
   },
   {
     "ContainingType": "DoctorAppoitmentAPICRUD.Controllers.PatientController",
-    "Method": "GetById",
+    "Method": "GetPatient",
     "RelativePath": "api/Patient/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -237,11 +257,21 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "DoctorAppoitmentAPICRUD.Models.Patient",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "DoctorAppoitmentAPICRUD.Controllers.PatientController",
-    "Method": "Update",
+    "Method": "UpdatePatient",
     "RelativePath": "api/Patient/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -253,8 +283,8 @@
         "IsRequired": true
       },
       {
-        "Name": "patient",
-        "Type": "DoctorAppoitmentAPICRUD.Models.Patient",
+        "Name": "patientDto",
+        "Type": "DoctorAppoitmentAPICRUD.Dtos.PatientDto",
         "IsRequired": true
       }
     ],
@@ -262,7 +292,7 @@
   },
   {
     "ContainingType": "DoctorAppoitmentAPICRUD.Controllers.PatientController",
-    "Method": "Delete",
+    "Method": "DeletePatient",
     "RelativePath": "api/Patient/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,

@@ -1,131 +1,132 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Link, Outlet } from 'react-router-dom'
 import '../App.css';
+import { AdminContext } from './AdminDashContext';
+import { FaHome, FaUserMd, FaUsers, FaCalendarCheck } from 'react-icons/fa';
+import { FaChartBar, FaChartPie } from 'react-icons/fa';
+
+
 
 const AdminDashUi = () => {
+
+  const { analyticsData,fetchDatas } = useContext(AdminContext);
+
     return (
-    //     <div className="container-fluid">
-    //     <div className="row">
-           
-    //         <nav id="sidebar" className="col-md-3 col-lg-2 sidebar">
-    //             <h4 className="text-center mb-4">Admin Dashboard</h4>
-    //             <div className="d-grid gap-2">
+
+      
+    //   <div className="container-fluid">
+    //   <div className="row">
+    //     {/* Sidebar */}
+    //     <nav id="sidebar" className="col-md-3 col-lg-2 bg-light sidebar p-4">
+    //       <h4 className="text-center mb-4">Admin Dashboard</h4>
+    //       <div className="d-grid gap-2">
     //         <Link to="/admin/patients" className="btn btn-primary">
-    //             Patients
+    //           Patients
     //         </Link>
     //         <Link to="/admin/doctors" className="btn btn-success">
-    //             Doctors
+    //           Doctors
     //         </Link>
     //         <Link to="/admin/appointments" className="btn btn-info">
-    //             Appointments
+    //           Appointments
     //         </Link>
-    //     </div>
-    //         </nav>
-       
+    //         <Link to="/admin" className="btn btn-info">
+    //           Anayltics
+    //         </Link>
+    //       </div>
+    //     </nav>
+
+    //     {/* Main Content */}
+    //     <main className="col-md-9 col-lg-10 ml-sm-auto px-4">
+    //       <h1 className="h2">Dashboard Content</h1>
+    //       <p>Welcome to the admin dashboard. Here you can manage patients, doctors, and appointments.</p>
           
-    //     </div>
+    //       {/* Add more content as needed */}
+    //       <div className="container">
+    //   <h2>Dashboard Analytics</h2>
+    //   <table className="table table-striped">
+    //     <thead>
+    //       <tr>
+    //         <th>Statistic</th>
+    //         <th>Value</th>
+    //       </tr>
+    //     </thead>
+    //     <tbody>
+    //       <tr>
+    //         <td>Patients Count</td>
+    //         <td>{analyticsData.patientsCount}</td>
+    //       </tr>
+    //       <tr>
+    //         <td>Doctors Count</td>
+    //         <td>{analyticsData.doctorsCount}</td>
+    //       </tr>
+    //       <tr>
+    //         <td>Total Appointments</td>
+    //         <td>{analyticsData.totalAppointments}</td>
+    //       </tr>
+    //       <tr>
+    //         <td>Pending Appointments</td>
+    //         <td>{analyticsData.pendingAppointments}</td>
+    //       </tr>
+    //       <tr>
+    //         <td>Booked Appointments</td>
+    //         <td>{analyticsData.bookedAppointments}</td>
+    //       </tr>
+    //       <tr>
+    //         <td>Completed Appointments</td>
+    //         <td>{analyticsData.completedAppointments}</td>
+    //       </tr>
+    //     </tbody>
+    //   </table>
     // </div>
-    <>
-    <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-3 col-lg-2 px-0 position-fixed h-100 bg-white shadow-sm sidebar" id="sidebar">
-      <h1 class="bi bi-bootstrap text-primary d-flex my-4 justify-content-center"></h1>
-      <div class="list-group rounded-0">
-        <a href="#" class="list-group-item list-group-item-action active border-0 d-flex align-items-center">
-          <span class="bi bi-border-all"></span>
-          <span class="ml-2">Dashboard</span>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action border-0 align-items-center">
-          <span class="bi bi-box"></span>
-          <span class="ml-2">Products</span>
-        </a>
+          
+    //     </main>
+    //   </div>
+    // </div>
+ <>
+ <div class="px-3 py-2 bg-dark text-white">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use href="#bootstrap"></use></svg>
+          </a>
 
-        <button class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#sale-collapse">
-          <div>
-            <span class="bi bi-cart-dash"></span>
-            <span class="ml-2">Sales</span>
-          </div>
-          <span class="bi bi-chevron-down small"></span>
-        </button>
-        <div class="collapse" id="sale-collapse" data-parent="#sidebar">
-          <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action border-0 pl-5">Customers</a>
-            <a href="#" class="list-group-item list-group-item-action border-0 pl-5">Sale Orders</a>
-          </div>
-        </div>
+          <ul className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+  <li>
+    <Link to="analytics" className="nav-link text-secondary" style={{ color: '#ffffff', fontSize: '1.2rem' }}>
+      <FaChartBar size={28} style={{ color: '#f8f9fa' }} /> Analytics 
+    </Link>
+  </li>
+  <li>
+    <Link to="doctors" className="nav-link text-secondary" style={{ color: '#ffffff', fontSize: '1.2rem' }}>
+      <FaUserMd size={28} style={{ color: '#f8f9fa' }} />
+      Doctors
+    </Link>
+  </li>
+  <li>
+    <Link to="patients" className="nav-link text-secondary" style={{ color: '#ffffff', fontSize: '1.2rem' }}>
+      <FaUsers size={28} style={{ color: '#f8f9fa' }} />
+      Patients
+    </Link>
+  </li>
+  <li>
+    <Link to="appointments" className="nav-link text-secondary" style={{ color: '#ffffff', fontSize: '1.2rem' }}>
+      <FaCalendarCheck size={28} style={{ color: '#f8f9fa' }} />
+      Appointments
+    </Link>
+  </li>
+</ul>
 
-        <button class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#purchase-collapse">
-          <div>
-            <span class="bi bi-cart-plus"></span>
-            <span class="ml-2">Purchase</span>
-          </div>
-          <span class="bi bi-chevron-down small"></span>
-        </button>
-        <div class="collapse" id="purchase-collapse" data-parent="#sidebar">
-          <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action border-0 pl-5">Sellers</a>
-            <a href="#" class="list-group-item list-group-item-action border-0 pl-5">Purchase Orders</a>
-          </div>
+           
+         
+         
         </div>
       </div>
     </div>
-    <div class="w-100 vh-100 position-fixed overlay d-none" id="sidebar-overlay"></div>
-    <div class="col-md-9 col-lg-10 ml-md-auto px-0">
-      <nav class="w-100 d-flex px-4 py-2 mb-4 shadow-sm">
-        <button class="btn py-0 d-lg-none" id="open-sidebar">
-          <span class="bi bi-list text-primary h3"></span>
-        </button>
-        <div class="dropdown ml-auto">
-          <button class="btn py-0 d-flex align-items-center" id="logout-dropdown" data-toggle="dropdown" aria-expanded="false">
-            <span class="bi bi-person text-primary h4"></span>
-            <span class="bi bi-chevron-down ml-1 mb-2 small"></span>
-          </button>
-          <div class="dropdown-menu dropdown-menu-right border-0 shadow-sm" aria-labelledby="logout-dropdown">
-            <a class="dropdown-item" href="#">Logout</a>
-            <a class="dropdown-item" href="#">Settings</a>
-          </div>
-        </div>
-      </nav>
-      <main class="container-fluid">
-        <section class="row">
-          <div class="col-md-6 col-lg-4">
-            <article class="p-4 rounded shadow-sm border-left
-               mb-4">
-              <a href="#" class="d-flex align-items-center">
-                <span class="bi bi-box h5"></span>
-                <h5 class="ml-2">Products</h5>
-              </a>
-            </article>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <article class="p-4 rounded shadow-sm border-left mb-4">
-              <a href="#" class="d-flex align-items-center">
-                <span class="bi bi-person h5"></span>
-                <h5 class="ml-2">Customers</h5>
-              </a>
-            </article>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <article class="p-4 rounded shadow-sm border-left mb-4">
-              <a href="#" class="d-flex align-items-center">
-                <span class="bi bi-person-check h5"></span>
-                <h5 class="ml-2">Sellers</h5>
-              </a>
-            </article>
-          </div>
-        </section>
-        
-        <div class="jumbotron jumbotron-fluid rounded bg-white border-0 shadow-sm border-left px-4">
-  <div class="container">
-    <h1 class="display-4 mb-2 text-primary">Simple</h1>
-    <p class="lead text-muted">Simple Admin Dashboard with Bootstrap.</p>
-  </div>
-</div>
-      </main>
+    <div>
+    <Outlet/>
+
     </div>
-  </div>
-</div>
-    </>
+ </>
     )
 }
 

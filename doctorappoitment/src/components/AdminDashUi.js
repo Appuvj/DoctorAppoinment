@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import '../App.css';
 import { AdminContext } from './AdminDashContext';
-import { FaHome, FaUserMd, FaUsers, FaCalendarCheck } from 'react-icons/fa';
+import { FaHome, FaUserMd, FaUsers, FaCalendarCheck, FaEdit } from 'react-icons/fa';
 import { FaChartBar, FaChartPie } from 'react-icons/fa';
 
 
@@ -83,11 +83,11 @@ const AdminDashUi = () => {
     //   </div>
     // </div>
  <>
- <div class="px-3 py-2 bg-dark text-white">
-      <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-          <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use href="#bootstrap"></use></svg>
+ <div className="px-3 py-2 bg-dark text-white">
+      <div className="container">
+        <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="/" className="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+            <svg className="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use href="#bootstrap"></use></svg>
           </a>
 
           <ul className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
@@ -114,6 +114,7 @@ const AdminDashUi = () => {
       Appointments
     </Link>
   </li>
+
 </ul>
 
            

@@ -21,12 +21,12 @@ namespace DoctorAppoitmentAPICRUD.Controllers
         {
             var patientsCount = await _context.Patients.CountAsync();
             var doctorsCount = await _context.Doctors.CountAsync();
-            var totalAppointments = await _context.Bookings.CountAsync();
+            
 
-            var pendingAppointments = await _context.Bookings.CountAsync(b => b.Status == "pending");
-            var bookedAppointments = await _context.Bookings.CountAsync(b => b.Status == "booked");
-            var completedAppointments = await _context.Bookings.CountAsync(b => b.Status == "completed");
-
+            var pendingAppointments = await _context.Bookings.CountAsync(b => b.Status == "pending" && b.Doctor!=null && b.Patient!=null);
+            var bookedAppointments = await _context.Bookings.CountAsync(b => b.Status == "booked" && b.Doctor != null && b.Patient != null);
+            var completedAppointments = await _context.Bookings.CountAsync(b => b.Status == "completed" && b.Doctor != null && b.Patient != null);
+            var totalAppointments = pendingAppointments + bookedAppointments + completedAppointments;
             var stats = new
             {
                 PatientsCount = patientsCount,

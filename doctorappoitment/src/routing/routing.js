@@ -6,6 +6,10 @@ import DoctorsCrud from "../components/DoctorsCrud";
 import AppoimentsCrud from "../components/AppoimentsCrud";
 import AdminDashUi from "../components/AdminDashUi";
 import AnalyticsDataUi from "../components/AnalyticsDataUi";
+import PatientAdminEdit from "../components/PatientAdminEdit";
+import DoctorAdminCrud from "../components/DoctorAdminCrud";
+import PatientAdminView from "../components/PatientAdminView";
+import DoctorAdminView from "../components/DoctorAdminView";
 
 
 const router = createBrowserRouter([
@@ -44,6 +48,23 @@ element:<AnalyticsDataUi/>
     {
         path:"appointments",
         element :<AppoimentsCrud/>
+    },
+    {
+        path :"patients/:id",
+        element:<PatientAdminEdit/>
+    },
+    {
+        path : "doctors/:id",
+        element : <DoctorAdminCrud/>
+    },
+    {
+        path : "patientview/:id",
+        element : <PatientAdminView/>
+    },
+    {
+        path : "doctorview/:id",
+        element : <DoctorAdminView/>
+
     }
 
 

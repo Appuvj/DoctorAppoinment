@@ -71,13 +71,16 @@ namespace DoctorAppoitmentAPICRUD.Repositories
 
         public async Task<Booking> UpdateAsync(BookingDto bookingDto,int id)
         {
+            Console.WriteLine(bookingDto.Status+" "+bookingDto.PatientId);
             var booking = await _context.Bookings.FindAsync(id);
-            booking.BookingDate = bookingDto.BookingDate;
+         
             booking.Status = bookingDto.Status;
-            booking.DoctorId = bookingDto.DoctorId;
-            booking.PatientId = bookingDto.PatientId;
+
+            Console.WriteLine(booking.BookingId + " "+booking.Status+" "+booking.PatientId+" "+booking.DoctorId);
             _context.Bookings.Update(booking);
             await _context.SaveChangesAsync();
+            _context.Entry(booking).State = EntityState.Detached;
+
             return booking;
         }
 

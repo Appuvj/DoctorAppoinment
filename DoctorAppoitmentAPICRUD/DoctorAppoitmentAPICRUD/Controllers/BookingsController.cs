@@ -59,6 +59,7 @@ namespace DoctorAppoitmentAPICRUD.Controllers
         public async Task<IActionResult> UpdateBooking(int id, [FromBody] BookingDto bookingDto)
         {
             
+            
 
             var updatedBooking = await _bookingRepository.UpdateAsync(bookingDto,id);
             return Ok(updatedBooking); // Return 200 OK with the updated booking details

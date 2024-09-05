@@ -77,6 +77,27 @@ namespace DoctorAppoitmentAPICRUD.Migrations
                     b.ToTable("Doctors");
                 });
 
+            modelBuilder.Entity("DoctorAppoitmentAPICRUD.Models.ImageModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<byte[]>("ImageData")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ImageName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("DoctorAppoitmentAPICRUD.Models.Patient", b =>
                 {
                     b.Property<int>("PatientId")

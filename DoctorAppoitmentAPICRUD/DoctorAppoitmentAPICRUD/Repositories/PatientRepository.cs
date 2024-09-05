@@ -20,10 +20,32 @@ namespace DoctorAppoitmentAPICRUD.Repositories
             return await _context.Patients.Include(p => p.Bookings).ToListAsync();
         }
 
-        public async Task<Patient> GetByIdAsync(int id)
+        public async Task<PatientGetByIdDto> GetByIdAsync(int id)
         {
-            return await _context.Patients.Include(p => p.Bookings)
-                                          .FirstOrDefaultAsync(p => p.PatientId == id);
+            var patient = await _context.Patients
+        .Include(p => p.Bookings)
+        .ThenInclude(b => b.Doctor) // Include related Doctor for each booking
+        .Where(p => p.PatientId == id)
+        .Select(p => new PatientGetByIdDto
+        {
+            PatientId = p.PatientId,
+            Name = p.Name,
+            Email = p.Email,
+            Contact = p.Contact,
+            Bookings = p.Bookings.Select(b => new BookingGetId
+            {
+                BookingId = b.BookingId,
+                BookingDate = b.BookingDate,
+                Status = b.Status,
+                DoctorId = b.DoctorId,
+                DoctorName = b.Doctor != null ? b.Doctor.Name : null, // Get Doctor name if available
+                PatientId = b.PatientId,
+                PatientName = p.Name // Patient name from the parent object
+            }).ToList()
+        })
+        .FirstOrDefaultAsync();
+
+            return patient;
         }
 
         public async Task<Patient> AddAsync(PatientDto patientDto)

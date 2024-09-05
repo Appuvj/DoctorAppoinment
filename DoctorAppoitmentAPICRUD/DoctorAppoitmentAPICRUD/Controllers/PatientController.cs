@@ -27,7 +27,7 @@ namespace DoctorAppoitmentAPICRUD.Controllers
 
         // GET: api/patients/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Patient>> GetPatient(int id)
+        public async Task<ActionResult<PatientGetByIdDto>> GetPatient(int id)
         {
             var patient = await _patientRepository.GetByIdAsync(id);
 

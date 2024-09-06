@@ -88,17 +88,25 @@ namespace DoctorAppoitmentAPICRUD.Repositories
             return doctor;
         }
 
-        public async Task<Doctor> UpdateAsync(DoctorDto doctorDto,int id)
+        public async Task<Doctor> UpdateAsync( DoctorRegisterDto doctorRegisterDto,int id)
         {
+            IFormFile image = doctorRegisterDto.Image;
+
+
+            using var memoryStream = new MemoryStream();
+            await image.CopyToAsync(memoryStream);
+            var imageBytes = memoryStream.ToArray();
             var doctor = await _context.Doctors.FindAsync(id);
-            doctor.Name = doctorDto.Name;
-            doctor.Specialization = doctorDto.Specialization;
-            doctor.Contact = doctorDto.Contact;
-            doctor.Organization = doctorDto.Organization;
-            doctor.Gender = doctorDto.Gender;
-            doctor.Password = doctorDto.Password;
-            doctor.AvailableFrom = doctorDto.AvailableFrom;
-            doctor.ImageData = doctorDto.ImageData;
+            doctor.Name = doctorRegisterDto.Name;
+            doctor.Specialization = doctorRegisterDto.Specialization;
+            doctor.Contact = doctorRegisterDto.Contact;
+            doctor.Organization = doctorRegisterDto.Organization;
+            doctor.Gender = doctorRegisterDto.Gender;
+            doctor.Password = doctorRegisterDto.Password;
+            doctor.AvailableFrom = doctorRegisterDto.AvailableFrom;
+            doctor.ImageData = imageBytes;
+
+
             _context.Doctors.Update(doctor);
             await _context.SaveChangesAsync();
             return doctor;

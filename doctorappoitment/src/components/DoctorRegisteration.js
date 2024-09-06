@@ -17,7 +17,7 @@ const DoctorRegisteration = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const today = new Date().toISOString().split('T')[0];
-const [photoOk,setphotoOk] = useState(false)
+
   const validatePassword = (password) => {
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     return passwordRegex.test(password);
@@ -28,7 +28,7 @@ const [photoOk,setphotoOk] = useState(false)
     console.log(file)
     if (file && ['image/jpeg', 'image/png', 'image/jpg'].includes(file.type)) {
       setPhoto(file);
-      setphotoOk(true)
+    
     } else {
       setError('Invalid file type. Only .jpeg, .jpg, and .png formats are allowed.');
     }
@@ -38,14 +38,10 @@ const [photoOk,setphotoOk] = useState(false)
 
     e.preventDefault();
     console.log('Form submitted'); // Debugging log
-    if(! photoOk)
-    {
-        setError('All fields are required.')
-        return;
-    }
+  
     // Basic validation
-    if (!name || !mobile || !specification || !email || !organization || !gender || !password || !availableDate) {
-      setError('All fields are required.');
+    if (!name || !mobile || !specification || !email || !organization || !gender || !password || !availableDate || !photo) {
+      setError('All fields are required, including a valid image.');
       return;
     }
 
@@ -54,6 +50,7 @@ const [photoOk,setphotoOk] = useState(false)
       return;
     }
 
+    setError('');
     const formData = new FormData();
     formData.append('Name', name);
     formData.append('Contact', mobile);

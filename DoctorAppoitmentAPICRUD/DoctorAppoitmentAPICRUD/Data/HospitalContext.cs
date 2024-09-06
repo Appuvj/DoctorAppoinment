@@ -16,7 +16,7 @@ namespace DoctorAppoitmentAPICRUD.Data
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Booking> Bookings { get; set; }
 
-        public DbSet<ImageModel> Images { get; set; }
+        //public DbSet<ImageModel> Images { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,0 +1,21 @@
+/* PatientRegister.css */
+
+.background {
+    background-color: #f8f9fa; /* Light background color */
+    padding: 20px;
+  }
+  
+  .card-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-title {
+    color: #000; /* Default color */
+    opacity: 0.5; /* Make the text partially transparent */
+    font-weight: bold;
+  }
+  

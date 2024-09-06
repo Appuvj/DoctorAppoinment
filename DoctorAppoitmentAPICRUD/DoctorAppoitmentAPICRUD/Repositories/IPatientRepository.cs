@@ -7,8 +7,8 @@ namespace DoctorAppoitmentAPICRUD.Repositories
     {
         Task<IEnumerable<Patient>> GetAllAsync();
         Task<PatientGetByIdDto> GetByIdAsync(int id);
-        Task<Patient> AddAsync(PatientDto patientDto);
-        Task<Patient> UpdateAsync(PatientDto patientDto, int id);
+        Task<Patient> AddAsync(PatientRegisterDto patientRegisterDto);
+        Task<Patient> UpdateAsync(PatientRegisterDto patientRegisterDto, int id);
         Task<bool> DeleteAsync(int id);
     }
 }

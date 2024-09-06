@@ -56,11 +56,11 @@ namespace DoctorAppoitmentAPICRUD.Controllers
 
         // PUT: api/doctors/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateDoctor(int id, [FromBody] DoctorDto doctorDto)
+        public async Task<IActionResult> UpdateDoctor(int id, [FromForm] DoctorRegisterDto doctorRegisterDto)
         {
            
 
-            var updatedDoctor = await _doctorRepository.UpdateAsync(doctorDto,id);
+            var updatedDoctor = await _doctorRepository.UpdateAsync(doctorRegisterDto,id);
             return Ok(updatedDoctor); // Return 200 OK with the updated doctor details
         }
 

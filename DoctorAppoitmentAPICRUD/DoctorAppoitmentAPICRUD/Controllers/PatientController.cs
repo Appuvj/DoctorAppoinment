@@ -41,14 +41,14 @@ namespace DoctorAppoitmentAPICRUD.Controllers
 
         // POST: api/patients
         [HttpPost]
-        public async Task<IActionResult> CreatePatient([FromBody] PatientDto patientDto)
+        public async Task<IActionResult> CreatePatient([FromForm] PatientRegisterDto patientRegisterDto)
         {
-            if (patientDto == null)
+            if (patientRegisterDto == null)
             {
                 return BadRequest(new { message = "Invalid patient data" }); // Return 400 Bad Request if the provided data is null
             }
 
-            var createdPatient = await _patientRepository.AddAsync(patientDto);
+            var createdPatient = await _patientRepository.AddAsync(patientRegisterDto);
 
             // Return 201 Created with the URI of the new resource and the created patient
             return CreatedAtAction(nameof(GetPatient), new { id = createdPatient.PatientId }, createdPatient);
@@ -56,11 +56,11 @@ namespace DoctorAppoitmentAPICRUD.Controllers
 
         // PUT: api/patients/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePatient(int id, [FromBody] PatientDto patientDto)
+        public async Task<IActionResult> UpdatePatient(int id, [FromForm] PatientRegisterDto patientRegisterDto)
         {
            
 
-            var updatedPatient = await _patientRepository.UpdateAsync(patientDto,id);
+            var updatedPatient = await _patientRepository.UpdateAsync(patientRegisterDto,id);
             return Ok(updatedPatient); // Return 200 OK with the updated patient details
         }
 

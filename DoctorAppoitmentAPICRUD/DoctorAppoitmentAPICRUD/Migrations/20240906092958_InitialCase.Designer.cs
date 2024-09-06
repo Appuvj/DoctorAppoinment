@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoctorAppoitmentAPICRUD.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    [Migration("20240906061646_InitialCase")]
+    [Migration("20240906092958_InitialCase")]
     partial class InitialCase
     {
         /// <inheritdoc />
@@ -63,7 +63,7 @@ namespace DoctorAppoitmentAPICRUD.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DoctorId"));
 
-                    b.Property<DateTime?>("AvailableFrom")
+                    b.Property<DateTime>("AvailableFrom")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Contact")
@@ -103,27 +103,6 @@ namespace DoctorAppoitmentAPICRUD.Migrations
                     b.ToTable("Doctors");
                 });
 
-            modelBuilder.Entity("DoctorAppoitmentAPICRUD.Models.ImageModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<byte[]>("ImageData")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("ImageName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Images");
-                });
-
             modelBuilder.Entity("DoctorAppoitmentAPICRUD.Models.Patient", b =>
                 {
                     b.Property<int>("PatientId")
@@ -131,6 +110,10 @@ namespace DoctorAppoitmentAPICRUD.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PatientId"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Contact")
                         .IsRequired()
@@ -140,7 +123,19 @@ namespace DoctorAppoitmentAPICRUD.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("ImageData")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

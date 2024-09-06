@@ -3,6 +3,8 @@ using DoctorAppoitmentAPICRUD.Dtos;
 using DoctorAppoitmentAPICRUD.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Formats.Tar;
+using System.Net;
+using System.Reflection;
 
 namespace DoctorAppoitmentAPICRUD.Repositories
 {
@@ -32,6 +34,10 @@ namespace DoctorAppoitmentAPICRUD.Repositories
             Name = p.Name,
             Email = p.Email,
             Contact = p.Contact,
+            Address = p.Address,
+            Gender = p.Gender,
+            Password = p.Password,
+            Image = p.ImageData != null ? Convert.ToBase64String(p.ImageData) : null,
             Bookings = p.Bookings.Select(b => new BookingGetId
             {
                 BookingId = b.BookingId,
@@ -48,13 +54,36 @@ namespace DoctorAppoitmentAPICRUD.Repositories
             return patient;
         }
 
-        public async Task<Patient> AddAsync(PatientDto patientDto)
+        public async Task<Patient> AddAsync(PatientRegisterDto patientRegisterDto)
         {
+            IFormFile image = patientRegisterDto.Image;
+
+
+            using var memoryStream = new MemoryStream();
+            await image.CopyToAsync(memoryStream);
+            var imageBytes = memoryStream.ToArray();
+
+            var patientDto = new PatientDto();
+
+            patientDto.Name = patientRegisterDto.Name;
+            patientDto.Contact = patientRegisterDto.Contact;
+            patientDto.Email = patientRegisterDto.Email;
+            
+
+
+
             var patient = new Patient
             {
                 Name = patientDto.Name,
                 Email = patientDto.Email,
-                Contact = patientDto.Contact
+                Contact = patientDto.Contact,
+                Address = patientRegisterDto.Address,
+                Gender = patientRegisterDto.Gender,
+                Password = patientRegisterDto.Password,
+                ImageData = imageBytes
+
+                
+
             };
 
             _context.Patients.Add(patient);
@@ -62,12 +91,26 @@ namespace DoctorAppoitmentAPICRUD.Repositories
             return patient;
         }
 
-        public async Task<Patient> UpdateAsync(PatientDto patientDto,int id)
+        public async Task<Patient> UpdateAsync(PatientRegisterDto patientRegisterDto,int id)
         {
+            IFormFile image = patientRegisterDto.Image;
+
+
+            using var memoryStream = new MemoryStream();
+            await image.CopyToAsync(memoryStream);
+            var imageBytes = memoryStream.ToArray();
+
+
+
             var patient = await _context.Patients.FindAsync(id);
-            patient.Name = patientDto.Name;
-            patient.Email = patientDto.Email;
-            patient.Contact = patientDto.Contact;
+
+            patient.Name = patientRegisterDto.Name;
+            patient.Email = patientRegisterDto.Email;
+            patient.Contact = patientRegisterDto.Contact;
+            patient.Address = patientRegisterDto.Address;
+            patient.Gender = patientRegisterDto.Gender;
+            patient.Password = patientRegisterDto.Password;
+            patient.ImageData = imageBytes;
 
             _context.Patients.Update(patient);
             await _context.SaveChangesAsync();

@@ -7,7 +7,7 @@ namespace DoctorAppoitmentAPICRUD.Repositories
     {
         Task<IEnumerable<Doctor>> GetAllAsync();
         Task<DoctorGetById> GetByIdAsync(int id);
-        Task<Doctor> AddAsync(DoctorDto doctorDto);
+        Task<Doctor> AddAsync(DoctorRegisterDto doctorRegisterDto);
         Task<Doctor> UpdateAsync(DoctorDto doctorDto, int id);
         Task<bool> DeleteAsync(int id);
 

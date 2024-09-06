@@ -41,14 +41,14 @@ namespace DoctorAppoitmentAPICRUD.Controllers
 
         // POST: api/doctors
         [HttpPost]
-        public async Task<IActionResult> CreateDoctor([FromBody] DoctorDto doctorDto)
+        public async Task<IActionResult> CreateDoctor([FromForm] DoctorRegisterDto doctorRegisterDto)
         {
-            if (doctorDto == null)
+            if (doctorRegisterDto == null)
             {
                 return BadRequest(new { message = "Invalid doctor data" }); // Return 400 Bad Request if the provided data is null
             }
 
-            var createdDoctor = await _doctorRepository.AddAsync(doctorDto);
+            var createdDoctor = await _doctorRepository.AddAsync(doctorRegisterDto);
 
             // Return 201 Created with the URI of the new resource and the created doctor
             return CreatedAtAction(nameof(GetDoctor), new { id = createdDoctor.DoctorId }, createdDoctor);

@@ -2,6 +2,7 @@
 using DoctorAppoitmentAPICRUD.Dtos;
 using DoctorAppoitmentAPICRUD.Models;
 using Microsoft.EntityFrameworkCore;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DoctorAppoitmentAPICRUD.Repositories
 {
@@ -31,6 +32,12 @@ namespace DoctorAppoitmentAPICRUD.Repositories
              Name = d.Name,
              Specialization = d.Specialization,
              Contact = d.Contact,
+             Email = d.Email,
+             Organization = d.Organization,
+             Gender = d.Gender,
+             Password = d.Password,
+             AvailableFrom = d.AvailableFrom,
+             ImageData = d.ImageData != null ? Convert.ToBase64String(d.ImageData) : null,
              Bookings = d.Bookings.Select(b => new DoctorBookingDto
              {
                  BookingId = b.BookingId,
@@ -43,13 +50,37 @@ namespace DoctorAppoitmentAPICRUD.Repositories
             return doctor;
         }
 
-        public async Task<Doctor> AddAsync(DoctorDto doctorDto)
+        public async Task<Doctor> AddAsync(DoctorRegisterDto doctorRegisterDto)
         {
+            var doctorDto = new DoctorDto();
+            IFormFile image = doctorRegisterDto.Image;
+
+            
+            using var memoryStream = new MemoryStream();
+            await image.CopyToAsync(memoryStream);
+            var imageBytes = memoryStream.ToArray();
+
+            doctorDto.Name = doctorRegisterDto.Name;
+            doctorDto.Specialization = doctorRegisterDto.Specialization;
+            doctorDto.Contact = doctorRegisterDto.Contact;
+            doctorDto.Email = doctorRegisterDto.Email;
+            doctorDto.Organization = doctorRegisterDto.Organization;
+            doctorDto.Gender = doctorRegisterDto.Gender;
+            doctorDto.Password = doctorRegisterDto.Password;
+            doctorDto.AvailableFrom = doctorRegisterDto.AvailableFrom;
+            doctorDto.ImageData = imageBytes;
+
             var doctor = new Doctor
             {
                 Name = doctorDto.Name,
                 Specialization = doctorDto.Specialization,
-                Contact = doctorDto.Contact
+                Contact = doctorDto.Contact,
+                Email = doctorDto.Email,
+                Organization = doctorDto.Organization,
+                Gender = doctorDto.Gender,
+                Password = doctorDto.Password,
+                AvailableFrom = doctorDto.AvailableFrom,
+                ImageData = doctorDto.ImageData
             };
 
             _context.Doctors.Add(doctor);
@@ -63,6 +94,11 @@ namespace DoctorAppoitmentAPICRUD.Repositories
             doctor.Name = doctorDto.Name;
             doctor.Specialization = doctorDto.Specialization;
             doctor.Contact = doctorDto.Contact;
+            doctor.Organization = doctorDto.Organization;
+            doctor.Gender = doctorDto.Gender;
+            doctor.Password = doctorDto.Password;
+            doctor.AvailableFrom = doctorDto.AvailableFrom;
+            doctor.ImageData = doctorDto.ImageData;
             _context.Doctors.Update(doctor);
             await _context.SaveChangesAsync();
             return doctor;

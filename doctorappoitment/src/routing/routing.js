@@ -10,9 +10,19 @@ import PatientAdminEdit from "../components/PatientAdminEdit";
 import DoctorAdminCrud from "../components/DoctorAdminCrud";
 import PatientAdminView from "../components/PatientAdminView";
 import DoctorAdminView from "../components/DoctorAdminView";
+import DoctorRegisteration from "../components/DoctorRegisteration";
+import PatientRegister from "../components/PatientRegister";
 
 
 const router = createBrowserRouter([
+    {
+        path:"/doctor-register",
+        element:<DoctorRegisteration/>
+    },
+    {
+        path:"/patient-register",
+        element:<PatientRegister/>
+    },
 
 {
     path:"/admin",

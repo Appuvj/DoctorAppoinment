@@ -1,0 +1,26 @@
+/* src/Pages/DoctorRegister.css */
+
+.background {
+    background-color: #f8f9fa; /* Light background color for the page */
+    padding: 20px; /* Add padding around the content */
+  }
+  
+  .card-container {
+    border-radius: 10px; /* Rounded corners for the card */
+  }
+  
+  .card-body {
+    padding: 20px; /* Add padding inside the card */
+  }
+  
+  .btn {
+    font-size: 16px; /* Adjust font size for buttons */
+  }
+  
+  .text-success {
+    font-weight: bold; /* Make success text bold */
+  }
+  
+  .text-danger {
+    font-weight: bold; /* Make error text bold */
+  }

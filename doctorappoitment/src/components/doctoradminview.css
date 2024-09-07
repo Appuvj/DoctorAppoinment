@@ -1,88 +1,54 @@
-/* Container for the entire doctor list */
 .doctor-list-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    padding: 20px;
-    background-color: #f5f5f5;
-  }
-  
-  /* Each doctor card */
-  .doctor-card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  /* Doctor header section */
-  .doctor-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  /* Doctor image */
-  .doctor-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-  }
-  
-  /* Doctor name and specialization */
-  .doctor-details h3 {
-    margin: 0;
-    font-size: 1.2em;
-    color: #333;
-  }
-  
-  .doctor-details p {
-    margin: 5px 0;
-    font-size: 0.9em;
-    color: #777;
-  }
-  
-  /* Bookings list container */
-  .booking-list {
-    width: 100%;
-    padding: 10px;
-    background-color: #f9f9f9;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  /* Individual booking card */
-  .booking-card {
-    background-color: #e6e6e6;
-    border-radius: 8px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-  .doctor-image {
-    width: 100px; /* Adjust size as needed */
-    height: 100px; /* Adjust size as needed */
-    border-radius: 50%; /* Makes the image circular */
-    object-fit: cover; /* Ensures the image covers the container without distortion */
-  }
-  .booking-card h4 {
-    margin: 0 0 5px 0;
-    font-size: 1em;
-    color: #555;
-  }
-  
-  .booking-card p {
-    margin: 3px 0;
-    font-size: 0.9em;
-    color: #666;
-  }
-  
+  padding: 20px;
+}
+
+.doctor-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.doctor-header {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.doctor-image {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.doctor-details {
+  flex: 1;
+}
+
+.doctor-details h3 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.doctor-details p {
+  margin: 5px 0;
+}
+
+.booking-list {
+  padding: 15px;
+}
+
+.booking-card {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.booking-card p {
+  margin: 5px 0;
+}

@@ -48,10 +48,16 @@ namespace DoctorAppoitmentAPICRUD.Controllers
                 return BadRequest(new { message = "Invalid patient data" }); // Return 400 Bad Request if the provided data is null
             }
 
-            var createdPatient = await _patientRepository.AddAsync(patientRegisterDto);
+            try
+            {
+                var patient = await _patientRepository.AddAsync(patientRegisterDto);
+                return Ok(patient); // Return the newly created patient
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
-            // Return 201 Created with the URI of the new resource and the created patient
-            return CreatedAtAction(nameof(GetPatient), new { id = createdPatient.PatientId }, createdPatient);
         }
 
         // PUT: api/patients/{id}

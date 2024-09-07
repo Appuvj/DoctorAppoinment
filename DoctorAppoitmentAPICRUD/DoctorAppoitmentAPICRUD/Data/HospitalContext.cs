@@ -34,6 +34,16 @@ namespace DoctorAppoitmentAPICRUD.Data
                 .WithMany(p => p.Bookings)
                 .HasForeignKey(b => b.PatientId)
                 .OnDelete(DeleteBehavior.SetNull); // Set null on delete
+
+            modelBuilder.Entity<Doctor>()
+                .HasIndex(d => d.Email)
+                .IsUnique(); // Enforce unique constraint on Email
+
+            modelBuilder.Entity<Patient>()
+                .HasIndex(d => d.Email)
+                .IsUnique(); // Enforce unique constraint on Email
+
+
         }
     }
 }

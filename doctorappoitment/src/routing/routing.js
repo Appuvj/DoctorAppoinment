@@ -12,9 +12,20 @@ import PatientAdminView from "../components/PatientAdminView";
 import DoctorAdminView from "../components/DoctorAdminView";
 import DoctorRegisteration from "../components/DoctorRegisteration";
 import PatientRegister from "../components/PatientRegister";
+import LoginComponent from "../components/LoginComponent";
+import DoctorBookingList from "../components/DoctorBookingList";
 
 
 const router = createBrowserRouter([
+    {
+        path:"/doctor-bookings/:id",
+        element:<DoctorBookingList/>
+
+    },
+    {
+        path:"/login",
+        element:<LoginComponent/>
+    },
     {
         path:"/doctor-register",
         element:<DoctorRegisteration/>

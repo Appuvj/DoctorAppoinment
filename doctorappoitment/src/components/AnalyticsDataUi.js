@@ -69,7 +69,7 @@ const AnalyticsDataUi = () => {
   </div>
 
   <div className="col-md-4">
-    <div className="card text-white bg-dark mb-3">
+    <div className="card text-Info bg-light mb-3">
       <div className="card-body d-flex align-items-center">
         <FaCheckCircle size={50} className="me-3" />
         <div>

@@ -54,42 +54,50 @@ namespace DoctorAppoitmentAPICRUD.Repositories
             return patient;
         }
 
-        public async Task<Patient> AddAsync(PatientRegisterDto patientRegisterDto)
-        {
-            IFormFile image = patientRegisterDto.Image;
+       public async Task<Patient> AddAsync(PatientRegisterDto patientRegisterDto)
+{
+    // Check if a patient with the given email already exists
+    var existingPatient = await _context.Patients.FirstOrDefaultAsync(p => p.Email == patientRegisterDto.Email);
+    
+    if (existingPatient != null)
+    {
+        throw new Exception("A patient with this email already exists.");
+    }
 
+    // Process the image and convert it to a byte array
+    IFormFile image = patientRegisterDto.Image;
+    byte[] imageBytes;
+    using (var memoryStream = new MemoryStream())
+    {
+        await image.CopyToAsync(memoryStream);
+        imageBytes = memoryStream.ToArray();
+    }
 
-            using var memoryStream = new MemoryStream();
-            await image.CopyToAsync(memoryStream);
-            var imageBytes = memoryStream.ToArray();
+    // Create a new Patient entity
+    var patient = new Patient
+    {
+        Name = patientRegisterDto.Name,
+        Email = patientRegisterDto.Email,
+        Contact = patientRegisterDto.Contact,
+        Address = patientRegisterDto.Address,
+        Gender = patientRegisterDto.Gender,
+        Password = patientRegisterDto.Password,
+        ImageData = imageBytes
+    };
 
-            var patientDto = new PatientDto();
-
-            patientDto.Name = patientRegisterDto.Name;
-            patientDto.Contact = patientRegisterDto.Contact;
-            patientDto.Email = patientRegisterDto.Email;
-            
-
-
-
-            var patient = new Patient
-            {
-                Name = patientDto.Name,
-                Email = patientDto.Email,
-                Contact = patientDto.Contact,
-                Address = patientRegisterDto.Address,
-                Gender = patientRegisterDto.Gender,
-                Password = patientRegisterDto.Password,
-                ImageData = imageBytes
-
-                
-
-            };
-
-            _context.Patients.Add(patient);
-            await _context.SaveChangesAsync();
-            return patient;
-        }
+    try
+    {
+        // Save the patient entity to the database
+        _context.Patients.Add(patient);
+        await _context.SaveChangesAsync();
+        return patient; // Return the created patient entity
+    }
+    catch (DbUpdateException ex)
+    {
+        // Handle possible database exceptions
+        throw new Exception("An error occurred while processing your request.");
+    }
+}
 
         public async Task<Patient> UpdateAsync(PatientRegisterDto patientRegisterDto,int id)
         {

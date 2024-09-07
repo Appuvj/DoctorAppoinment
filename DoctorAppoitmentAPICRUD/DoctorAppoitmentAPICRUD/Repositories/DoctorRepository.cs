@@ -1,6 +1,7 @@
 ﻿using DoctorAppoitmentAPICRUD.Data;
 using DoctorAppoitmentAPICRUD.Dtos;
 using DoctorAppoitmentAPICRUD.Models;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -23,71 +24,91 @@ namespace DoctorAppoitmentAPICRUD.Repositories
         public async Task<DoctorGetById> GetByIdAsync(int id)
         {
             var doctor = await _context.Doctors
-         .Include(d => d.Bookings)
-         .ThenInclude(b => b.Patient) // Include related Patient for each booking
-         .Where(d => d.DoctorId == id)
-         .Select(d => new DoctorGetById
-         {
-             DoctorId = d.DoctorId,
-             Name = d.Name,
-             Specialization = d.Specialization,
-             Contact = d.Contact,
-             Email = d.Email,
-             Organization = d.Organization,
-             Gender = d.Gender,
-             Password = d.Password,
-             AvailableFrom = d.AvailableFrom,
-             ImageData = d.ImageData != null ? Convert.ToBase64String(d.ImageData) : null,
-             Bookings = d.Bookings.Select(b => new DoctorBookingDto
-             {
-                 BookingId = b.BookingId,
-                 BookingDate = b.BookingDate,
-                 PatientName = b.Patient != null ? b.Patient.Name : null // Get Patient name if available
-             }).ToList()
-         })
-         .FirstOrDefaultAsync();
+                .Include(d => d.Bookings)
+                .ThenInclude(b => b.Patient) // Include related Patient for each booking
+                .Where(d => d.DoctorId == id)
+                .Select(d => new DoctorGetById
+                {
+                    DoctorId = d.DoctorId,
+                    Name = d.Name,
+                    Specialization = d.Specialization,
+                    Contact = d.Contact,
+                    Email = d.Email,
+                    Organization = d.Organization,
+                    Gender = d.Gender,
+                    Password = d.Password,
+                    AvailableFrom = d.AvailableFrom,
+                    ImageData = d.ImageData != null ? Convert.ToBase64String(d.ImageData) : null,
+                    Bookings = d.Bookings.Select(b => new DoctorBookingDto
+                    {
+                        BookingId = b.BookingId,
+                        BookingDate = b.BookingDate,
+                        Status = b.Status,
+                        PatientName = b.Patient != null ? b.Patient.Name : null, // Get Patient name if available
+                        PatientImage = b.Patient != null && b.Patient.ImageData != null
+                                       ? Convert.ToBase64String(b.Patient.ImageData)
+                                       : null // Convert Patient image to base64 if available
+                    }).ToList()
+                })
+                .FirstOrDefaultAsync();
 
             return doctor;
         }
+
 
         public async Task<Doctor> AddAsync(DoctorRegisterDto doctorRegisterDto)
         {
-            var doctorDto = new DoctorDto();
+            // Check if a doctor with the given email already exists
+            var existingDoctor = await _context.Doctors.FirstOrDefaultAsync(d => d.Email == doctorRegisterDto.Email);
+
+            if (existingDoctor != null)
+            {
+                throw new Exception("A doctor with this email already exists.");
+            }
+
+            // Process the image and convert to byte array
             IFormFile image = doctorRegisterDto.Image;
+            byte[] imageBytes;
+            using (var memoryStream = new MemoryStream())
+            {
+                await image.CopyToAsync(memoryStream);
+                imageBytes = memoryStream.ToArray();
+            }
 
-            
-            using var memoryStream = new MemoryStream();
-            await image.CopyToAsync(memoryStream);
-            var imageBytes = memoryStream.ToArray();
-
-            doctorDto.Name = doctorRegisterDto.Name;
-            doctorDto.Specialization = doctorRegisterDto.Specialization;
-            doctorDto.Contact = doctorRegisterDto.Contact;
-            doctorDto.Email = doctorRegisterDto.Email;
-            doctorDto.Organization = doctorRegisterDto.Organization;
-            doctorDto.Gender = doctorRegisterDto.Gender;
-            doctorDto.Password = doctorRegisterDto.Password;
-            doctorDto.AvailableFrom = doctorRegisterDto.AvailableFrom;
-            doctorDto.ImageData = imageBytes;
-
+            // Create a new Doctor entity
             var doctor = new Doctor
             {
-                Name = doctorDto.Name,
-                Specialization = doctorDto.Specialization,
-                Contact = doctorDto.Contact,
-                Email = doctorDto.Email,
-                Organization = doctorDto.Organization,
-                Gender = doctorDto.Gender,
-                Password = doctorDto.Password,
-                AvailableFrom = doctorDto.AvailableFrom,
-                ImageData = doctorDto.ImageData
+                Name = doctorRegisterDto.Name,
+                Specialization = doctorRegisterDto.Specialization,
+                Contact = doctorRegisterDto.Contact,
+                Email = doctorRegisterDto.Email,
+                Organization = doctorRegisterDto.Organization,
+                Gender = doctorRegisterDto.Gender,
+                Password = doctorRegisterDto.Password,
+                AvailableFrom = doctorRegisterDto.AvailableFrom,
+                ImageData = imageBytes
             };
 
-            _context.Doctors.Add(doctor);
-            await _context.SaveChangesAsync();
-            return doctor;
-        }
+            try
+            {
+                // Save the doctor entity to the database
+                _context.Doctors.Add(doctor);
+                await _context.SaveChangesAsync();
 
+                return doctor; // Return the created doctor entity
+            }
+            catch (DbUpdateException ex)
+            {
+                // Handle SQL unique constraint violation
+                if (ex.InnerException is SqlException sqlEx && sqlEx.Number == 2627)
+                {
+                    throw new Exception("A doctor with this email already exists.");
+                }
+
+                // Handle other database exceptions
+                throw new Exception("An error occurred while processing your request.");
+            }
+        }
         public async Task<Doctor> UpdateAsync( DoctorRegisterDto doctorRegisterDto,int id)
         {
             IFormFile image = doctorRegisterDto.Image;

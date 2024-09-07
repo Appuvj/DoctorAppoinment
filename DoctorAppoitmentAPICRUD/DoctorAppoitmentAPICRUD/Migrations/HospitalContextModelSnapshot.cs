@@ -69,7 +69,7 @@ namespace DoctorAppoitmentAPICRUD.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Gender")
                         .IsRequired()
@@ -97,6 +97,9 @@ namespace DoctorAppoitmentAPICRUD.Migrations
 
                     b.HasKey("DoctorId");
 
+                    b.HasIndex("Email")
+                        .IsUnique();
+
                     b.ToTable("Doctors");
                 });
 
@@ -118,7 +121,7 @@ namespace DoctorAppoitmentAPICRUD.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Gender")
                         .IsRequired()
@@ -137,6 +140,9 @@ namespace DoctorAppoitmentAPICRUD.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PatientId");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Patients");
                 });

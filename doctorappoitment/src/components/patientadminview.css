@@ -1,0 +1,72 @@
+.patient-admin-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px; /* Adds space between patient and booking cards */
+  }
+  
+  .card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .patient-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Makes the image round */
+    object-fit: cover;
+    border: 2px solid #e0e0e0;
+  }
+  
+  .patient-info {
+    flex-grow: 1;
+  }
+  
+  .patient-info h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .patient-info p {
+    margin: 5px 0;
+    color: #555;
+  }
+  
+  .booking-card {
+    width: 100%;
+  }
+  
+  .booking-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f7f7f7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .booking-item p {
+    margin: 5px 0;
+    color: #555;
+  }
+  
+  .booking-card h3 {
+    color: #333;
+    margin-bottom: 15px;
+  }
+  

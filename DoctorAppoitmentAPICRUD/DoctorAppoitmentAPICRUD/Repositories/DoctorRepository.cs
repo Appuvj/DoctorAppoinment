@@ -44,6 +44,9 @@ namespace DoctorAppoitmentAPICRUD.Repositories
                         BookingId = b.BookingId,
                         BookingDate = b.BookingDate,
                         Status = b.Status,
+                        DoctorId = b.DoctorId,
+                        PatientId = b.PatientId,
+                        Prescription = b.ImageData!= null ? Convert.ToBase64String(b.ImageData): null,
                         PatientName = b.Patient != null ? b.Patient.Name : null, // Get Patient name if available
                         PatientImage = b.Patient != null && b.Patient.ImageData != null
                                        ? Convert.ToBase64String(b.Patient.ImageData)

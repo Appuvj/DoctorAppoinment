@@ -1,8 +1,6 @@
-﻿using DoctorAppoitmentAPICRUD.Models;
-
-namespace DoctorAppoitmentAPICRUD.Dtos
+﻿namespace DoctorAppoitmentAPICRUD.Dtos
 {
-    public class BookingDto
+    public class BookingPostDto
     {
         public DateTime BookingDate { get; set; }
         public string Status { get; set; } // e.g., "Pending", "Approved", "Rejected"
@@ -11,6 +9,5 @@ namespace DoctorAppoitmentAPICRUD.Dtos
 
         public int? PatientId { get; set; } // Foreign Key (nullable)
 
-        public IFormFile? Prescription { get; set; }
     }
 }

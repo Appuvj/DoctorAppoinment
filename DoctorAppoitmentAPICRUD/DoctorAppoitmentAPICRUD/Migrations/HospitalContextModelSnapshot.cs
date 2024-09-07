@@ -36,6 +36,9 @@ namespace DoctorAppoitmentAPICRUD.Migrations
                     b.Property<int?>("DoctorId")
                         .HasColumnType("int");
 
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<int?>("PatientId")
                         .HasColumnType("int");
 

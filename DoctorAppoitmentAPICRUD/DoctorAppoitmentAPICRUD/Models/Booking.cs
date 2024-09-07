@@ -11,5 +11,7 @@
 
         public int? PatientId { get; set; } // Foreign Key (nullable)
         public Patient Patient { get; set; } // Navigation property
+
+        public byte[]? ImageData { get; set; }
     }
 }

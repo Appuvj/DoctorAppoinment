@@ -14,9 +14,27 @@ import DoctorRegisteration from "../components/DoctorRegisteration";
 import PatientRegister from "../components/PatientRegister";
 import LoginComponent from "../components/LoginComponent";
 import DoctorBookingList from "../components/DoctorBookingList";
+import DoctorBookingMedicalHistory from "../components/DoctorBookingMedicalHistory";
+import PatientMedicalHistory from "../components/PatientMedicalHistory";
+import Patientbookings from "../components/Patientbookings";
 
 
 const router = createBrowserRouter([
+    {
+        path:"/patientbookings/:id",
+        element:<Patientbookings/>
+
+    },
+
+    {
+        path:"/patient/medicalHistory/:id",
+        element:<PatientMedicalHistory/>
+    },
+    {
+        path:"/doctor-bookings/MedicalHistory/:id",
+        element:<DoctorBookingMedicalHistory/>
+
+    },
     {
         path:"/doctor-bookings/:id",
         element:<DoctorBookingList/>

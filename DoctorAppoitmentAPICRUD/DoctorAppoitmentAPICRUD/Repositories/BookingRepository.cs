@@ -1,6 +1,7 @@
 ﻿using DoctorAppoitmentAPICRUD.Data;
 using DoctorAppoitmentAPICRUD.Dtos;
 using DoctorAppoitmentAPICRUD.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoctorAppoitmentAPICRUD.Repositories
@@ -50,14 +51,14 @@ namespace DoctorAppoitmentAPICRUD.Repositories
             return booking;
         }
 
-        public async Task<Booking> AddAsync(BookingDto bookingDto)
+        public async Task<Booking> AddAsync(BookingPostDto bookingPostDto)
         {
             var booking = new Booking
             {
-                BookingDate = bookingDto.BookingDate,
-                Status = bookingDto.Status,
-                DoctorId = bookingDto.DoctorId,
-                PatientId = bookingDto.PatientId
+                BookingDate = bookingPostDto.BookingDate,
+                Status = bookingPostDto.Status,
+                DoctorId = bookingPostDto.DoctorId,
+                PatientId = bookingPostDto.PatientId
             };
 
             _context.Bookings.Add(booking);
@@ -71,10 +72,21 @@ namespace DoctorAppoitmentAPICRUD.Repositories
 
         public async Task<Booking> UpdateAsync(BookingDto bookingDto,int id)
         {
-            Console.WriteLine(bookingDto.Status+" "+bookingDto.PatientId);
+
+            IFormFile image = bookingDto.Prescription;
+            byte[] imageBytes;
+            using (var memoryStream = new MemoryStream())
+            {
+                await image.CopyToAsync(memoryStream);
+                imageBytes = memoryStream.ToArray();
+            }
+
+            //Console.WriteLine(bookingDto.Status+" "+bookingDto.PatientId);
             var booking = await _context.Bookings.FindAsync(id);
          
             booking.Status = bookingDto.Status;
+            booking.ImageData = imageBytes;
+
 
             Console.WriteLine(booking.BookingId + " "+booking.Status+" "+booking.PatientId+" "+booking.DoctorId);
             _context.Bookings.Update(booking);
@@ -95,6 +107,28 @@ namespace DoctorAppoitmentAPICRUD.Repositories
             _context.Bookings.Remove(booking);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+
+
+        public async Task<ActionResult<IEnumerable<object>>> GetMedicalHistory(int id)
+        {
+            var completedBookings = await _context.Bookings
+                .Where(b => b.PatientId == id && b.Status == "Completed" && b.DoctorId != null && b.PatientId != null)
+                .Include(b => b.Doctor)  // Join the Doctor table
+                .Include(b => b.Patient) // Join the Patient table
+                .Select(b => new
+                {
+                    DoctorId = b.DoctorId,
+                    DoctorName = b.Doctor != null ? b.Doctor.Name : "Unknown", // Check if Doctor exists
+                    BookingDate = b.BookingDate,
+                    PatientId = b.PatientId,
+                    PatientName = b.Patient != null ? b.Patient.Name : "Unknown", // Check if Patient exists
+                    Prescription = b.ImageData != null ? Convert.ToBase64String(b.ImageData) : null // Convert prescription to Base64 if exists
+                })
+                .ToListAsync();
+
+            return completedBookings;
         }
     }
 }

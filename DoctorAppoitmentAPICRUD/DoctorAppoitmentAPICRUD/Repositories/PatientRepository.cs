@@ -46,7 +46,11 @@ namespace DoctorAppoitmentAPICRUD.Repositories
                 DoctorId = b.DoctorId,
                 DoctorName = b.Doctor != null ? b.Doctor.Name : null, // Get Doctor name if available
                 PatientId = b.PatientId,
-                PatientName = p.Name // Patient name from the parent object
+                DoctorImage = b.Doctor != null && b.Doctor.ImageData != null
+                                       ? Convert.ToBase64String(b.Doctor.ImageData)
+                                       : null ,// Convert Patient image to base64 if available
+                PatientName = p.Name ,// Patient name from the parent object
+                Prescription = b.ImageData != null ? Convert.ToBase64String(b.ImageData) : null
             }).ToList()
         })
         .FirstOrDefaultAsync();

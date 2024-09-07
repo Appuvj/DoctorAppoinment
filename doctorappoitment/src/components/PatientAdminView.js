@@ -31,11 +31,12 @@ const PatientAdminView = () => {
       <div className="patient-admin-view">
       {/* Patient Details Card */}
       <div className="patient-card card">
-        <img 
+        {image ? <img 
           src={`data:image/jpeg;base64,${image}`} 
           alt={name} 
           className="profile-picture" 
-        />
+        /> : ""}
+        
         <div className="patient-info">
           <h2>{name}</h2>
           <p><strong>Email:</strong> {email}</p>

@@ -9,5 +9,11 @@
         public string Status { get; set; }
 
         public string PatientImage { get; set; }
+
+        public string Prescription { get; set; }
+
+        public int? DoctorId { get; set; }
+
+        public int? PatientId { get; set; }
     }
 }

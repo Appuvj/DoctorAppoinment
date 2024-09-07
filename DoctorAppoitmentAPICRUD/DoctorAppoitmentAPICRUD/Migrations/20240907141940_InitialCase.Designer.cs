@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoctorAppoitmentAPICRUD.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    [Migration("20240907061953_InitialCase")]
+    [Migration("20240907141940_InitialCase")]
     partial class InitialCase
     {
         /// <inheritdoc />
@@ -38,6 +38,9 @@ namespace DoctorAppoitmentAPICRUD.Migrations
 
                     b.Property<int?>("DoctorId")
                         .HasColumnType("int");
+
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<int?>("PatientId")
                         .HasColumnType("int");

@@ -41,14 +41,14 @@ namespace DoctorAppoitmentAPICRUD.Controllers
 
         // POST: api/bookings
         [HttpPost]
-        public async Task<IActionResult> CreateBooking([FromBody] BookingDto bookingDto)
+        public async Task<IActionResult> CreateBooking([FromBody] BookingPostDto bookingPostDto)
         {
-            if (bookingDto == null)
+            if (bookingPostDto == null)
             {
                 return BadRequest(new { message = "Invalid booking data" }); // Return 400 Bad Request if the provided data is null
             }
 
-            var createdBooking = await _bookingRepository.AddAsync(bookingDto);
+            var createdBooking = await _bookingRepository.AddAsync(bookingPostDto);
 
             // Return 201 Created with the URI of the new resource and the created booking
             return CreatedAtAction(nameof(GetBooking), new { id = createdBooking.BookingId }, createdBooking);
@@ -56,7 +56,7 @@ namespace DoctorAppoitmentAPICRUD.Controllers
 
         // PUT: api/bookings/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateBooking(int id, [FromBody] BookingDto bookingDto)
+        public async Task<IActionResult> UpdateBooking(int id, [FromForm] BookingDto bookingDto)
         {
             
             
@@ -79,6 +79,19 @@ namespace DoctorAppoitmentAPICRUD.Controllers
                 return NotFound(new { message = "Booking not found" }); // Return 404 Not Found if booking does not exist
             }
         }
-    }
+
+
+        [HttpGet("medicalhistory/{id}")]
+        public async Task<ActionResult<IEnumerable<object>>> GetMedicalHistory(int id)
+        {
+            var completedBookings = await _bookingRepository.GetMedicalHistory(id);
+
+          
+
+            return Ok(completedBookings);
+        }
+
+         
+}
 
 }

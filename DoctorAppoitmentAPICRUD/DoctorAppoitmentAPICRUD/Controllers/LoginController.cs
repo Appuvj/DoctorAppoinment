@@ -52,7 +52,7 @@ namespace DoctorAppoitmentAPICRUD.Controllers
                     return Unauthorized("Invalid patient credentials");
                 }
 
-                return Ok(new { Role = "Patient" });
+                return Ok(new { Role = "Patient", Id = patient.PatientId });
             }
             else
             {

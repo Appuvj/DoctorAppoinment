@@ -17,9 +17,59 @@ import DoctorBookingList from "../components/DoctorBookingList";
 import DoctorBookingMedicalHistory from "../components/DoctorBookingMedicalHistory";
 import PatientMedicalHistory from "../components/PatientMedicalHistory";
 import Patientbookings from "../components/Patientbookings";
+import LandingPageComponent from "../components/LandingPageComponent";
+import App from "../App";
+import AboutUsComponent from "../components/AboutUsComponent";
+import PatientDashBoard from "../components/PatientDashBoard";
+import PatientDashUi from "../components/PatientDashUi";
+import BookAppointmentComp from "../components/BookAppointmentComp";
 
 
 const router = createBrowserRouter([
+    {
+        path :"",
+        element : <App/>,
+        children : [
+            {
+                path:"",
+                element:<LandingPageComponent/>
+            },
+            {
+                path:"about-us",
+                element:<AboutUsComponent/>
+            }
+        ]
+    },
+{
+path:"login",
+element:<LoginComponent/>
+},
+
+{
+    path:"/doctor-register",
+    element:<DoctorRegisteration/>
+},
+{
+    path:"/patient-register",
+    element:<PatientRegister/>
+},
+
+{
+    path:"/patient-dash",
+element : <PatientDashBoard/>,
+children : [{
+path : "",
+element :<PatientDashUi/>
+},
+{
+element : "book-appointment",
+element : <BookAppointmentComp/>
+}
+
+
+
+]
+},
     {
         path:"/patientbookings/:id",
         element:<Patientbookings/>
@@ -40,18 +90,8 @@ const router = createBrowserRouter([
         element:<DoctorBookingList/>
 
     },
-    {
-        path:"/login",
-        element:<LoginComponent/>
-    },
-    {
-        path:"/doctor-register",
-        element:<DoctorRegisteration/>
-    },
-    {
-        path:"/patient-register",
-        element:<PatientRegister/>
-    },
+    
+ 
 
 {
     path:"/admin",

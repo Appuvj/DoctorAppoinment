@@ -1,0 +1,303 @@
+/* General Dashboard Layout */
+.dashboard-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .doctor--filters {
+    width: 25%;
+    background-color: #f4f4f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+  
+  .cardiac-container {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .search-results-summary {
+    margin: 50px;
+  }
+  
+  .doctor--card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Doctor Card Styles */
+  .doctor--card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .doctor--card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .doctor--card-body {
+    padding: 20px;
+  }
+  
+  .doctor--card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .doctor--card-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+  }
+  
+  .doctor--card-info {
+    flex: 1;
+  }
+  
+  .doctor--card-name {
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  .doctor--card-name:hover {
+    text-decoration: underline;
+  }
+  
+  .doctor--card-specialization {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .doctor--card-details {
+    margin-bottom: 15px;
+  }
+  
+  .doctor--card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .doctor--card-availability {
+    font-size: 14px;
+    color: #28a745;
+  }
+  
+  .doctor--card-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .doctor--card-button:hover {
+    background-color: #041c36;
+  }
+  
+  /* Filter Sidebar Styles */
+  .filter--title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #070707;
+    margin-bottom: 20px;
+  }
+  
+  .filter--item {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    
+  }
+  
+  .filter--item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter--tab {
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #0c0c0c;
+    font-weight: 500;
+  }
+  
+  .filter--apply-btn-container {
+    position: sticky;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .filter--apply-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .filter--apply-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .dashboard-container {
+      flex-direction: column;
+    }
+  
+    .doctor--filters,
+    .cardiac-container {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .doctor--card-container {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  
+    .doctor--card-img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  
+
+
+  /* Dropdown Styles */
+
+
+  
+/* Container for sidebar filter */
+.dashboard-container {
+    padding: 20px;
+    margin-left: -50px;
+  }
+  
+  /* Filter dropdown container */
+  .doctor--filters {
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: auto;
+    
+
+  }
+  
+  /* Filter header title */
+  .filter--title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Filter tabs container */
+  .doctor--filters-tabs {
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+  /* Filter tab styling */
+  .filter--item {
+    margin-bottom: 10px;
+  }
+  
+  .filter--tab {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+  }
+  
+  .filter--tab:hover {
+    background-color: #007bff;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  .filter--arrow {
+    font-size: 1rem;
+  }
+  
+  .filter--dropdown {
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-top: 5px;
+  }
+  
+  .filter--dropdown-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+  }
+  
+  .filter--dropdown-item:last-child {
+    border-bottom: none;
+  }
+  
+  .filter--dropdown-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Show dropdown when open */
+  .filter--item .filter--dropdown {
+    display: block;
+  }
+  
+  .filter--apply-btn-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .filter--apply-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .filter--apply-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  

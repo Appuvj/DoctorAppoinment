@@ -1,0 +1,194 @@
+/* General background and layout */
+.background {
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+}
+
+/* Card container styling */
+.card-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    animation: slideIn 1s ease-in-out;
+    transition: transform 0.4s ease-in-out;
+}
+
+/* Card hover effect */
+.card-container:hover {
+    transform: translateY(-10px);
+}
+
+/* Card body text styling */
+.card-body {
+    opacity: 1;
+}
+
+/* Card title styling */
+.card-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    animation: fadeIn 1.5s ease-in-out;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #333;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Form control styling */
+.form-control {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    color: #333;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #6a11cb;
+    box-shadow: 0 0 8px rgba(37, 117, 252, 0.5);
+}
+
+.form-control:hover {
+    box-shadow: 0 0 6px rgba(37, 117, 252, 0.2);
+}
+
+/* Button styling */
+.btn-primary {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    border: none;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 25px;
+    width: 100%;
+    margin-top: 20px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #5a10b3, #1e5fcf);
+    transform: scale(1.05);
+}
+
+.btn-register {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    border: none;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 25px;
+    width: 100%;
+    margin-top: 10px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-register:hover {
+    background: linear-gradient(45deg, #5a10b3, #1e5fcf);
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background: #6a11cb;
+    border: none;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 25px;
+    width: 100%;
+    margin-top: 10px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: #683aa0;
+    transform: scale(1.05);
+}
+
+/* Error and success message styling */
+.error-message {
+    font-size: 0.9rem;
+    color: #e74c3c;
+    margin-top: 10px;
+}
+
+.success-message {
+    font-size: 0.9rem;
+    color: #2ecc71;
+    margin-top: 10px;
+}
+
+/* Keyframe animations */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .card-container {
+        padding: 20px;
+    }
+    .card-title {
+        font-size: 1.8rem;
+    }
+    .form-control {
+        font-size: 0.9rem;
+    }
+    .btn-primary, .btn-register {
+        font-size: 1rem;
+        padding: 10px;
+    }
+    .btn-secondary {
+        font-size: 1rem;
+        padding: 10px;
+    }
+}

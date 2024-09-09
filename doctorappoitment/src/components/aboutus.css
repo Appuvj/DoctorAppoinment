@@ -1,0 +1,493 @@
+/* Banner Styling */
+.clinical--research-banner {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    background: linear-gradient(135deg, #3a6073, #16222a);
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align items to the left */
+    padding-left: 20px;
+    padding-right: 20px;
+    gap: 20px; /* Adds space between the image and text */
+  }
+  
+  /* Banner Image Container (Aligning to the Left) */
+  .banner-img-container {
+    flex-shrink: 0;
+    width: 500px; /* Increased width for the container */
+    height: 500px; /* Increased height for the container */
+    overflow: hidden; /* Ensures the image fits within the container */
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Banner Image Styling (Square Shape) */
+  .banner-img-container img {
+    width: 100%; /* Adjusts to container size */
+    height: 100%;
+    object-fit: cover; /* Ensures image maintains aspect ratio */
+    object-position: center;
+    animation: slideInRight 1.5s ease-in-out;
+    border-radius: 10px; /* Optional: Adds rounded corners */
+  }
+  
+  /* Main Content Styling (Centering the Message) */
+  .banner--main-content-info {
+    z-index: 2;
+    padding: 40px;
+    max-width: 50%; /* Adjusts text width to take half the space */
+    margin: 0 auto; /* Centers the text */
+    text-align: center; /* Centers the text content */
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    flex-grow: 1; /* Allows the text section to grow and take space */
+  }
+  
+  .banner--main-content-info h1 {
+    font-size: 40px;
+    animation: fadeInUp 1s ease-in-out;
+  }
+  
+  .banner--main-content-info p {
+    font-size: 18px;
+    margin-top: 20px;
+    animation: fadeInUp 1.5s ease-in-out;
+  }
+  
+  /* Breadcrumbs */
+  .bread--crumbs {
+    top: 20px;
+    left: 20px;
+    color: white;
+    z-index: 2;
+    position: absolute;
+  }
+  
+  .bread--crumbs-item a {
+    color: #00c2cb;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  /* Hover Effects */
+  #image-banner:hover {
+    transform: scale(1.05);
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  /* Animations */
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideInRight {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .clinical--research-banner {
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  
+    .banner-img-container {
+      width: 300px; /* Adjusts image size for smaller screens */
+      height: 300px;
+    }
+  
+    .banner--main-content-info {
+      max-width: 100%;
+      padding: 20px;
+      text-align: center;
+    }
+  
+    .banner--main-content-info h1 {
+      font-size: 30px;
+    }
+  }
+
+
+
+  /* Decorative and Responsive CSS for Heading */
+.about--story-heading {
+    font-size: 44px;
+    font-family: 'Playfair Display', serif; /* A decorative font */
+    font-weight: bold;
+    color: #333; /* Dark grey */
+    margin-bottom: 15px;
+    position: relative;
+    line-height: 1.2;
+    text-align: center; /* Centers the heading */
+    padding: 10px;
+    background: linear-gradient(135deg, #f0e4d7, #f9f6f2); /* Light gradient background */
+    border-radius: 8px; /* Slightly rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    letter-spacing: 1px; /* Slightly increases letter spacing */
+  }
+  
+  /* Decorative underline */
+  .about--story-heading::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: #00c2cb; /* Decorative underline color */
+    margin: 10px auto 0;
+    border-radius: 2px;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 1024px) {
+    .about--story-heading {
+      font-size: 36px; /* Adjust font size for medium screens */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .about--story-heading {
+      font-size: 30px; /* Adjust font size for tablets */
+      padding: 8px;
+    }
+    
+    .about--story-heading::after {
+      width: 60px; /* Reduce underline width */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .about--story-heading {
+      font-size: 24px; /* Smaller font size for mobile screens */
+      padding: 5px;
+    }
+    
+    .about--story-heading::after {
+      width: 40px; /* Further reduce underline width */
+    }
+  }
+
+  
+  /* slider */
+
+
+  /* Container for the entire slider */
+.swiper-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+  
+  /* Wrapper that holds the slides */
+  .swiper-wrapper {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Each individual slide */
+  .swiper-slide {
+    flex: 0 0 auto;
+    width: 324px; /* Adjust this width to your design */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Styling for the content inside each slide */
+  .about--story-slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .about--story-slider-time {
+    font-size: 50px;
+    font-weight: bold;
+    color: #333; /* Dark grey color */
+    margin: 0 30px;
+  }
+  
+  .about--story-slider-image {
+    position: relative;
+  }
+  
+  .description {
+    background-color: #fff; /* White background */
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+  }
+  
+  .description h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Dark grey color */
+    margin-bottom: 20px;
+  }
+  
+  .description p {
+    font-size: 20px;
+    color: #666; /* Lighter grey color */
+  }
+  
+  /* Optional: Add some styling for active and prev/next slides */
+  .swiper-slide-prev,
+  .swiper-slide-next {
+    opacity: 0.6;
+  }
+  
+  .swiper-slide-active {
+    opacity: 1;
+  }
+  
+  /* Optional: Add some styling for navigation buttons if needed */
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #333; /* Dark grey color */
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly less transparent on hover */
+  }
+
+  
+  /* overview */
+
+  .centered-heading {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 44px;
+    font-family: 'your-font-family'; /* Replace 'your-font-family' with the actual font you want */
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+
+
+/* Swiper container styling */
+.mySwiper {
+  width: 100%;
+  height: auto;
+  overflow: hidden; /* Hide scrollbar */
+}
+
+/* Swiper Slide styling */
+.swiper-slide-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Card styling */
+.about--pioneers-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Text section styling */
+.about--pioneers-card-text {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 16px;
+  color: #666;
+}
+
+/* Image section styling */
+.about--pioneers-card-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Navigation buttons styling */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #333;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: #007bff; /* Change to your desired hover color */
+}
+
+/* Pagination bullets styling */
+.swiper-pagination-bullet {
+  background: #007bff; /* Change to your desired bullet color */
+}
+
+.swiper-pagination-bullet-active {
+  background: #0056b3; /* Change to your desired active bullet color */
+}
+
+/* Add some responsiveness */
+@media (max-width: 768px) {
+  .about--pioneers-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .about--pioneers-card-text {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
+
+
+/* honor */
+
+.heading {
+    text-align: center; /* Center-align the content */
+    margin: 0 auto; /* Auto margin for centering */
+  }
+  
+  .heading h2 {
+    font-size: 2.75rem; /* Adjust to your preferred size */
+    font-family: 'YourPreferredFont', sans-serif; /* Replace with your preferred font */
+    font-weight: bold; /* Make the text bold */
+    color: #4a4a4a; /* Replace with your preferred color */
+    margin-bottom: 0; /* Remove bottom margin */
+    line-height: 1.2; /* Line height for spacing */
+  }
+  
+  .heading p {
+    font-size: 1.125rem; /* Adjust to your preferred size */
+    font-family: 'YourPreferredFont', sans-serif; /* Replace with your preferred font */
+    font-weight: 500; /* Medium font weight */
+    color: #000; /* Replace with your preferred color */
+    white-space: pre-line; /* Preserve whitespace */
+  }
+
+  
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  
+  .card {
+    position: relative;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 200px; /* Fixed width for square card */
+    height: 250px; /* Increased height to accommodate image and text */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-image {
+    width: 80px; /* Fixed width for image container */
+    height: 80px; /* Fixed height for image container */
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px; /* Space between image and text */
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  .card-content {
+    text-align: center;
+  }
+  
+  .card-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 10px;
+  }
+  
+  .card-button {
+    background-color: transparent;
+    color: #007bff;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+  }
+  
+  .card-button:hover {
+    color: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    .card {
+      width: 150px; /* Adjusted width for smaller screens */
+      height: 200px; /* Adjusted height for smaller screens */
+    }
+  
+    .card-image {
+      width: 60px; /* Adjusted width for smaller screens */
+      height: 60px; /* Adjusted height for smaller screens */
+    }
+  }
+  

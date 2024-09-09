@@ -1,11 +1,23 @@
+import React, { useState } from 'react';
 import axios from 'axios';
-import React, { useState } from 'react'
-import "./doctorregister.css"
+import { Container, Card, CardContent, Typography, TextField, MenuItem, Button, FormControl, InputLabel, Select, FormHelperText } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
+
+
+const getTodayDate = () => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+  const day = String(today.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
 const apiUrl = 'https://localhost:7146/api/Doctor'; // Update with your actual API URL
 
-
-const DoctorRegisteration = () => {
-    const [name, setName] = useState('');
+const DoctorRegistration = () => {
+  const navigate = useNavigate()
+  const [name, setName] = useState('');
   const [mobile, setMobile] = useState('');
   const [specification, setSpecification] = useState('');
   const [email, setEmail] = useState('');
@@ -14,43 +26,95 @@ const DoctorRegisteration = () => {
   const [password, setPassword] = useState('');
   const [availableDate, setAvailableDate] = useState('');
   const [photo, setPhoto] = useState(null);
-  const [error, setError] = useState('');
+  const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState('');
+  const [location, setLocation] = useState('');
+
   const today = new Date().toISOString().split('T')[0];
 
-  const validatePassword = (password) => {
-    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return passwordRegex.test(password);
+  const validateField = (fieldName, value) => {
+    let error = '';
+    switch (fieldName) {
+      case 'name':
+        error = value ? '' : 'Name is required.';
+        break;
+      case 'mobile':
+        error = /^[0-9]{10}$/.test(value) ? '' : 'Mobile number must be 10 digits.';
+        break;
+      case 'specification':
+        error = value ? '' : 'Specialization is required.';
+        break;
+      case 'email':
+        error = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Invalid email address.';
+        break;
+      case 'organization':
+        error = value ? '' : 'Organization is required.';
+        break;
+      case 'gender':
+        error = value ? '' : 'Gender is required.';
+        break;
+      case 'location' :
+        error = value ? '' : 'location is required';
+        break;
+      case 'password':
+        error = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value)
+          ? '' : 'Password must be at least 8 characters long, with 1 uppercase, 1 lowercase, 1 number, and 1 special character.';
+        break;
+      case 'availableDate':
+        error = value && value >= today ? '' : 'Valid available date is required.';
+        break;
+      case 'photo':
+        error = value ? '' : 'Photo is required.';
+        break;
+      default:
+        break;
+    }
+    setErrors(prevErrors => ({
+      ...prevErrors,
+      [fieldName]: error
+    }));
+  };
+
+  const validateForm = () => {
+    const validations = {
+      name: validateField('name', name),
+      mobile: validateField('mobile', mobile),
+      specification: validateField('specification', specification),
+      email: validateField('email', email),
+      organization: validateField('organization', organization),
+      gender: validateField('gender', gender),
+      password: validateField('password', password),
+      availableDate: validateField('availableDate', availableDate),
+      photo: validateField('photo', photo),
+      location: validateField('location', location),
+
+    };
+    setErrors(validations);
+    return Object.values(validations).every(error => error === '');
   };
 
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
-    console.log(file)
     if (file && ['image/jpeg', 'image/png', 'image/jpg'].includes(file.type)) {
       setPhoto(file);
-    
+      validateField('photo', file);
+      
     } else {
-      setError('Invalid file type. Only .jpeg, .jpg, and .png formats are allowed.');
+      setPhoto(null);
+      validateField('photo', '');
     }
   };
 
   const handleSubmit = async (e) => {
-
+   
     e.preventDefault();
-    console.log('Form submitted'); // Debugging log
-  
-    // Basic validation
-    if (!name || !mobile || !specification || !email || !organization || !gender || !password || !availableDate || !photo) {
-      setError('All fields are required, including a valid image.');
-      return;
-    }
 
-    if (!validatePassword(password)) {
-      setError('Password must be at least 8 characters, include 1 uppercase, 1 lowercase, 1 number, and 1 special character.');
-      return;
-    }
+    // Validate all fields
+    // if (!validateForm()) {
+    //   return;
+    // }
 
-    setError('');
+    console.log("hii")
     const formData = new FormData();
     formData.append('Name', name);
     formData.append('Contact', mobile);
@@ -60,19 +124,18 @@ const DoctorRegisteration = () => {
     formData.append('Gender', gender);
     formData.append('Password', password);
     formData.append('AvailableFrom', availableDate);
+    formData.append('Location', location);
+
     if (photo) formData.append('Image', photo);
 
     try {
-      // Post data to the backend
       const response = await axios.post(apiUrl, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+        headers: { 'Content-Type': 'multipart/form-data' },
       });
 
       if (response.status === 200) {
         setSuccess('Registration successful!');
-        setError('');
+        setErrors({});
         // Reset form
         setName('');
         setMobile('');
@@ -82,171 +145,211 @@ const DoctorRegisteration = () => {
         setGender('');
         setPassword('');
         setAvailableDate('');
+        setLocation('');
         setPhoto(null);
+        navigate("/login")
       }
     } catch (err) {
       console.error('Error registering doctor:', err);
-      setError('Registration failed. Please try again.');
+      setErrors({ global: 'Registration failed. Please try again.' });
       setSuccess('');
     }
   };
 
   return (
-    <div className="background">
-      <div className="card card-container">
-        <div className="card-body">
-          <h2 className="card-title text-center mb-4">Doctor Registration</h2>
+    <Container sx={{ py: 5 }}>
+      <Card sx={{ maxWidth: 500, mx: 'auto', boxShadow: 3 }}>
+        <CardContent>
+          <Typography variant="h5" component="div" align="center" gutterBottom>
+            Doctor Registration
+          </Typography>
           <form onSubmit={handleSubmit}>
-            {/* Name field */}
-            <div className="form-group">
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                id="name"
-                className="form-control"
-                placeholder="Enter name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-            </div>
-            
-            {/* Mobile field */}
-            <div className="form-group">
-              <label htmlFor="mobile">Mobile</label>
-              <input
-                type="text"
-                id="mobile"
-                className="form-control"
-                placeholder="Enter mobile number"
-                value={mobile}
-                onChange={(e) => setMobile(e.target.value)}
-                required
-              />
-            </div>
+            <TextField
+              fullWidth
+              margin="normal"
+              id="name"
+              label="Name"
+              variant="outlined"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+                validateField('name', e.target.value);
+              }}
+              onBlur={() => validateField('name', name)}
+              error={!!errors.name}
+              helperText={errors.name}
+            />
 
-            {/* Specification field */}
-            <div className="form-group">
-              <label htmlFor="specification">Specilization</label>
-              <input
-                type="text"
-                id="specification"
-                className="form-control"
-                placeholder="Enter specification"
-                value={specification}
-                onChange={(e) => setSpecification(e.target.value)}
-                required
-              />
-            </div>
+            <TextField
+              fullWidth
+              margin="normal"
+              id="mobile"
+              label="Mobile"
+              variant="outlined"
+              value={mobile}
+              onChange={(e) => {
+                setMobile(e.target.value);
+                validateField('mobile', e.target.value);
+              }}
+              onBlur={() => validateField('mobile', mobile)}
+              error={!!errors.mobile}
+              helperText={errors.mobile}
+            />
+     <TextField
+              fullWidth
+              margin="normal"
+              id="location"
+              label="location"
+              type="text"
+              variant="outlined"
+              value={location}
+              onChange={(e) => {
+                setLocation(e.target.value);
+                validateField('location', e.target.value);
+              }}
+              onBlur={() => validateField('location', location)}
+              error={!!errors.location}
+              helperText={errors.location}
+            />
+            <TextField
+              fullWidth
+              margin="normal"
+              id="specification"
+              label="Specialization"
+              variant="outlined"
+              value={specification}
+              onChange={(e) => {
+                setSpecification(e.target.value);
+                validateField('specification', e.target.value);
+              }}
+              onBlur={() => validateField('specification', specification)}
+              error={!!errors.specification}
+              helperText={errors.specification}
+            />
 
-            {/* Email field */}
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                className="form-control"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
+            <TextField
+              fullWidth
+              margin="normal"
+              id="email"
+              label="Email"
+              type="email"
+              variant="outlined"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                validateField('email', e.target.value);
+              }}
+              onBlur={() => validateField('email', email)}
+              error={!!errors.email}
+              helperText={errors.email}
+            />
 
-            {/* Organization field */}
-            <div className="form-group">
-              <label htmlFor="organization">Organization</label>
-              <input
-                type="text"
-                id="organization"
-                className="form-control"
-                placeholder="Enter organization"
-                value={organization}
-                onChange={(e) => setOrganization(e.target.value)}
-                required
-              />
-            </div>
+            <TextField
+              fullWidth
+              margin="normal"
+              id="organization"
+              label="Organization"
+              variant="outlined"
+              value={organization}
+              onChange={(e) => {
+                setOrganization(e.target.value);
+                validateField('organization', e.target.value);
+              }}
+              onBlur={() => validateField('organization', organization)}
+              error={!!errors.organization}
+              helperText={errors.organization}
+            />
 
-            {/* Gender field */}
-            <div className="form-group">
-              <label htmlFor="gender">Gender</label>
-              <div id="gender" className="form-check">
-                <input
-                  type="radio"
-                  id="male"
-                  name="gender"
-                  className="form-check-input"
-                  value="Male"
-                  checked={gender === 'Male'}
-                  onChange={(e) => setGender(e.target.value)}
-                />
-                <label htmlFor="male" className="form-check-label">Male</label>
-              </div>
-              <div id="gender" className="form-check">
-                <input
-                  type="radio"
-                  id="female"
-                  name="gender"
-                  className="form-check-input"
-                  value="Female"
-                  checked={gender === 'Female'}
-                  onChange={(e) => setGender(e.target.value)}
-                />
-                <label htmlFor="female" className="form-check-label">Female</label>
-              </div>
-            </div>
+            <FormControl fullWidth margin="normal" error={!!errors.gender}>
+              <InputLabel id="gender-label">Gender</InputLabel>
+              <Select
+                labelId="gender-label"
+                id="gender"
+                value={gender}
+                onChange={(e) => {
+                  setGender(e.target.value);
+                  validateField('gender', e.target.value);
+                }}
+                onBlur={() => validateField('gender', gender)}
+              >
+                <MenuItem value="" disabled>Select gender</MenuItem>
+                <MenuItem value="Male">Male</MenuItem>
+                <MenuItem value="Female">Female</MenuItem>
+              </Select>
+              <FormHelperText>{errors.gender}</FormHelperText>
+            </FormControl>
 
-            {/* Password field */}
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                id="password"
-                className="form-control"
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
+            <TextField
+              fullWidth
+              margin="normal"
+              id="password"
+              label="Password"
+              type="password"
+              variant="outlined"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                validateField('password', e.target.value);
+              }}
+              onBlur={() => validateField('password', password)}
+              error={!!errors.password}
+              helperText={errors.password}
+            />
 
-            {/* Availability Date field */}
-            <div className="form-group">
-              <label htmlFor="availableDate">Available Start Date</label>
-              <input
-                type="date"
-                id="availableDate"
-                className="form-control"
-                value={availableDate}
-                min={today}
-                onChange={(e) => setAvailableDate(e.target.value)}
-                required
-              />
-            </div>
+<TextField
+      fullWidth
+      margin="normal"
+      id="availableDate"
+      label="Available Start Date"
+      type="date"
+      InputLabelProps={{ shrink: true }}
+      variant="outlined"
+      value={availableDate}
+      onChange={(e) => {
+        setAvailableDate(e.target.value);
+        validateField('availableDate', e.target.value);
+      }}
+      onBlur={() => validateField('availableDate', availableDate)}
+      error={!!errors.availableDate}
+      helperText={errors.availableDate}
+      inputProps={{
+        min: getTodayDate(), // Set min date to today
+      }}
+    />
 
-            {/* Photo Upload */}
-            <div className="form-group">
-              <label htmlFor="photo">Upload Photo</label>
+            <Button
+              fullWidth
+              variant="contained"
+              component="label"
+              sx={{ mt: 3 }}
+            >
+              Upload Photo
               <input
                 type="file"
-                id="photo"
-                className="form-control"
+                hidden
                 accept=".jpg, .jpeg, .png"
                 onChange={handlePhotoChange}
               />
-            </div>
+            </Button>
+            {errors.photo && <FormHelperText error>{errors.photo}</FormHelperText>}
 
-            {/* Submit button */}
-            <button type="submit" className="btn btn-primary btn-block mt-3">Register</button>
+            <Button
+              fullWidth
+              variant="contained"
+              type="submit"
+              sx={{ mt: 3 }}
+            >
+              Register
+            </Button>
 
-            {/* Error and Success messages */}
-            {error && <div className="text-danger text-center mt-2">{error}</div>}
-            {success && <div className="text-success text-center mt-2">{success}</div>}
+            {errors.global && <Typography color="error" align="center" sx={{ mt: 2 }}>{errors.global}</Typography>}
+            {success && <Typography color="success" align="center" sx={{ mt: 2 }}>{success}</Typography>}
           </form>
-        </div>
-      </div>
-    </div>
+        </CardContent>
+      </Card>
+    </Container>
   );
-}
+};
 
-export default DoctorRegisteration
+export default DoctorRegistration;
+

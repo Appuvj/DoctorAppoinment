@@ -1,26 +1,103 @@
-/* src/Pages/DoctorRegister.css */
 
-.background {
-    background-color: #f8f9fa; /* Light background color for the page */
-    padding: 20px; /* Add padding around the content */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f9fc;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+
+.text-danger {
+  color: #dc3545;
+}
+
+.text-success {
+  color: #28a745;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 15px;
   }
-  
-  .card-container {
-    border-radius: 10px; /* Rounded corners for the card */
+
+  .card-title {
+    font-size: 1.5rem;
   }
-  
-  .card-body {
-    padding: 20px; /* Add padding inside the card */
+}
+
+@media (max-width: 576px) {
+  .card-title {
+    font-size: 1.2rem;
   }
-  
-  .btn {
-    font-size: 16px; /* Adjust font size for buttons */
+
+  .form-control {
+    font-size: 0.875rem;
   }
-  
-  .text-success {
-    font-weight: bold; /* Make success text bold */
+
+  .btn-primary {
+    padding: 8px 12px;
+    font-size: 0.875rem;
   }
-  
-  .text-danger {
-    font-weight: bold; /* Make error text bold */
-  }
+}

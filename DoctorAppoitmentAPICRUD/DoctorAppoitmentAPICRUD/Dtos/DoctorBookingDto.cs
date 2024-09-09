@@ -14,6 +14,7 @@
 
         public int? DoctorId { get; set; }
 
+        public string Message { get;set; }
         public int? PatientId { get; set; }
     }
 }

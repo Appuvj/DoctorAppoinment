@@ -8,5 +8,8 @@
         public string Status { get; set; }
         public string DoctorName { get; set; } // Flattened
         public string PatientName { get; set; } // Flattened
+
+
+        public string Message { get;set; }
     }
 }

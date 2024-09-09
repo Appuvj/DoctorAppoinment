@@ -12,6 +12,9 @@
         public string Password { get; set; }
         public DateTime AvailableFrom { get; set; }
         public string ImageData { get; set; }
+
+
+        public string Location { get; set; }
         public List<DoctorBookingDto> Bookings { get; set; }
     }
 }

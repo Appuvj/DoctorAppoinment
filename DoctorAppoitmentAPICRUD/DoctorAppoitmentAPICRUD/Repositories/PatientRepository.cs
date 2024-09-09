@@ -42,6 +42,7 @@ namespace DoctorAppoitmentAPICRUD.Repositories
             {
                 BookingId = b.BookingId,
                 BookingDate = b.BookingDate,
+                Message = b.Message,
                 Status = b.Status,
                 DoctorId = b.DoctorId,
                 DoctorName = b.Doctor != null ? b.Doctor.Name : null, // Get Doctor name if available

@@ -26,7 +26,8 @@ namespace DoctorAppoitmentAPICRUD.Repositories
                                BookingDate = b.BookingDate,
                                Status = b.Status,
                                DoctorName = b.Doctor.Name,
-                               PatientName = b.Patient.Name
+                               PatientName = b.Patient.Name,
+                               Message = b.Message,
                            }).ToList();
 
             return bookings;
@@ -44,7 +45,8 @@ namespace DoctorAppoitmentAPICRUD.Repositories
                            BookingDate = b.BookingDate,
                            Status = b.Status,
                            DoctorName = b.Doctor.Name,
-                           PatientName = b.Patient.Name
+                           PatientName = b.Patient.Name,
+                           Message = b.Message
                        })
                        .FirstOrDefaultAsync(); // Get the first (and only) result
 
@@ -58,7 +60,8 @@ namespace DoctorAppoitmentAPICRUD.Repositories
                 BookingDate = bookingPostDto.BookingDate,
                 Status = bookingPostDto.Status,
                 DoctorId = bookingPostDto.DoctorId,
-                PatientId = bookingPostDto.PatientId
+                PatientId = bookingPostDto.PatientId,
+                Message = bookingPostDto.Message
             };
 
             _context.Bookings.Add(booking);
@@ -123,6 +126,7 @@ namespace DoctorAppoitmentAPICRUD.Repositories
                     DoctorName = b.Doctor != null ? b.Doctor.Name : "Unknown", // Check if Doctor exists
                     BookingDate = b.BookingDate,
                     PatientId = b.PatientId,
+                    Message = b.Message,
                     PatientName = b.Patient != null ? b.Patient.Name : "Unknown", // Check if Patient exists
                     Prescription = b.ImageData != null ? Convert.ToBase64String(b.ImageData) : null // Convert prescription to Base64 if exists
                 })

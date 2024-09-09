@@ -39,6 +39,10 @@ namespace DoctorAppoitmentAPICRUD.Migrations
                     b.Property<byte[]>("ImageData")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("PatientId")
                         .HasColumnType("int");
 
@@ -81,6 +85,10 @@ namespace DoctorAppoitmentAPICRUD.Migrations
                     b.Property<byte[]>("ImageData")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()

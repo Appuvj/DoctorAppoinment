@@ -6,7 +6,7 @@
         public string Specialization { get; set; }
         public string Contact { get; set; }
 
-
+        public string Location { get; set; }
         public string Email { get; set; }
 
         public string Organization { get; set; }

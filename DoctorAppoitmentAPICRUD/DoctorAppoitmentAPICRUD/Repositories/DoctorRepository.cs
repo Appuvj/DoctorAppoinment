@@ -38,6 +38,7 @@ namespace DoctorAppoitmentAPICRUD.Repositories
                     Gender = d.Gender,
                     Password = d.Password,
                     AvailableFrom = d.AvailableFrom,
+                    Location = d.Location,
                     ImageData = d.ImageData != null ? Convert.ToBase64String(d.ImageData) : null,
                     Bookings = d.Bookings.Select(b => new DoctorBookingDto
                     {
@@ -46,6 +47,7 @@ namespace DoctorAppoitmentAPICRUD.Repositories
                         Status = b.Status,
                         DoctorId = b.DoctorId,
                         PatientId = b.PatientId,
+                        Message = b.Message,
                         Prescription = b.ImageData!= null ? Convert.ToBase64String(b.ImageData): null,
                         PatientName = b.Patient != null ? b.Patient.Name : null, // Get Patient name if available
                         PatientImage = b.Patient != null && b.Patient.ImageData != null
@@ -88,6 +90,7 @@ namespace DoctorAppoitmentAPICRUD.Repositories
                 Organization = doctorRegisterDto.Organization,
                 Gender = doctorRegisterDto.Gender,
                 Password = doctorRegisterDto.Password,
+                Location = doctorRegisterDto.Location,
                 AvailableFrom = doctorRegisterDto.AvailableFrom,
                 ImageData = imageBytes
             };
@@ -129,6 +132,7 @@ namespace DoctorAppoitmentAPICRUD.Repositories
             doctor.Password = doctorRegisterDto.Password;
             doctor.AvailableFrom = doctorRegisterDto.AvailableFrom;
             doctor.ImageData = imageBytes;
+            doctor.Location = doctorRegisterDto.Location;
 
 
             _context.Doctors.Update(doctor);

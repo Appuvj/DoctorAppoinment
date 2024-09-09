@@ -9,5 +9,7 @@
 
         public int? PatientId { get; set; } // Foreign Key (nullable)
 
+        public string Message { get; set; }
+
     }
 }

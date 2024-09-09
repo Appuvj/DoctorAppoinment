@@ -12,6 +12,7 @@
 
         public string DoctorImage { get; set; }
 
+        public string Message { get; set; }
         public string Prescription { get; set; }
     }
 }

@@ -3,32 +3,121 @@
   "WorkspaceRootPath": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240906092958_InitialCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DoctorAppoitmentAPICRUD\\Migrations\\20240906092958_InitialCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\data\\hospitalcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\data\\hospitalcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\controllers\\imagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\controllers\\imagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\repositories\\patientrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\repositories\\patientrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\patientgetbyiddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\patientgetbyiddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240909065446_InitialCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DoctorAppoitmentAPICRUD\\Migrations\\20240909065446_InitialCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\repositories\\doctorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\repositories\\doctorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\doctorgetbyid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\doctorgetbyid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\doctorregisterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\doctorregisterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\models\\doctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\models\\doctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\repositories\\patientrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\repositories\\patientrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\bookinggetid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\bookinggetid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\doctorbookingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\doctorbookingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\bookinggetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\bookinggetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\bookingpostdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\bookingpostdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240909045410_InitialCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DoctorAppoitmentAPICRUD\\Migrations\\20240909045410_InitialCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\repositories\\ibookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\repositories\\ibookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\models\\patient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\models\\patient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\data\\hospitalcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\data\\hospitalcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Hospital/True/SqlTable/dbo.Bookings.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\bookingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\bookingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\controllers\\doctorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\controllers\\doctorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\doctordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\doctordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\loginrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\loginrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Hospital/True/SqlTable/dbo.Doctors.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Admin\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240907045239_InitialCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\repositories\\ipatientrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\repositories\\ipatientrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\controllers\\imagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\controllers\\imagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\patientgetbyiddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\patientgetbyiddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\patientregisterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -39,40 +128,8 @@
       "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\patientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\repositories\\ipatientrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\repositories\\ipatientrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\models\\patient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\models\\patient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\repositories\\idoctorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\repositories\\idoctorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\doctorregisterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\doctorregisterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\doctordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\doctordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\models\\doctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\models\\doctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\doctorgetbyid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\doctorgetbyid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\doctorbookingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\doctorbookingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\models\\imagemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -87,39 +144,11 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DoctorAppoitmentAPICRUD\\Migrations\\20240906035810_InitialCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Admin\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240905161251_InitialCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\bookinggetid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\bookinggetid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\bookinggetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\bookinggetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\dtos\\bookingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\dtos\\bookingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\doctorappoitmentapicrud.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
@@ -128,10 +157,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|c:\\users\\sanjai.j\\desktop\\doctorappoinment\\doctorappoitmentapicrud\\doctorappoitmentapicrud\\repositories\\ibookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0C87C7-6F60-4511-B11D-7882B0B8D12C}|DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj|solutionrelative:doctorappoitmentapicrud\\repositories\\ibookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240904055632_InitialCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -153,118 +178,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "20240906092958_InitialCase.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240906092958_InitialCase.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Migrations\\20240906092958_InitialCase.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240906092958_InitialCase.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Migrations\\20240906092958_InitialCase.cs",
+              "Title": "20240909065446_InitialCase.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240909065446_InitialCase.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Migrations\\20240909065446_InitialCase.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240909065446_InitialCase.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Migrations\\20240909065446_InitialCase.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-06T09:29:59.888Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PatientRepository.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\PatientRepository.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Repositories\\PatientRepository.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\PatientRepository.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Repositories\\PatientRepository.cs",
-              "ViewState": "AgIAAHAAAAAAAAAAAAAcwCcAAABVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T15:01:41.165Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "IPatientRepository.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\IPatientRepository.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Repositories\\IPatientRepository.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\IPatientRepository.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Repositories\\IPatientRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T15:01:01.657Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PatientGetByIdDto.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\PatientGetByIdDto.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\PatientGetByIdDto.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\PatientGetByIdDto.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\PatientGetByIdDto.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAIwA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-05T13:31:35.519Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DoctorController.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\DoctorController.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Controllers\\DoctorController.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\DoctorController.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Controllers\\DoctorController.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAwwD4AAABVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T08:05:49.986Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ImageController.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\ImageController.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Controllers\\ImageController.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\ImageController.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Controllers\\ImageController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-05T16:40:33.226Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "HospitalContext.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Data\\HospitalContext.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Data\\HospitalContext.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Data\\HospitalContext.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Data\\HospitalContext.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T07:13:03.476Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PatientRegisterDto.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\PatientRegisterDto.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\PatientRegisterDto.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\PatientRegisterDto.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\PatientRegisterDto.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAxwA4AAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-06T08:46:15.689Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "PatientDto.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\PatientDto.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\PatientDto.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\PatientDto.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\PatientDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAwAYAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T14:49:28.879Z",
+              "WhenOpened": "2024-09-09T06:54:47.518Z",
               "EditorCaption": ""
             },
             {
@@ -273,46 +194,387 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
+              "Title": "BookingGetDto.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\BookingGetDto.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\BookingGetDto.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\BookingGetDto.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\BookingGetDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T07:03:51.659Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BookingGetId.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\BookingGetId.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\BookingGetId.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\BookingGetId.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\BookingGetId.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAA1wA4AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-05T13:33:16.738Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "DoctorRepository.cs",
               "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\DoctorRepository.cs",
               "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Repositories\\DoctorRepository.cs",
               "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\DoctorRepository.cs",
               "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Repositories\\DoctorRepository.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAACcAAABZAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAwwD0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-03T08:10:19.982Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Patient.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Models\\Patient.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Models\\Patient.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Models\\Patient.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Models\\Patient.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAowAgAAAArAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "Doctor.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Models\\Doctor.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Models\\Doctor.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Models\\Doctor.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Models\\Doctor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T07:11:14.095Z",
+              "WhenOpened": "2024-09-03T07:10:31.045Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DoctorRegisterDto.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\DoctorRegisterDto.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\DoctorRegisterDto.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\DoctorRegisterDto.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\DoctorRegisterDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-06T06:31:46.903Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DoctorGetById.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\DoctorGetById.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\DoctorGetById.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\DoctorGetById.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\DoctorGetById.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAA2wBAAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-05T16:24:04.772Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Booking.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Models\\Booking.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Models\\Booking.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Models\\Booking.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Models\\Booking.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAswA4AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T07:12:08.109Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BookingRepository.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\BookingRepository.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Repositories\\BookingRepository.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\BookingRepository.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Repositories\\BookingRepository.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAiwIAAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T08:33:36.017Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DoctorBookingDto.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\DoctorBookingDto.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\DoctorBookingDto.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\DoctorBookingDto.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\DoctorBookingDto.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAqwBAAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-05T16:23:08.734Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PatientRepository.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\PatientRepository.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Repositories\\PatientRepository.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\PatientRepository.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Repositories\\PatientRepository.cs",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAswH4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T06:34:44.981Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "PatientController.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\PatientController.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Controllers\\PatientController.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\PatientController.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Controllers\\PatientController.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAgwD4AAABYAAAAAAAAAA==",
+              "Title": "BookingPostDto.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\BookingPostDto.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\BookingPostDto.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\BookingPostDto.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\BookingPostDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T15:02:28.606Z",
+              "WhenOpened": "2024-09-07T14:38:10.998Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
+              "Title": "BookingsController.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\BookingsController.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Controllers\\BookingsController.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\BookingsController.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Controllers\\BookingsController.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAwwCsAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T08:34:39.65Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "20240909045410_InitialCase.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240909045410_InitialCase.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Migrations\\20240909045410_InitialCase.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240909045410_InitialCase.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Migrations\\20240909045410_InitialCase.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwAgAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T04:54:11.835Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "HospitalContext.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Data\\HospitalContext.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Data\\HospitalContext.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Data\\HospitalContext.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Data\\HospitalContext.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAuwDEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T07:13:03.476Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Patient.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Models\\Patient.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Models\\Patient.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Models\\Patient.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Models\\Patient.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAIwA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T07:11:14.095Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "IBookingRepository.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\IBookingRepository.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Repositories\\IBookingRepository.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\IBookingRepository.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Repositories\\IBookingRepository.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAxwA4AAABKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T08:32:58.274Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\appsettings.json",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\appsettings.json",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\appsettings.json",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-03T07:16:09.675Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "dbo.Bookings.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Hospital/True/SqlTable/dbo.Bookings.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Hospital/True/SqlTable/dbo.Bookings.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-09-07T14:46:14.642Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "BookingDto.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\BookingDto.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\BookingDto.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\BookingDto.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\BookingDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAIwAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T14:47:44.283Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "DoctorController.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\DoctorController.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Controllers\\DoctorController.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\DoctorController.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Controllers\\DoctorController.cs",
+              "ViewState": "AQIAAEAAAAAAAAAAAAA5wDMAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T08:05:49.986Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Controllers\\LoginController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T06:42:10.039Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "DoctorDto.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\DoctorDto.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\DoctorDto.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\DoctorDto.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\DoctorDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T14:48:56.049Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "LoginRequestDto.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\LoginRequestDto.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\LoginRequestDto.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\LoginRequestDto.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\LoginRequestDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T06:46:41.454Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "PatientController.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\PatientController.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Controllers\\PatientController.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\PatientController.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Controllers\\PatientController.cs",
+              "ViewState": "AQIAADMAAAAAAAAAAAAuwD0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T15:02:28.606Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "dbo.Doctors [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Hospital/True/SqlTable/dbo.Doctors.sql",
+              "ToolTip": "dbo.Doctors [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-09-07T05:14:01.51Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "20240907045239_InitialCase.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240907045239_InitialCase.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\admin\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240907045239_InitialCase.cs",
+              "ToolTip": "C:\\Users\\admin\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240907045239_InitialCase.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\admin\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240907045239_InitialCase.cs",
+              "ViewState": "AQIAAEkAAAAAAAAAAAAQwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T04:52:39.359Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "PatientRegisterDto.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\PatientRegisterDto.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\PatientRegisterDto.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\PatientRegisterDto.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\PatientRegisterDto.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAxwA4AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-06T08:46:15.689Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ImageController.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\ImageController.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Controllers\\ImageController.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\ImageController.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Controllers\\ImageController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-05T16:40:33.226Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "PatientGetByIdDto.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\PatientGetByIdDto.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\PatientGetByIdDto.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\PatientGetByIdDto.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\PatientGetByIdDto.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAIwA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-05T13:31:35.519Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "IPatientRepository.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\IPatientRepository.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Repositories\\IPatientRepository.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\IPatientRepository.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Repositories\\IPatientRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T15:01:01.657Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "PatientDto.cs",
+              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\PatientDto.cs",
+              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\PatientDto.cs",
+              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\PatientDto.cs",
+              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\PatientDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAwAYAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T14:49:28.879Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
               "Title": "IDoctorRepository.cs",
               "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\IDoctorRepository.cs",
               "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Repositories\\IDoctorRepository.cs",
@@ -320,75 +582,11 @@
               "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Repositories\\IDoctorRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T08:07:40.074Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-03T08:07:40.074Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "DoctorRegisterDto.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\DoctorRegisterDto.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\DoctorRegisterDto.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\DoctorRegisterDto.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\DoctorRegisterDto.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAwwAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-06T06:31:46.903Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "DoctorDto.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\DoctorDto.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\DoctorDto.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\DoctorDto.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\DoctorDto.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAxwBMAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T14:48:56.049Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "DoctorBookingDto.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\DoctorBookingDto.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\DoctorBookingDto.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\DoctorBookingDto.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\DoctorBookingDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-05T16:23:08.734Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Doctor.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Models\\Doctor.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Models\\Doctor.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Models\\Doctor.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Models\\Doctor.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAIwBQAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T07:10:31.045Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "DoctorGetById.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\DoctorGetById.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\DoctorGetById.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\DoctorGetById.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\DoctorGetById.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAowA0AAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-05T16:24:04.772Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 33,
               "Title": "ImageModel.cs",
               "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Models\\ImageModel.cs",
               "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Models\\ImageModel.cs",
@@ -400,7 +598,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 34,
               "Title": "DoctorAppoitmentAPICRUD",
               "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj",
               "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.csproj",
@@ -411,43 +609,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 35,
               "Title": "20240906035810_InitialCase.cs",
               "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240906035810_InitialCase.cs",
               "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Migrations\\20240906035810_InitialCase.cs",
               "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240906035810_InitialCase.cs",
               "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Migrations\\20240906035810_InitialCase.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAcAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-06T03:58:11.122Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\appsettings.json",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\appsettings.json",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\appsettings.json",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-03T07:16:09.675Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "Booking.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Models\\Booking.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Models\\Booking.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Models\\Booking.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Models\\Booking.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T07:12:08.109Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 37,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Program.cs",
               "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Program.cs",
@@ -459,79 +632,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 36,
               "Title": "20240905161251_InitialCase.cs",
               "DocumentMoniker": "C:\\Users\\admin\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240905161251_InitialCase.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\admin\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240905161251_InitialCase.cs",
               "ToolTip": "C:\\Users\\admin\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240905161251_InitialCase.cs",
               "RelativeToolTip": "..\\..\\..\\..\\admin\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240905161251_InitialCase.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAQwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-05T16:12:51.405Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "BookingGetId.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\BookingGetId.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\BookingGetId.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\BookingGetId.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\BookingGetId.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-05T13:33:16.738Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "BookingGetDto.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\BookingGetDto.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\BookingGetDto.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\BookingGetDto.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\BookingGetDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-04T07:03:51.659Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "BookingsController.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\BookingsController.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Controllers\\BookingsController.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\BookingsController.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Controllers\\BookingsController.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAAwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T08:34:39.65Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "BookingRepository.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\BookingRepository.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Repositories\\BookingRepository.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\BookingRepository.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Repositories\\BookingRepository.cs",
-              "ViewState": "AgIAAEYAAAAAAAAAAAAiwEkAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T08:33:36.017Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "BookingDto.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\BookingDto.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Dtos\\BookingDto.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Dtos\\BookingDto.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Dtos\\BookingDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T14:47:44.283Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 39,
               "Title": "AdminController.cs",
               "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Controllers\\AdminController.cs",
@@ -543,7 +655,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 38,
               "Title": "DoctorAppoitmentAPICRUD.http",
               "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.http",
               "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD.http",
@@ -555,37 +667,23 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "IBookingRepository.cs",
-              "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\IBookingRepository.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Repositories\\IBookingRepository.cs",
-              "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Repositories\\IBookingRepository.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Repositories\\IBookingRepository.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAqwAgAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T08:32:58.274Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 40,
               "Title": "20240904055632_InitialCase.cs",
               "DocumentMoniker": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240904055632_InitialCase.cs",
               "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Migrations\\20240904055632_InitialCase.cs",
               "ToolTip": "C:\\Users\\sanjai.j\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240904055632_InitialCase.cs",
               "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Migrations\\20240904055632_InitialCase.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-04T05:56:34.654Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 41,
               "Title": "20240903080148_InitialCase.cs",
               "DocumentMoniker": "C:\\Users\\vijaykumar.v\\Desktop\\DoctorAppointment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240903080148_InitialCase.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\vijaykumar.v\\Desktop\\DoctorAppointment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240903080148_InitialCase.cs",
               "ToolTip": "C:\\Users\\vijaykumar.v\\Desktop\\DoctorAppointment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240903080148_InitialCase.cs",
               "RelativeToolTip": "..\\..\\..\\..\\vijaykumar.v\\Desktop\\DoctorAppointment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240903080148_InitialCase.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-03T08:01:48.879Z"
             }

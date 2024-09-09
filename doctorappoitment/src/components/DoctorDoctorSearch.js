@@ -1,10 +1,9 @@
-import React, { useContext, useEffec,useEffect,useState } from 'react'
-
-import "./patientdashui.css"
+import React, { useContext, useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap';
 import axios from 'axios';
 import { PatientContext } from './PatientDashContext';
 import { useNavigate } from 'react-router-dom';
+import { DoctorContext } from './DoctorDashContext';
 
 
 
@@ -50,14 +49,7 @@ const FilterDropdown = ({ title, options, selectedOption, setSelectedOption }) =
     );
   };
   const DoctorCard = ({ doctor,sethandle }) => {
-    const navigate = useNavigate()
-
-   
-    const  handleAppoinment = (doctor)=>{
-      // console.log(doctor)
-        sethandle(doctor)
-        navigate("/patient-dash/book-appointment")
-    }
+    
 
    
     return (
@@ -85,9 +77,6 @@ const FilterDropdown = ({ title, options, selectedOption, setSelectedOption }) =
             <span className="doctor--card-availability">
               Available on {doctor.availabilityDate}
             </span>
-            <button onClick={()=>handleAppoinment(doctor)} className="doctor--card-button">
-              <span className="doctor--card-action">Book Appointment</span>
-            </button>
           </div>
         </div>
       </div>
@@ -134,8 +123,8 @@ const FilterDropdown = ({ title, options, selectedOption, setSelectedOption }) =
       </div>
     );
   };
-const PatientDoctorSearch = () => {
-    const {  patients,id, doctorsList,filteredDoctors,specializations,organizations,locations,setFilteredDoctors, fetchDatas,fetchDoctors,selectedDoctor,setSelectedDoctor } = useContext(PatientContext);
+const DoctorDoctorSearch = () => {
+    const {  doctors,id, doctorsList,filteredDoctors,specializations,organizations,locations,setFilteredDoctors, fetchDatas,fetchDoctors,selectedDoctor,setSelectedDoctor } = useContext(DoctorContext);
 
  
     const [filters, setFilters] = useState({
@@ -226,4 +215,4 @@ const PatientDoctorSearch = () => {
     );
 }
 
-export default PatientDoctorSearch
+export default DoctorDoctorSearch

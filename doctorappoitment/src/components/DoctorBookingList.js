@@ -1,8 +1,10 @@
+import { useColorScheme } from '@mui/material';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button, Modal } from 'react-bootstrap';
 import { FaCheckCircle, FaFileUpload } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
+import { DoctorContext } from './DoctorDashContext';
 
 
 
@@ -296,20 +298,22 @@ const styles = {
 
 const DoctorBookingList = () => {
 
-    const { id } = useParams();
+    const { id, fetchDatas ,fetchDoctors } = useContext(DoctorContext);
     const [DoctorBookingData, SetDoctorbookingData] = useState(null);
-  
+    const [changes,setChanges] = useState(false)
     const fetchDoctorData = async () => {
       const apiUrl = `https://localhost:7146/api/Doctor/${id}`;
       try {
         const response = await axios.get(apiUrl);
         SetDoctorbookingData(response.data);
+        console.log(response)
       } catch (error) {
         console.error('Error fetching doctor data:', error);
       }
     };
     const submitData = async (booking,file) =>{
       console.log(booking)
+      setChanges (changes ? false : true)
       const formData = new FormData();
       formData.append('BookingDate',booking.bookingDate);  // Append date-time as string
       formData.append('Status', 'Completed');
@@ -334,7 +338,9 @@ const DoctorBookingList = () => {
     }
     useEffect(() => {
       fetchDoctorData();
-    }, [id]);
+      fetchDoctors();
+      fetchDatas();
+    }, [id,changes]);
   
     return (
       <>

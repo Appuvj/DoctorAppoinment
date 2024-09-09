@@ -23,6 +23,11 @@ import AboutUsComponent from "../components/AboutUsComponent";
 import PatientDashBoard from "../components/PatientDashBoard";
 import PatientDashUi from "../components/PatientDashUi";
 import BookAppointmentComp from "../components/BookAppointmentComp";
+import PatientDoctorSearch from "../components/PatientDoctorSearch";
+import PatientEditComponent from "../components/PatientEditComponent";
+import DoctorDashBoard from "../components/DoctorDashBoard";
+import DoctorDashUi from "../components/DoctorDashUi";
+import DoctorDoctorSearch from "../components/DoctorDoctorSearch";
 
 
 const router = createBrowserRouter([
@@ -62,24 +67,59 @@ path : "",
 element :<PatientDashUi/>
 },
 {
-element : "book-appointment",
+path : "book-appointment",
 element : <BookAppointmentComp/>
-}
+},
+{
+    path : "search-doctor",
+    element : <PatientDoctorSearch/>
+},
 
+{
+    path : "patient-bookings",
+    element : <Patientbookings/>
+},
+
+{
+    path : "medical-history",
+    element : <PatientMedicalHistory/>
+}
+,
+{
+    path : "edit-profile",
+    element :<PatientEditComponent/>
+}
 
 
 ]
 },
-    {
-        path:"/patientbookings/:id",
-        element:<Patientbookings/>
+{
+    path : "/doctor-dash",
+    element : <DoctorDashBoard/>,
+    children : [
 
-    },
+        {
+            path : "",
+            element : <DoctorDashUi/>
+        },
+        {
+            path : "doctor-search",
+            element : <DoctorDoctorSearch/>
+        },
+        {
+            path : "doctor-bookings",
+            element : <DoctorBookingList/>
+        }
+    ]
 
-    {
-        path:"/patient/medicalHistory/:id",
-        element:<PatientMedicalHistory/>
-    },
+},
+
+
+
+
+   
+
+  
     {
         path:"/doctor-bookings/MedicalHistory/:id",
         element:<DoctorBookingMedicalHistory/>

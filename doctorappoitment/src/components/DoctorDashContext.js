@@ -1,15 +1,16 @@
-import React, { createContext, useEffect, useState } from 'react';
-import axios  from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
-// Create a context with a default value
+import axios from 'axios';
+import React, { createContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 
-export const PatientContext = createContext();
+export const DoctorContext = createContext();
 
-export const PatientProvider = ({ children }) => {
-  const navigate = useNavigate()
-    const [patients, setPatients] = useState();
-    const id = sessionStorage.getItem("Patient")
+export const DoctorProvider = ({ children }) => {
+   
+  
+    const navigate = useNavigate()
+    const [doctors, setDoctors] = useState();
+    const id = sessionStorage.getItem("Doctor")
     const [doctorsList, setDoctorsList] = useState([]);
     const [filteredDoctors, setFilteredDoctors] = useState([]);
     const [specializations, setSpecializations] = useState([]);
@@ -37,9 +38,9 @@ export const PatientProvider = ({ children }) => {
   // Function to fetch all data
   const fetchDatas = async () => {
     try {
-      const patientsRes = await axios.get(`https://localhost:7146/api/Patient/${id}`);
+      const patientsRes = await axios.get(`https://localhost:7146/api/Doctor/${id}`);
         // console.log(patientsRes.data)
-      setPatients(patientsRes.data);
+      setDoctors(patientsRes.data);
       // console.log(patientsRes)
       // console.log("yess")
     } catch (err) {
@@ -80,9 +81,10 @@ export const PatientProvider = ({ children }) => {
     fetchDoctors();
   }, [id]);
 
-  return (
-    <PatientContext.Provider value={{ patients,id, doctorsList,filteredDoctors,specializations,organizations,locations,setFilteredDoctors,selectedDoctor,setSelectedDoctor, fetchDatas ,fetchDoctors}}>
-      {children}
-    </PatientContext.Provider>
-  );
-};
+  
+    return (
+      <DoctorContext.Provider value={{doctors,id, doctorsList,filteredDoctors,specializations,organizations,locations,setFilteredDoctors,selectedDoctor,setSelectedDoctor, fetchDatas ,fetchDoctors }}>
+        {children}
+      </DoctorContext.Provider>
+    );
+  };

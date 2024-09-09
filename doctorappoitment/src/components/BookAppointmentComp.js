@@ -8,18 +8,18 @@ const BookAppointmentComp = () => {
   const [patient,setPatient] = useState()
   const {  patients,id, doctorsList,filteredDoctors,specializations,organizations,locations,setFilteredDoctors, fetchDatas,fetchDoctors,selectedDoctor,setSelectedDoctor } = useContext(PatientContext);
 
-  const getDoctor = async () => {
+  // const getDoctor = async () => {
 
-    const response = await axios.get("https://localhost:7146/api/Doctor/1")
-    setDoctor(response.data)
-  }
+  //   const response = await axios.get("https://localhost:7146/api/Doctor/1")
+  //   setDoctor(response.data)
+  // }
 
-  const getPatient = async () => {
+  // const getPatient = async () => {
 
-    const response = await axios.get("https://localhost:7146/api/Patient/1")
-    setPatient(response.data)
+  //   const response = await axios.get("https://localhost:7146/api/Patient/1")
+  //   setPatient(response.data)
     
-  }
+  // }
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [patientName, setPatientName] = useState('');
@@ -35,9 +35,10 @@ const BookAppointmentComp = () => {
 
 
   useEffect(()=>{
-    getDoctor()
-    getPatient()
-    console.log(selectedDoctor)
+    // getDoctor()
+    // getPatient()
+// console.log(patients)
+    setDoctor(selectedDoctor)
   },[])
   const validateForm = () => {
     const newErrors = {};
@@ -52,7 +53,7 @@ const BookAppointmentComp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = validateForm();
-    
+    console.log(doctor)
     if (Object.keys(newErrors).length === 0) {
       alert(`Appointment booked with Dr. ${doctor.name} on ${date} at ${time}`);
       setDate('');
@@ -69,14 +70,14 @@ const BookAppointmentComp = () => {
 
     console.log("submitting..")
     const combinedDateTime = new Date(`${date}T${time}:00`); // Assuming the format is "yyyy-MM-ddTHH:mm:ss"
-      
+      console.log(doctor)
     // Convert it to ISO string (yyyy-MM-ddTHH:mm:ss) or customize as needed
     const formattedDateTime = combinedDateTime.toISOString();
     axios.post("https://localhost:7146/api/Bookings",{
       "bookingDate": formattedDateTime,
       "status": "Pending",
-      "doctorId": doctor.doctorId,
-      "patientId": patient.patientId,
+      "doctorId": doctor.id,
+      "patientId": patients.patientId,
       "message": message
     }).then((res)=>console.log(res))
   };
@@ -87,7 +88,7 @@ const BookAppointmentComp = () => {
 
       {doctor && (
         <div className="doctor-info">
-          <img src =  {`data:image/jpg;base64,${doctor.imageData}`} alt={doctor.name} className="doctor-image" />
+          <img src =  {`data:image/jpg;base64,${doctor.image}`} alt={doctor.name} className="doctor-image" />
           <h3>{doctor.name}</h3>
         </div>
       )}
@@ -118,7 +119,7 @@ const BookAppointmentComp = () => {
           <label>Patient Name</label>
           <input
             type="text"
-            value={patient ? patient.name : ""}
+            value={patients ? patients.name : ""}
             onChange={(e) => setPatientName(e.target.value)}
           readOnly
           />
@@ -129,7 +130,7 @@ const BookAppointmentComp = () => {
           <label>Email</label>
           <input
             type="email"
-            value={patient ? patient.email : ""}
+            value={patients ? patients.email : ""}
             onChange={(e) => setEmail(e.target.value)}
             readOnly
           />

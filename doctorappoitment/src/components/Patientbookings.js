@@ -1,8 +1,9 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button, Modal } from 'react-bootstrap';
 import { FaCheckCircle, FaFileUpload } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
+import { PatientContext } from './PatientDashContext';
 
 
 const BookingCard = ({ booking, onComplete ,submitData}) => {
@@ -262,7 +263,8 @@ const BookingCard = ({ booking, onComplete ,submitData}) => {
     };
     
 const Patientbookings = () => {
-    const { id } = useParams();
+  const {  patients,id, doctorsList,filteredDoctors,specializations,organizations,locations,setFilteredDoctors, fetchDatas,fetchDoctors,selectedDoctor,setSelectedDoctor } = useContext(PatientContext);
+
     const [PatientBookingData, SetpatientbookingData] = useState(null);
   
     const fetchDoctorData = async () => {
@@ -299,20 +301,23 @@ const Patientbookings = () => {
       }
     }
     useEffect(() => {
-      fetchDoctorData();
-    }, [id]);
+      // fetchDoctorData();
+      // console.log(patients.bookings)
+      // console.log(doctorsList)
+      SetpatientbookingData(patients ? patients.bookings["$values"] : null)
+    },[ patients,id, doctorsList,filteredDoctors,specializations,organizations,locations,setFilteredDoctors, fetchDatas]);
   
     return (
       <>
         <div>Doctor Booking List</div>
         {PatientBookingData ? (
-          <BookingList bookings={PatientBookingData.bookings["$values"]} submitData = {submitData}/>
+          <BookingList bookings={PatientBookingData} submitData = {submitData}/>
         ) : (
           "No bookings available."
         )}
         <div>Doctor Completed List</div>
         {PatientBookingData ? (
-          <CompletedList bookings={PatientBookingData.bookings["$values"]} />
+          <CompletedList bookings={PatientBookingData} />
         ) : (
           "No data available."
         )}

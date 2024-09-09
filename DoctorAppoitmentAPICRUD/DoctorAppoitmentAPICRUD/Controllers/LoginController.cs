@@ -40,7 +40,7 @@ namespace DoctorAppoitmentAPICRUD.Controllers
                     return Unauthorized("Invalid doctor credentials");
                 }
 
-                return Ok(new { Role = "Doctor" });
+                return Ok(new { Role = "Doctor" ,Id = doctor.DoctorId});
             }
             else if (loginRequest.Role == "Patient")
             {

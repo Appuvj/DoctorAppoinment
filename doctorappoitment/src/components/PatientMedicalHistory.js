@@ -1,6 +1,7 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import { PatientContext } from './PatientDashContext';
 
 const styles = {
     container: {
@@ -26,13 +27,13 @@ const styles = {
     },
   };
 const PatientMedicalHistory = () => {
-    const {id} = useParams()
+    const {id} = useContext(PatientContext)
     const [medicalHistory,setMedicalhistory] = useState([])
     const [selectedImage, setSelectedImage] = useState(null);
 
     const getmedicalHistory = async ()=>{
         const response = await axios.get(`https://localhost:7146/api/Bookings/medicalhistory/${id}`)
-        // console.log(response.data.value["$values"])
+        console.log(response.data.value["$values"])
         setMedicalhistory(response.data.value["$values"])
     }
 
@@ -55,7 +56,7 @@ const PatientMedicalHistory = () => {
         <div>
           {/* Card List */}
           <div style={styles.container}>
-            {medicalHistory ?  medicalHistory.map((item, index) => (
+            {medicalHistory ? medicalHistory.length >0 ? medicalHistory.map((item, index) => (
               <div key={index} style={styles.card}>
                 <img
                   src={`data:image/jpeg;base64,${item.prescription}`}
@@ -69,7 +70,7 @@ const PatientMedicalHistory = () => {
                   <p>Visited Date: {formatDate(item.bookingDate)}</p>
                 </div>
               </div>
-            )):"loading.."}
+            )):"No Records Found" :"loading.."}
           </div>
     
           {/* Bootstrap Modal */}

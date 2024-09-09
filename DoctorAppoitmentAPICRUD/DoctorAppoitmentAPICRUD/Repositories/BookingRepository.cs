@@ -28,6 +28,8 @@ namespace DoctorAppoitmentAPICRUD.Repositories
                                DoctorName = b.Doctor.Name,
                                PatientName = b.Patient.Name,
                                Message = b.Message,
+                               DoctorId = (int)(b.DoctorId != null ? b.DoctorId : 0),
+                               PatientId = (int)(b.PatientId != null ? b.PatientId : 0)
                            }).ToList();
 
             return bookings;
@@ -75,13 +77,17 @@ namespace DoctorAppoitmentAPICRUD.Repositories
 
         public async Task<Booking> UpdateAsync(BookingDto bookingDto,int id)
         {
-
-            IFormFile image = bookingDto.Prescription;
-            byte[] imageBytes;
-            using (var memoryStream = new MemoryStream())
+            byte[] imageBytes = null;
+            if (bookingDto.Prescription !=null)
             {
-                await image.CopyToAsync(memoryStream);
-                imageBytes = memoryStream.ToArray();
+
+                IFormFile image = bookingDto.Prescription;
+               
+                using (var memoryStream = new MemoryStream())
+                {
+                    await image.CopyToAsync(memoryStream);
+                    imageBytes = memoryStream.ToArray();
+                }
             }
 
             //Console.WriteLine(bookingDto.Status+" "+bookingDto.PatientId);

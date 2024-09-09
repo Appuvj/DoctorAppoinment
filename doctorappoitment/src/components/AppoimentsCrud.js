@@ -86,12 +86,17 @@ const AppoimentsCrud = () => {
         if (selectedAppointment && modalAction) {
             const updatedStatus = modalAction === "confirm" ? "Booked" : "Cancelled";
             console.log(selectedAppointment)
-            axios.put(`https://localhost:7146/api/Bookings/${selectedAppointment.bookingId}`, {
-                       
-                         "status": updatedStatus,
-                            "DoctorId" : 0
-                         ,"PatientId" :0
-                     }).then((res) => {
+            const formData = new FormData();
+            formData.append("status", updatedStatus);
+            formData.append("DoctorId", selectedAppointment.doctorId);
+            formData.append("PatientId", selectedAppointment.patientId);
+            formData.append("Prescription",null)
+    
+            axios.put(`https://localhost:7146/api/Bookings/${selectedAppointment.bookingId}`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data' // Important for FormData
+                }
+            }).then((res) => {
                 setShowModal(false);
                 fetchDatas(); // Refetch data to update the list
             }).catch((err) => {

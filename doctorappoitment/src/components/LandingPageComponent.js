@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Navbar, Nav, NavDropdown, Container, Form, Button, Row, Col, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -91,6 +91,9 @@ const settings = {
 const LandingPageComponent = () => {
 
     const navigate = useNavigate()
+    useEffect(()=>{
+      sessionStorage.clear()
+        },[])
     return (
         <>
        

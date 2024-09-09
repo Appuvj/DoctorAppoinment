@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./logincomponent.css"
 import { useNavigate } from 'react-router-dom';
 
@@ -13,6 +13,10 @@ const LoginComponent = () => {
   const [role, setRole] = useState('Patient'); // Default role is Admin
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+
+  useEffect(()=>{
+sessionStorage.clear()
+  },[])
 const navigate = useNavigate()
   const validateForm = () => {
       let valid = true;
@@ -52,7 +56,9 @@ const navigate = useNavigate()
               }
               else if(role == "Doctor")
               {
-                navigate("")
+                // console.log(response)
+                sessionStorage.setItem("Doctor",response.data.id)
+                navigate("/doctor-dash")
 
               }
               else if(role == "Patient")

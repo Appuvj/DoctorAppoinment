@@ -9,7 +9,8 @@
         public string DoctorName { get; set; } // Flattened
         public string PatientName { get; set; } // Flattened
 
-
+        public int DoctorId { get; set; }
+        public int PatientId { get; set; }
         public string Message { get;set; }
     }
 }

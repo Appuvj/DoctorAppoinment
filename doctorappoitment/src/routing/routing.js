@@ -28,6 +28,8 @@ import PatientEditComponent from "../components/PatientEditComponent";
 import DoctorDashBoard from "../components/DoctorDashBoard";
 import DoctorDashUi from "../components/DoctorDashUi";
 import DoctorDoctorSearch from "../components/DoctorDoctorSearch";
+import DoctorEditComponent from "../components/DoctorEditComponent";
+import NotFoundPage from "../components/NotFoundPage";
 
 
 const router = createBrowserRouter([
@@ -109,29 +111,21 @@ element : <BookAppointmentComp/>
         {
             path : "doctor-bookings",
             element : <DoctorBookingList/>
+        },
+        {
+            path : "medical-history/:id",
+            element:<DoctorBookingMedicalHistory/>
+
+        },
+        {
+            path : "doctor-edit",
+            element : <DoctorEditComponent/>
+
         }
     ]
 
 },
 
-
-
-
-   
-
-  
-    {
-        path:"/doctor-bookings/MedicalHistory/:id",
-        element:<DoctorBookingMedicalHistory/>
-
-    },
-    {
-        path:"/doctor-bookings/:id",
-        element:<DoctorBookingList/>
-
-    },
-    
- 
 
 {
     path:"/admin",
@@ -192,6 +186,10 @@ element:<AnalyticsDataUi/>
 },
 
 ]
+},
+{
+    path : "*",
+    element  : <NotFoundPage/>
 }
 
 

@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import { Button, Modal } from 'react-bootstrap';
 import { FaCheckCircle, FaFileUpload } from 'react-icons/fa';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { DoctorContext } from './DoctorDashContext';
 
 
@@ -14,6 +14,12 @@ import { DoctorContext } from './DoctorDashContext';
 
 
 const BookingCard = ({ booking, onComplete ,submitData}) => {
+  const navigate = useNavigate();
+
+  // Function to handle navigation to medical history
+  const handleViewMedicalHistory = () => {
+    navigate(`/doctor-dash/medical-history/${booking.patientId}`);
+  };
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString(); // Adjust to your preferred date format
@@ -75,6 +81,13 @@ const BookingCard = ({ booking, onComplete ,submitData}) => {
         <h3>{booking.patientName}</h3>
         <p>Status: {booking.status}</p>
         <p>Date: {formatDate(booking.bookingDate)}</p>
+        <div>
+  <label>Message:</label>
+  <input type="text" value={booking.message} readOnly style={styles.readOnlyInput} />
+</div>
+<button onClick={handleViewMedicalHistory} style={styles.historyButton}>
+  View Medical History
+</button>
         {booking.status.toLowerCase() === 'booked' && (
           <>
             <div style={styles.uploadContainer}>
@@ -141,7 +154,7 @@ const BookingCard = ({ booking, onComplete ,submitData}) => {
 };
 
 const CompletedCard = ({ booking}) => {
-  console.log(booking)
+  // console.log(booking)
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString(); // Adjust to your preferred date format
@@ -154,7 +167,12 @@ const CompletedCard = ({ booking}) => {
   const handleCloseModal = () => setShowModal(false);
 
 
+  const navigate = useNavigate();
 
+  // Function to handle navigation to medical history
+  const handleViewMedicalHistory = () => {
+    navigate(`/medicalhistory/${booking.patientId}`);
+  };
  
  
 
@@ -172,6 +190,9 @@ const CompletedCard = ({ booking}) => {
         <h3>{booking.patientName}</h3>
         <p>Status: {booking.status}</p>
         <p>Date: {formatDate(booking.bookingDate)}</p>
+        {/* <button onClick={handleViewMedicalHistory} style={styles.historyButton}>
+  View Medical History
+</button> */}
         {booking.status.toLowerCase() === 'completed' && (
           <>
      {/* Replace Image with Button */}
@@ -255,7 +276,7 @@ const styles = {
   const BookingList =({ bookings,submitData }) => {
     const handleComplete =(booking,file) => {
       // Logic to mark the appointment as completed
-      console.log(`Appointment ${booking.bookingId} marked as completed.`);
+      // console.log(`Appointment ${booking.bookingId} marked as completed.`);
 
     
 
@@ -306,21 +327,20 @@ const DoctorBookingList = () => {
       try {
         const response = await axios.get(apiUrl);
         SetDoctorbookingData(response.data);
-        console.log(response)
+        // console.log(response)
       } catch (error) {
         console.error('Error fetching doctor data:', error);
       }
     };
     const submitData = async (booking,file) =>{
-      console.log(booking)
-      setChanges (changes ? false : true)
+      // console.log(booking)
       const formData = new FormData();
       formData.append('BookingDate',booking.bookingDate);  // Append date-time as string
       formData.append('Status', 'Completed');
       formData.append('DoctorId', parseInt(booking.doctorId));  // Ensure it's an integer
       formData.append('PatientId', parseInt(booking.patientId));
       formData.append('Prescription', file);  // Append file (binary data)
-      console.log(formData)
+      // console.log(formData)
       try {
         // Make PUT request with FormData
         const response = await axios.put(`https://localhost:7146/api/bookings/${booking.bookingId}`, formData, {
@@ -328,9 +348,10 @@ const DoctorBookingList = () => {
             'Content-Type': 'multipart/form-data',
           },
         });
-  
+        setChanges (!changes)
+
         // Handle success
-        console.log('Booking updated successfully:', response.data);
+        // console.log('Booking updated successfully:', response.data);
       } catch (error) {
         // Handle error
         console.error('Error updating booking:', error);

@@ -52,6 +52,8 @@ const navigate = useNavigate()
               setError('');
               if (role=="Admin")
               {
+                sessionStorage.setItem("Admin","admin")
+
                 navigate("/admin")
               }
               else if(role == "Doctor")

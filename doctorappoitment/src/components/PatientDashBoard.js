@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react'
-import { PatientProvider } from './PatientDashContext'
+import React, { useContext, useEffect, useState } from 'react'
+import { PatientContext, PatientProvider } from './PatientDashContext'
 import { Outlet, useNavigate } from 'react-router-dom'
-
+import { AppBar, Toolbar, IconButton, Menu, MenuItem, Typography, Avatar, Button } from '@mui/material';
+import { Home, EventNote, Search, History, Edit, Logout } from '@mui/icons-material';
 const PatientDashBoard = () => {
+   
     const navigate = useNavigate()
+
     useEffect(()=>{
         if(! sessionStorage.getItem("Patient")){
             navigate("/login")
@@ -12,7 +15,11 @@ const PatientDashBoard = () => {
     return (
        
     <>
-    {sessionStorage.getItem("Patient") &&   <PatientProvider>  <Outlet/> </PatientProvider>}
+    {sessionStorage.getItem("Patient") &&   <PatientProvider>
+        
+      
+        
+          <Outlet/> </PatientProvider>}
     </>
     )
 }

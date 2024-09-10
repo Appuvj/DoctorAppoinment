@@ -1,25 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import "./bookappointment.css"
+import "./bookappointment.css";
 import { PatientContext } from './PatientDashContext';
+import { Button, TextField, Typography, Box, Grid, Container } from "@mui/material";
 
 const BookAppointmentComp = () => {
-    const [doctor,setDoctor] = useState()
-  const [patient,setPatient] = useState()
-  const {  patients,id, doctorsList,filteredDoctors,specializations,organizations,locations,setFilteredDoctors, fetchDatas,fetchDoctors,selectedDoctor,setSelectedDoctor } = useContext(PatientContext);
+  const [doctor, setDoctor] = useState();
+  const [patient, setPatient] = useState();
+  const { patients, selectedDoctor } = useContext(PatientContext);
 
-  // const getDoctor = async () => {
-
-  //   const response = await axios.get("https://localhost:7146/api/Doctor/1")
-  //   setDoctor(response.data)
-  // }
-
-  // const getPatient = async () => {
-
-  //   const response = await axios.get("https://localhost:7146/api/Patient/1")
-  //   setPatient(response.data)
-    
-  // }
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [patientName, setPatientName] = useState('');
@@ -29,31 +18,20 @@ const BookAppointmentComp = () => {
 
   const today = new Date().toISOString().split('T')[0]; // Get current date in 'YYYY-MM-DD' format
 
-  const validateEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
+  useEffect(() => {
+    setDoctor(selectedDoctor);
+  }, [selectedDoctor]);
 
-
-  useEffect(()=>{
-    // getDoctor()
-    // getPatient()
-// console.log(patients)
-    setDoctor(selectedDoctor)
-  },[])
   const validateForm = () => {
     const newErrors = {};
-
     if (!date) newErrors.date = 'Please select a date.';
     if (!time) newErrors.time = 'Please select a time.';
- 
-
     return newErrors;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = validateForm();
-    console.log(doctor)
     if (Object.keys(newErrors).length === 0) {
       alert(`Appointment booked with Dr. ${doctor.name} on ${date} at ${time}`);
       setDate('');
@@ -62,95 +40,110 @@ const BookAppointmentComp = () => {
       setEmail('');
       setMessage('');
       setErrors({});
-      
+
+      const combinedDateTime = new Date(`${date}T${time}:00`);
+      const formattedDateTime = combinedDateTime.toISOString();
+      axios.post("https://localhost:7146/api/Bookings", {
+        "bookingDate": formattedDateTime,
+        "status": "Pending",
+        "doctorId": doctor.id,
+        "patientId": patients.patientId,
+        "message": message
+      }).then((res) => console.log(res));
+
     } else {
       setErrors(newErrors);
-      return;
     }
-
-    console.log("submitting..")
-    const combinedDateTime = new Date(`${date}T${time}:00`); // Assuming the format is "yyyy-MM-ddTHH:mm:ss"
-      console.log(doctor)
-    // Convert it to ISO string (yyyy-MM-ddTHH:mm:ss) or customize as needed
-    const formattedDateTime = combinedDateTime.toISOString();
-    axios.post("https://localhost:7146/api/Bookings",{
-      "bookingDate": formattedDateTime,
-      "status": "Pending",
-      "doctorId": doctor.id,
-      "patientId": patients.patientId,
-      "message": message
-    }).then((res)=>console.log(res))
   };
 
   return (
-    <div className="appointment-container">
-      <h2>Book an Appointment</h2>
+    <Container maxWidth="sm" className="book-appointment">
+      <Box className="appointment-container" sx={{ bgcolor: '#f7f7f7', p: 4, borderRadius: 2, boxShadow: 3 }}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Book an Appointment
+        </Typography>
 
-      {doctor && (
-        <div className="doctor-info">
-          <img src =  {`data:image/jpg;base64,${doctor.image}`} alt={doctor.name} className="doctor-image" />
-          <h3>{doctor.name}</h3>
-        </div>
-      )}
+        {doctor && (
+          <Box className="doctor-info" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 3 }}>
+            <img
+              src={`data:image/jpg;base64,${doctor.image}`}
+              alt={doctor.name}
+              className="doctor-image"
+              style={{ width: 100, height: 100, borderRadius: '50%', marginRight: 15 }}
+            />
+            <Typography variant="h6">{doctor.name}</Typography>
+          </Box>
+        )}
 
-      <form className="appointment-form" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Appointment Date</label>
-          <input
-            type="date"
-            value={date}
-            min={today} // Restrict selection to today and future dates
-            onChange={(e) => setDate(e.target.value)}
-          />
-          {errors.date && <span className="error-text">{errors.date}</span>}
-        </div>
+        <Box component="form" className="appointment-form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label=""
+                type="date"
+                value={date}
+                InputProps={{ inputProps: { min: today } }}
+                onChange={(e) => setDate(e.target.value)}
+                error={Boolean(errors.date)}
+                helperText={errors.date}
+              />
+            </Grid>
 
-        <div className="form-group">
-          <label>Appointment Time</label>
-          <input
-            type="time"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-          />
-          {errors.time && <span className="error-text">{errors.time}</span>}
-        </div>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label=""
+                type="time"
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
+                error={Boolean(errors.time)}
+                helperText={errors.time}
+              />
+            </Grid>
 
-        <div className="form-group">
-          <label>Patient Name</label>
-          <input
-            type="text"
-            value={patients ? patients.name : ""}
-            onChange={(e) => setPatientName(e.target.value)}
-          readOnly
-          />
-          {errors.patientName && <span className="error-text">{errors.patientName}</span>}
-        </div>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Patient Name"
+                value={patients ? patients.name : ""}
+                InputProps={{ readOnly: true }}
+                error={Boolean(errors.patientName)}
+                helperText={errors.patientName}
+              />
+            </Grid>
 
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            type="email"
-            value={patients ? patients.email : ""}
-            onChange={(e) => setEmail(e.target.value)}
-            readOnly
-          />
-          {errors.email && <span className="error-text">{errors.email}</span>}
-        </div>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Email"
+                type="email"
+                value={patients ? patients.email : ""}
+                InputProps={{ readOnly: true }}
+                error={Boolean(errors.email)}
+                helperText={errors.email}
+              />
+            </Grid>
 
-        <div className="form-group">
-          <label>Additional Message</label>
-          <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          ></textarea>
-        </div>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Additional Message"
+                multiline
+                rows={3}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+            </Grid>
+          </Grid>
 
-        <button type="submit" className="appointment-submit-btn">
-          Book Appointment
-        </button>
-      </form>
-    </div>
+          <Button type="submit" fullWidth variant="contained" color="primary" sx={{ mt: 3 }}>
+            Book Appointment
+          </Button>
+        </Box>
+      </Box>
+    </Container>
   );
 }
 
-export default BookAppointmentComp
+export default BookAppointmentComp;

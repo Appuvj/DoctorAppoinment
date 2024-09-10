@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Container, Card, CardContent, Typography, TextField, MenuItem, Button, FormControl, InputLabel, Select, FormHelperText } from '@mui/material';
+import { Container, Card, CardContent, Typography, TextField, MenuItem, Button, FormControl, InputLabel, Select, FormHelperText, Box, Avatar, IconButton } from '@mui/material';
+import { PhotoCamera } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-
-
 
 const getTodayDate = () => {
   const today = new Date();
@@ -12,11 +11,12 @@ const getTodayDate = () => {
   const day = String(today.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 };
+const todayDate = new Date().toISOString().split('T')[0];
 
 const apiUrl = 'https://localhost:7146/api/Doctor'; // Update with your actual API URL
 
 const DoctorRegistration = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [mobile, setMobile] = useState('');
   const [specification, setSpecification] = useState('');
@@ -30,7 +30,7 @@ const DoctorRegistration = () => {
   const [success, setSuccess] = useState('');
   const [location, setLocation] = useState('');
 
-  const today = new Date().toISOString().split('T')[0];
+  const today = getTodayDate();
 
   const validateField = (fieldName, value) => {
     let error = '';
@@ -53,8 +53,8 @@ const DoctorRegistration = () => {
       case 'gender':
         error = value ? '' : 'Gender is required.';
         break;
-      case 'location' :
-        error = value ? '' : 'location is required';
+      case 'location':
+        error = value ? '' : 'Location is required.';
         break;
       case 'password':
         error = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value)
@@ -87,7 +87,6 @@ const DoctorRegistration = () => {
       availableDate: validateField('availableDate', availableDate),
       photo: validateField('photo', photo),
       location: validateField('location', location),
-
     };
     setErrors(validations);
     return Object.values(validations).every(error => error === '');
@@ -98,7 +97,6 @@ const DoctorRegistration = () => {
     if (file && ['image/jpeg', 'image/png', 'image/jpg'].includes(file.type)) {
       setPhoto(file);
       validateField('photo', file);
-      
     } else {
       setPhoto(null);
       validateField('photo', '');
@@ -106,15 +104,12 @@ const DoctorRegistration = () => {
   };
 
   const handleSubmit = async (e) => {
-   
     e.preventDefault();
 
-    // Validate all fields
     // if (!validateForm()) {
     //   return;
     // }
 
-    console.log("hii")
     const formData = new FormData();
     formData.append('Name', name);
     formData.append('Contact', mobile);
@@ -147,7 +142,7 @@ const DoctorRegistration = () => {
         setAvailableDate('');
         setLocation('');
         setPhoto(null);
-        navigate("/login")
+        navigate("/login");
       }
     } catch (err) {
       console.error('Error registering doctor:', err);
@@ -164,6 +159,26 @@ const DoctorRegistration = () => {
             Doctor Registration
           </Typography>
           <form onSubmit={handleSubmit}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 2 }}>
+              <Avatar
+                sx={{ width: 100, height: 100, mb: 2 }}
+                src={photo ? URL.createObjectURL(photo) : ''}
+              />
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="label"
+              >
+                <input
+                  type="file"
+                  accept="image/*"
+                  hidden
+                  onChange={handlePhotoChange}
+                />
+                <PhotoCamera />
+              </IconButton>
+              {errors.photo && <FormHelperText error>{errors.photo}</FormHelperText>}
+            </Box>
             <TextField
               fullWidth
               margin="normal"
@@ -195,12 +210,12 @@ const DoctorRegistration = () => {
               error={!!errors.mobile}
               helperText={errors.mobile}
             />
-     <TextField
+
+            <TextField
               fullWidth
               margin="normal"
               id="location"
-              label="location"
-              type="text"
+              label="Location"
               variant="outlined"
               value={location}
               onChange={(e) => {
@@ -211,6 +226,7 @@ const DoctorRegistration = () => {
               error={!!errors.location}
               helperText={errors.location}
             />
+            
             <TextField
               fullWidth
               margin="normal"
@@ -261,22 +277,23 @@ const DoctorRegistration = () => {
             />
 
             <FormControl fullWidth margin="normal" error={!!errors.gender}>
-              <InputLabel id="gender-label">Gender</InputLabel>
+            <InputLabel id="gender-label">Gender</InputLabel>
               <Select
                 labelId="gender-label"
                 id="gender"
                 value={gender}
+                label="Gender"
                 onChange={(e) => {
                   setGender(e.target.value);
                   validateField('gender', e.target.value);
                 }}
                 onBlur={() => validateField('gender', gender)}
               >
-                <MenuItem value="" disabled>Select gender</MenuItem>
                 <MenuItem value="Male">Male</MenuItem>
                 <MenuItem value="Female">Female</MenuItem>
+                <MenuItem value="Other">Other</MenuItem>
               </Select>
-              <FormHelperText>{errors.gender}</FormHelperText>
+              {errors.gender && <FormHelperText>{errors.gender}</FormHelperText>}
             </FormControl>
 
             <TextField
@@ -317,33 +334,13 @@ const DoctorRegistration = () => {
       }}
     />
 
-            <Button
-              fullWidth
-              variant="contained"
-              component="label"
-              sx={{ mt: 3 }}
-            >
-              Upload Photo
-              <input
-                type="file"
-                hidden
-                accept=".jpg, .jpeg, .png"
-                onChange={handlePhotoChange}
-              />
-            </Button>
-            {errors.photo && <FormHelperText error>{errors.photo}</FormHelperText>}
-
-            <Button
-              fullWidth
-              variant="contained"
-              type="submit"
-              sx={{ mt: 3 }}
-            >
-              Register
-            </Button>
-
-            {errors.global && <Typography color="error" align="center" sx={{ mt: 2 }}>{errors.global}</Typography>}
-            {success && <Typography color="success" align="center" sx={{ mt: 2 }}>{success}</Typography>}
+            <Box sx={{ mt: 3, textAlign: 'center' }}>
+              {success && <Typography color="success.main">{success}</Typography>}
+              {errors.global && <Typography color="error">{errors.global}</Typography>}
+              <Button type="submit" variant="contained" color="primary">
+                Register
+              </Button>
+            </Box>
           </form>
         </CardContent>
       </Card>
@@ -352,4 +349,3 @@ const DoctorRegistration = () => {
 };
 
 export default DoctorRegistration;
-

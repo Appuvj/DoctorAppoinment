@@ -1,34 +1,17 @@
-import { useColorScheme } from '@mui/material';
-import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react'
-import { Button, Modal } from 'react-bootstrap';
+import React, { useContext, useEffect, useState } from 'react';
+import { Button, Card, CardContent, Typography, Grid, Box } from '@mui/material';
 import { FaCheckCircle, FaFileUpload } from 'react-icons/fa';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { Modal } from 'react-bootstrap';
 import { DoctorContext } from './DoctorDashContext';
 
-
-
-
-
-
-
-
-const BookingCard = ({ booking, onComplete ,submitData}) => {
+const BookingCard = ({ booking, submitData }) => {
   const navigate = useNavigate();
-
-  // Function to handle navigation to medical history
-  const handleViewMedicalHistory = () => {
-    navigate(`/doctor-dash/medical-history/${booking.patientId}`);
-  };
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString(); // Adjust to your preferred date format
-  };
-
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
-  const [showModal, setShowModal] = useState(false); // Manage modal visibility
-  const [modalMessage, setModalMessage] = useState(''); // Modal message
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -39,346 +22,187 @@ const BookingCard = ({ booking, onComplete ,submitData}) => {
       setUploading(false);
     } else {
       setModalMessage('Invalid file type. Please upload an image (PNG, JPEG) or PDF.');
-      setShowModal(true); // Show modal with error message
+      setShowModal(true);
       e.target.value = ''; // Clear the input
     }
   };
 
   const handleUpload = () => {
     if (!file) {
-      setModalMessage("Please upload a prescription file.");
+      setModalMessage('Please upload a prescription file.');
       setShowModal(true);
       return;
     }
     setUploading(true);
-    // Simulate upload delay
     setTimeout(() => {
       setUploading(false);
-      // File uploaded successfully
     }, 1000);
   };
 
   const handleComplete = () => {
     if (!file) {
-      setModalMessage("Please upload a prescription file before marking as completed.");
+      setModalMessage('Please upload a prescription file before marking as completed.');
       setShowModal(true);
       return;
     }
-    submitData(booking,file); // Call the onComplete callback with booking ID
+    submitData(booking, file);
   };
 
   const Base64Image = ({ base64String }) => {
     const imageSrc = `data:image/png;base64,${base64String}`;
-    return (
-      <img src={imageSrc} alt="Converted" style={{ width: '100px', height: '100px' }} />
-    );
+    return <img src={imageSrc} alt="Patient" style={{ width: '100px', height: '100px', borderRadius: '8px' }} />;
   };
 
-  return (
-    <div style={styles.card}>
-      <Base64Image base64String={booking.patientImage} />
-      <div style={styles.details}>
-        <h3>{booking.patientName}</h3>
-        <p>Status: {booking.status}</p>
-        <p>Date: {formatDate(booking.bookingDate)}</p>
-        <div>
-  <label>Message:</label>
-  <input type="text" value={booking.message} readOnly style={styles.readOnlyInput} />
-</div>
-<button onClick={handleViewMedicalHistory} style={styles.historyButton}>
-  View Medical History
-</button>
-        {booking.status.toLowerCase() === 'booked' && (
-          <>
-            <div style={styles.uploadContainer}>
-              <input
-                type="file"
-                accept=".png, .jpg, .jpeg"
-                onChange={handleFileChange}
-                style={styles.fileInput}
-              />
-              <button
-                disabled={uploading}
-                onClick={handleUpload}
-                style={styles.uploadButton}
-              >
-                {uploading ? <><FaFileUpload /> Uploading...</> : 'Upload Prescription'}
-              </button>
-            </div>
-            <button
-              onClick={handleComplete}
-              style={styles.button}
-            >
-              <FaCheckCircle /> Mark as Completed
-            </button>
-          </>
-        )}
-      </div>
-
-      {/* Modal for displaying messages */}
-      <div
-        className="modal fade show"
-        style={{ display: showModal ? 'block' : 'none' }}
-        tabIndex="-1"
-        role="dialog"
-      >
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">Error</h5>
-              <button
-                type="button"
-                className="btn-close"
-                aria-label="Close"
-                onClick={() => setShowModal(false)}
-                style={{ marginLeft: 'auto' }} // Aligns the button to the right
-              ></button>
-            </div>
-            <div className="modal-body">
-              <p>{modalMessage}</p>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={() => setShowModal(false)}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const CompletedCard = ({ booking}) => {
-  // console.log(booking)
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString(); // Adjust to your preferred date format
-  };
-
-  const [showModal, setShowModal] = useState(false);  // Modal visibility state
-
-  
-  const handleShowModal = () => setShowModal(true);
-  const handleCloseModal = () => setShowModal(false);
-
-
-  const navigate = useNavigate();
-
-  // Function to handle navigation to medical history
-  const handleViewMedicalHistory = () => {
-    navigate(`/medicalhistory/${booking.patientId}`);
-  };
- 
- 
-
-  const Base64Image = ({ base64String }) => {
-    const imageSrc = `data:image/png;base64,${base64String}`;
-    return (
-      <img src={imageSrc} alt="Converted" style={{ width: '100px', height: '100px' }} />
-    );
+    return date.toLocaleDateString();
   };
 
   return (
-    <div style={styles.card}>
-      <Base64Image base64String={booking.patientImage} />
-      <div style={styles.details}>
-        <h3>{booking.patientName}</h3>
-        <p>Status: {booking.status}</p>
-        <p>Date: {formatDate(booking.bookingDate)}</p>
-        {/* <button onClick={handleViewMedicalHistory} style={styles.historyButton}>
-  View Medical History
-</button> */}
-        {booking.status.toLowerCase() === 'completed' && (
-          <>
-     {/* Replace Image with Button */}
-     <button onClick={handleShowModal} style={styles.button}>
-              View Prescription
-            </button>
+    <Grid item xs={12} sm={6} md={4}>
+      <Card sx={{ padding: 2, boxShadow: 3 }}>
+        {/* Horizontal layout for the image and text */}
+        <Box display="flex" alignItems="center" justifyContent="space-between">
+          {/* Image on the left */}
+          <Box display="flex" alignItems="center" mr={2}>
+            <Base64Image base64String={booking.patientImage} />
+          </Box>
 
-            {/* Bootstrap Modal */}
-            <Modal show={showModal} onHide={handleCloseModal} centered>
-              <Modal.Header closeButton>
-                <Modal.Title>Prescription</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <img
-                  src={`data:image/png;base64,${booking.prescription}`}
-                  alt="Prescription"
-                  style={{ width: '100%', height: 'auto' }}
+          {/* Text in the center */}
+          <Box flexGrow={1} ml={2}>
+            <Typography variant="h6" gutterBottom>{booking.patientName}</Typography>
+            <Typography>Status: {booking.status}</Typography>
+            <Typography>Date: {formatDate(booking.bookingDate)}</Typography>
+            <Box mt={1}>
+              <Typography variant="body2" color="text.secondary">{booking.message}</Typography>
+            </Box>
+          </Box>
+
+          {/* Buttons on the right */}
+          <Box display="flex" flexDirection="column" alignItems="center" ml={2}>
+            <Button
+              variant="contained"
+              onClick={() => navigate(`/doctor-dash/medical-history/${booking.patientId}`)}
+              sx={{ marginBottom: 1 }}
+            >
+              View Medical History
+            </Button>
+            {booking.status.toLowerCase() === 'booked' && (
+              <>
+                <input
+                  type="file"
+                  accept=".png, .jpg, .jpeg, .pdf"
+                  onChange={handleFileChange}
+                  style={{ display: 'none' }}
+                  id={`file-upload-${booking.bookingId}`}
                 />
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleCloseModal}>
-                  Close
-                </Button>
-              </Modal.Footer>
-            </Modal>
-          </>
-        )}
-      </div>
+                <label htmlFor={`file-upload-${booking.bookingId}`}>
+                  <Button
+                    component="span"
+                    variant="outlined"
+                    startIcon={<FaFileUpload />}
+                    disabled={uploading}
+                    sx={{ marginBottom: 1 }}
+                  >
+                    {uploading ? 'Uploading...' : 'Upload Prescription'}
+                  </Button>
+                </label>
 
-      {/* Modal for displaying messages */}
-   
-    </div>
+                <Button
+                  variant="contained"
+                  color="success"
+                  startIcon={<FaCheckCircle />}
+                  onClick={handleComplete}
+                >
+                  Mark as Completed
+                </Button>
+              </>
+            )}
+          </Box>
+        </Box>
+      </Card>
+
+      {/* Modal for errors */}
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Error</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalMessage}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    </Grid>
   );
 };
-const styles = {
-  card: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: '10px',
-    border: '1px solid #ddd',
-    borderRadius: '5px',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-  },
-  details: {
-    flex: 1,
-  },
-  button: {
-    marginTop: '10px',
-    padding: '10px',
-    border: 'none',
-    borderRadius: '5px',
-    backgroundColor: '#007bff',
-    color: '#fff',
-    cursor: 'pointer',
-  },
-  uploadContainer: {
-    position: 'relative',
-    display: 'inline-block',
-  },
-  fileInput: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    opacity: 0,
-    cursor: 'pointer',
-  },
-  uploadButton: {
-    padding: '10px',
-    border: 'none',
-    borderRadius: '5px',
-    backgroundColor: '#007bff',
-    color: '#fff',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-  },
-};
-
-  const BookingList =({ bookings,submitData }) => {
-    const handleComplete =(booking,file) => {
-      // Logic to mark the appointment as completed
-      // console.log(`Appointment ${booking.bookingId} marked as completed.`);
-
-    
-
-    };
-  
-    return (
-      <div style={styles.container}>
-        {bookings.map((booking) => {
-            if (booking.status.toLowerCase() === 'booked')
-            {
-            
-          return <BookingCard key={booking.bookingId} booking={booking} onComplete={handleComplete} submitData = {submitData} />
-
-            }
-  })}
-      </div>
-    );
-  };
-  
-
-  const CompletedList = ({ bookings }) => {
-   
-  
-    return (
-      <div style={styles.container}>
-        {bookings.map((booking) => {
-            if (booking.status.toLowerCase() === 'completed')
-            {
-            
-          return <CompletedCard key={booking.bookingId} booking={booking}  />
-
-            }
-  })}
-      </div>
-    );
-  };
-  
-
-
 
 const DoctorBookingList = () => {
+  const { id, fetchDatas, fetchDoctors } = useContext(DoctorContext);
+  const [DoctorBookingData, SetDoctorbookingData] = useState(null);
+  const [changes, setChanges] = useState(false);
 
-    const { id, fetchDatas ,fetchDoctors } = useContext(DoctorContext);
-    const [DoctorBookingData, SetDoctorbookingData] = useState(null);
-    const [changes,setChanges] = useState(false)
-    const fetchDoctorData = async () => {
-      const apiUrl = `https://localhost:7146/api/Doctor/${id}`;
-      try {
-        const response = await axios.get(apiUrl);
-        SetDoctorbookingData(response.data);
-        // console.log(response)
-      } catch (error) {
-        console.error('Error fetching doctor data:', error);
-      }
-    };
-    const submitData = async (booking,file) =>{
-      // console.log(booking)
-      const formData = new FormData();
-      formData.append('BookingDate',booking.bookingDate);  // Append date-time as string
-      formData.append('Status', 'Completed');
-      formData.append('DoctorId', parseInt(booking.doctorId));  // Ensure it's an integer
-      formData.append('PatientId', parseInt(booking.patientId));
-      formData.append('Prescription', file);  // Append file (binary data)
-      // console.log(formData)
-      try {
-        // Make PUT request with FormData
-        const response = await axios.put(`https://localhost:7146/api/bookings/${booking.bookingId}`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-        setChanges (!changes)
-
-        // Handle success
-        // console.log('Booking updated successfully:', response.data);
-      } catch (error) {
-        // Handle error
-        console.error('Error updating booking:', error);
-      }
+  const fetchDoctorData = async () => {
+    const apiUrl = `https://localhost:7146/api/Doctor/${id}`;
+    try {
+      const response = await axios.get(apiUrl);
+      SetDoctorbookingData(response.data);
+    } catch (error) {
+      console.error('Error fetching doctor data:', error);
     }
-    useEffect(() => {
-      fetchDoctorData();
-      fetchDoctors();
-      fetchDatas();
-    }, [id,changes]);
-  
-    return (
-      <>
-        <div>Doctor Booking List</div>
-        {DoctorBookingData ? (
-          <BookingList bookings={DoctorBookingData.bookings["$values"]} submitData = {submitData}/>
-        ) : (
-          "No bookings available."
-        )}
-        <div>Doctor Completed List</div>
-        {DoctorBookingData ? (
-          <CompletedList bookings={DoctorBookingData.bookings["$values"]} />
-        ) : (
-          "No data available."
-        )}
-      </>
-    );
-}
+  };
 
-export default DoctorBookingList
+  const submitData = async (booking, file) => {
+    const formData = new FormData();
+    formData.append('BookingDate', booking.bookingDate);
+    formData.append('Status', 'Completed');
+    formData.append('DoctorId', parseInt(booking.doctorId));
+    formData.append('PatientId', parseInt(booking.patientId));
+    formData.append('Prescription', file);
+
+    try {
+      await axios.put(`https://localhost:7146/api/bookings/${booking.bookingId}`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      setChanges(!changes);
+    } catch (error) {
+      console.error('Error updating booking:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDoctorData();
+    fetchDoctors();
+    fetchDatas();
+  }, [id, changes]);
+
+  return (
+    <Box p={3}>
+      <Typography variant="h4" gutterBottom>Doctor Booking List</Typography>
+      <Grid container spacing={3}>
+        {DoctorBookingData ? (
+          DoctorBookingData.bookings["$values"]
+            .filter((booking) => booking.status.toLowerCase() === 'booked')
+            .map((booking) => (
+              <BookingCard key={booking.bookingId} booking={booking} submitData={submitData} />
+            ))
+        ) : (
+          <Typography>No bookings available.</Typography>
+        )}
+      </Grid>
+      <Typography variant="h4" gutterBottom mt={4}>Completed List</Typography>
+      <Grid container spacing={3}>
+        {DoctorBookingData ? (
+          DoctorBookingData.bookings["$values"]
+            .filter((booking) => booking.status.toLowerCase() === 'completed')
+            .map((booking) => (
+              <BookingCard key={booking.bookingId} booking={booking} />
+            ))
+        ) : (
+          <Typography>No data available.</Typography>
+        )}
+      </Grid>
+    </Box>
+  );
+};
+
+export default DoctorBookingList;

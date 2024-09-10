@@ -30,6 +30,7 @@ import DoctorDashUi from "../components/DoctorDashUi";
 import DoctorDoctorSearch from "../components/DoctorDoctorSearch";
 import DoctorEditComponent from "../components/DoctorEditComponent";
 import NotFoundPage from "../components/NotFoundPage";
+import EmergencyComp from "../components/EmergencyComp";
 
 
 const router = createBrowserRouter([
@@ -44,6 +45,11 @@ const router = createBrowserRouter([
             {
                 path:"about-us",
                 element:<AboutUsComponent/>
+            },
+            {
+                path:"emergency",
+                element:<EmergencyComp />
+                
             }
         ]
     },
@@ -102,7 +108,7 @@ element : <BookAppointmentComp/>
 
         {
             path : "",
-            element : <DoctorDashUi/>
+            element : <Navigate to={"doctor-search"}/>
         },
         {
             path : "doctor-search",

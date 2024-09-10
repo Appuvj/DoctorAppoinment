@@ -1,0 +1,131 @@
+/* Container for breadcrumb */
+.container-fluid.bg-grey-lighter {
+    background-color: #f7f7f7;
+    padding: 20px;
+}
+
+.breadcrumb-container {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.breadcrumb-link {
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 5px;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-link:hover {
+    color: #0056b3;
+}
+
+.breadcrumb-text {
+    color: #6c757d;
+}
+
+/* Service section */
+.service-section {
+    padding: 40px 20px;
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.heading-text {
+    font-size: 44px;
+    font-weight: bold;
+    color: #343a40;
+    line-height: 1.2;
+}
+
+/* Service cards */
+
+.service-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.service-card {
+    background-color: #007bff;
+    color: #fff;
+    padding: 30px;
+    margin-bottom: 20px;
+    width: calc(50% - 15px); /* Adjusts card width to fit two in a row with margin */
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.service-icon-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.service-icon {
+    font-size: 40px;
+    color: #fff;
+}
+
+.service-link {
+    color: #fff;
+    font-size: 24px;
+    font-weight: medium;
+    margin-left: 15px;
+    text-decoration: none;
+    word-break: break-word;
+    transition: color 0.3s ease;
+}
+
+.service-link:hover {
+    color: #d4e0e3;
+}
+
+.service-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.service-description {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+
+/* Google Maps iframe */
+.container--fluid.bg--white {
+    background-color: #ffffff;
+    padding-bottom: 50px;
+}
+
+.accordion {
+    /* Add your accordion styles if needed */
+}
+
+.bg--radius-5 {
+    border-radius: 5px;
+}
+
+.mt--20 {
+    margin-top: 20px;
+}
+
+.width--column-one {
+    width: 100%;
+}
+
+.pd--30 {
+    padding: 30px;
+}

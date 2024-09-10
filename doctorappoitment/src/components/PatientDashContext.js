@@ -9,15 +9,21 @@ export const PatientContext = createContext();
 
 export const PatientProvider = ({ children }) => {
   const navigate = useNavigate()
+  const [filters, setFilters] = useState({
+    location: '',
+    specialization: '',
+    organization: '',
+    gender: ''
+  });
     const [patients, setPatients] = useState();
     const id = sessionStorage.getItem("Patient")
     const [doctorsList, setDoctorsList] = useState([]);
+ 
     const [filteredDoctors, setFilteredDoctors] = useState([]);
     const [specializations, setSpecializations] = useState([]);
     const [organizations, setOrganizations] = useState([]);
     const [locations, setLocations] = useState([]);
     const [selectedDoctor,setSelectedDoctor] = useState()
-
 
 
     const formatDate = (dateTimeString) => {
@@ -71,6 +77,8 @@ export const PatientProvider = ({ children }) => {
       location: doctor.location
     }));
 
+
+   
     setDoctorsList(doctorsData);
     setFilteredDoctors(doctorsData);
   };
@@ -96,7 +104,10 @@ export const PatientProvider = ({ children }) => {
       navigate("/login"); // Navigate to login page on logout
     };
   return (
-    <PatientContext.Provider value={{ patients,id, doctorsList,filteredDoctors,specializations,organizations,locations,setFilteredDoctors,selectedDoctor,setSelectedDoctor, fetchDatas ,fetchDoctors}}>
+    <PatientContext.Provider value={{ patients,id, doctorsList,filteredDoctors,specializations,organizations,locations,setFilteredDoctors,selectedDoctor,setSelectedDoctor, fetchDatas ,fetchDoctors,filteredDoctors, setFilteredDoctors,specializations, setSpecializations
+
+        ,organizations, setOrganizations,locations, setLocations,selectedDoctor,setSelectedDoctor,filters, setFilters
+    }}>
         <AppBar position="static">
       <Toolbar>
         {/* Navigation Icons */}
@@ -112,7 +123,7 @@ export const PatientProvider = ({ children }) => {
         <IconButton
           color="inherit"
           aria-label="book appointment"
-          onClick={() => navigate("book-appointment")}
+         
         >
           <EventNote />
         </IconButton>

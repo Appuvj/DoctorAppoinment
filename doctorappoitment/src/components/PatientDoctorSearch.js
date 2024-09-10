@@ -135,16 +135,12 @@ const FilterDropdown = ({ title, options, selectedOption, setSelectedOption }) =
     );
   };
 const PatientDoctorSearch = () => {
-    const {  patients,id, doctorsList,filteredDoctors,specializations,organizations,locations,setFilteredDoctors, fetchDatas,fetchDoctors,selectedDoctor,setSelectedDoctor } = useContext(PatientContext);
+    const {  patients,id, doctorsList,filteredDoctors,specializations,organizations,locations,setFilteredDoctors, fetchDatas,fetchDoctors,selectedDoctor,setSelectedDoctor, setSpecializations,
+
+        setLocations,filters, setFilters } = useContext(PatientContext);
 
  
-    const [filters, setFilters] = useState({
-      location: '',
-      specialization: '',
-      organization: '',
-      gender: ''
-    });
-  
+ 
   
   const sethandle = (doctor) =>{
   setSelectedDoctor(doctor)

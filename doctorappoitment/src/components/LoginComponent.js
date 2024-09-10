@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import "./logincomponent.css"
 import { useNavigate } from 'react-router-dom';
-
+import DbService from '../Api/DbService';
 
 const dataUrl = 'https://localhost:7146/api/Login'; // Replace with your local server URL
 
@@ -40,12 +40,12 @@ const navigate = useNavigate()
       if (!validateForm()) return;
 
       try {
-          const response = await axios.post(dataUrl, {
+          const response = await DbService.post("Login", {
               email: username,
               password: password,
               role: role
           });
-
+            console.log(response)
           if (response.status === 200) {
               // console.log('Login Successful:', { username, password, role });
               setSuccess('Login successful!');
@@ -53,13 +53,15 @@ const navigate = useNavigate()
               if (role=="Admin")
               {
                 sessionStorage.setItem("Admin","admin")
-
+                sessionStorage.setItem("token",response.data.token)
                 navigate("/admin")
               }
               else if(role == "Doctor")
               {
                 // console.log(response)
                 sessionStorage.setItem("Doctor",response.data.id)
+                sessionStorage.setItem("token",response.data.token)
+
                 navigate("/doctor-dash")
 
               }
@@ -67,6 +69,8 @@ const navigate = useNavigate()
               {
               //  console.log(response)
           sessionStorage.setItem("Patient",response.data.id)
+          sessionStorage.setItem("token",response.data.token)
+
                 navigate("/patient-dash")
 
               }

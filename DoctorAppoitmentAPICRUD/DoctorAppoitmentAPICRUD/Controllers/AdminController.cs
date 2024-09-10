@@ -1,4 +1,5 @@
 ﻿using DoctorAppoitmentAPICRUD.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,6 +7,9 @@ namespace DoctorAppoitmentAPICRUD.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles ="Admin")]
+
+
     public class AdminController : ControllerBase
     {
 

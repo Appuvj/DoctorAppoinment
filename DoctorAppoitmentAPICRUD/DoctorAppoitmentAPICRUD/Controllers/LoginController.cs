@@ -1,20 +1,23 @@
 ﻿using DoctorAppoitmentAPICRUD.Data;
 using DoctorAppoitmentAPICRUD.Dtos;
+using DoctorAppoitmentAPICRUD.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoctorAppoitmentAPICRUD.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class LoginController : ControllerBase
     {
         private readonly HospitalContext _context;
-
-        public LoginController(HospitalContext context)
+        private readonly JwtService _jwtService;
+        public LoginController(HospitalContext context,JwtService jwtService)
         {
             _context = context;
+            _jwtService = jwtService;
         }
 
         [HttpPost]
@@ -24,7 +27,8 @@ namespace DoctorAppoitmentAPICRUD.Controllers
             {
                 if (loginRequest.Email == "admin@gmail.com" && loginRequest.Password == "Admin@2k1")
                 {
-                    return Ok("Admin login successful");
+                    string token = _jwtService.GenerateJwtToken(loginRequest);
+                    return Ok(new { message = "Admin login successful", token = token });
                 }
                 else
                 {
@@ -39,8 +43,8 @@ namespace DoctorAppoitmentAPICRUD.Controllers
                 {
                     return Unauthorized("Invalid doctor credentials");
                 }
-
-                return Ok(new { Role = "Doctor" ,Id = doctor.DoctorId});
+                string token = _jwtService.GenerateJwtToken(loginRequest);
+                return Ok(new { Role = "Doctor" ,Id = doctor.DoctorId, token = token });
             }
             else if (loginRequest.Role == "Patient")
             {
@@ -51,8 +55,8 @@ namespace DoctorAppoitmentAPICRUD.Controllers
                 {
                     return Unauthorized("Invalid patient credentials");
                 }
-
-                return Ok(new { Role = "Patient", Id = patient.PatientId });
+                string token = _jwtService.GenerateJwtToken(loginRequest);
+                return Ok(new { Role = "Patient", Id = patient.PatientId, token = token });
             }
             else
             {

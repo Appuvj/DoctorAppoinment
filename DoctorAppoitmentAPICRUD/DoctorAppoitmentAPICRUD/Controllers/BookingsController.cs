@@ -1,6 +1,7 @@
 ﻿using DoctorAppoitmentAPICRUD.Dtos;
 using DoctorAppoitmentAPICRUD.Models;
 using DoctorAppoitmentAPICRUD.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,8 @@ namespace DoctorAppoitmentAPICRUD.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
+
     public class BookingsController : ControllerBase
     {
         private readonly IBookingRepository _bookingRepository;

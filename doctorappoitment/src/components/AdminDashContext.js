@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios  from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { DoctorContext } from './DoctorDashContext';
+import DbService from '../Api/DbService';
 // Create a context with a default value
 
 
@@ -29,14 +30,14 @@ export const AdminProvider = ({ children }) => {
   const [doctors, setDoctors] = useState([]);
   const [appointments, setAppointments] = useState([]);
   const [analyticsData, setAnalyticsData] = useState();
-
+  const token = sessionStorage.getItem("token")
   // Function to fetch all data
   const fetchDatas = async () => {
     try {
-      const doctorsRes = await axios.get("https://localhost:7146/api/Doctor");
-      const patientsRes = await axios.get("https://localhost:7146/api/Patient");
-      const appointmentsRes = await axios.get("https://localhost:7146/api/Bookings");
-      const analyticsRes = await axios.get("https://localhost:7146/api/Admin/dashboard-stats");
+      const doctorsRes = await DbService.get("Doctor",{},token);
+      const patientsRes = await DbService.get("Patient",{},token);
+      const appointmentsRes = await DbService.get("Bookings",{},token);
+      const analyticsRes = await DbService.get("Admin/dashboard-stats",{},token);
 
       setDoctors(doctorsRes.data["$values"]);
       setPatients(patientsRes.data["$values"]);

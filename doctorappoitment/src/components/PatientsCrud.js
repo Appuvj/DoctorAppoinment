@@ -3,6 +3,7 @@ import { AdminContext } from './AdminDashContext';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
+import DbService from '../Api/DbService';
 
 const PatientsCrud = () => {
 
@@ -25,8 +26,7 @@ const PatientsCrud = () => {
   // Handle patient deletion
   useEffect(() => {
     if (confirmed && modelData.Id) {
-      axios
-        .delete(`https://localhost:7146/api/Patient/${modelData.Id}`)
+      DbService.remove(`Patient/${modelData.Id}`,{},localStorage.getItem("token"))
         .then((res) => {
           // console.log(res);
           fetchDatas(); // Refresh patient list after deletion

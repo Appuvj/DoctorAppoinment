@@ -35,6 +35,13 @@ export const AdminProvider = ({ children }) => {
   const fetchDatas = async () => {
     try {
       const doctorsRes = await DbService.get("Doctor",{},token);
+      if(doctorsRes.status ==401)
+      {
+        if(window.confirm("Token Expired!"))
+        {
+          navigate("/login")
+        }
+      }
       const patientsRes = await DbService.get("Patient",{},token);
       const appointmentsRes = await DbService.get("Bookings",{},token);
       const analyticsRes = await DbService.get("Admin/dashboard-stats",{},token);

@@ -8,35 +8,31 @@ const AboutUsComponent = () => {
         <>
       
       <section className="clinical--research-banner banner flex position--relative banner--main-gradient flex--justify-content-between flex--align-items-center">
-        <div className="container--fluid stakeholder--banner-breadcrumbs flex flex--align-items-center pt--20 pb--20 bread--crumbs">
-          <div className="bread--crumbs-item mr--5 flex flex--align-items-center">
-            <a className="fs--16 font--normal font--family color--primary-blue cursor--pointer" href="/">Home&nbsp;&gt;</a>
-          </div>
-          <span className="fs--16 font--normal font--family color--grey-dark">About Us</span>
+      <div className="banner--main-content-info">
+        <h1 className="font--bold font--family color--grey-dark fs--40 mb--15" style={{ lineHeight: 1.2 }}>
+          Our Mission
+        </h1>
+        <div className="font--medium fs--16 color--grey-dark font--family mb--15">
+          <p>To make healthcare accessible to all.</p>
         </div>
+      </div>
 
-        <div className="banner--main-content-info position--absolute">
-          <h1 className="font--bold font--family color--grey-dark fs--40 mb--15" style={{ lineHeight: 1.2 }}>
-            Our Mission
-          </h1>
-          <div className="font--medium fs--16 color--grey-dark font--family mb--15">
-            <p>To make healthcare accessible to all.</p>
-          </div>
+      <span className="banner-img-container">
+        <img
+          id="image-banner"
+          className="banner-image"
+          src="/images/landingpic2.jpg"
+          alt="Banner"
+        />
+      </span>
+
+      <div className="container--fluid stakeholder--banner-breadcrumbs flex flex--align-items-center pt--20 pb--20 bread--crumbs">
+        <div className="bread--crumbs-item mr--5 flex flex--align-items-center">
+          <a className="fs--16 font--normal font--family color--primary-blue cursor--pointer" href="/">Home&nbsp;&gt;</a>
         </div>
-
-        <span className="banner-img-container display--block font--right width--column-one flex flex--justify-content-end">
-          <img
-            id="image-banner"
-            alt="Our Mission"
-            fetchpriority="high"
-            width="1920"
-            height="500"
-            decoding="async"
-            className="banner-image"
-            src="/images/landingpic2.jpg"
-          />
-        </span>
-      </section>
+        <span className="fs--16 font--normal font--family color--grey-dark">About Us</span>
+      </div>
+    </section>
 
       <h2 className="fs--44 font--family font--bold color--grey-dark mb--15 about--story-heading position--relative width--column-two-0" style={{ lineHeight: '1.2' }}>
         Our Story Grew From Seeds of Compassion
@@ -47,9 +43,9 @@ const AboutUsComponent = () => {
           <div className="swiper-wrapper">
             {[
               { year: 2024, title: "Guinness World Record", description: "Sets a Guinness World Record for conducting highest number of ECGs in a single day at a single venue" },
-              { year: 2024, title: "CAP accreditation", description: "VK's Health – Laboratory services gets prestigious CAP accreditation becoming first hospital in South India and fourth in India." },
-              { year: 2023, title: "JCI Enterprise Accreditation", description: "VK's Health gets International JCI Enterprise Accreditation becoming first hospital group in the country " },
-              { year: 2022, title: "Acquired Sparsha Hospital", description: "Acquired Sparsha Hospital, Bommasandra and launched world class orthopaedic centre in VK's Health City, Bengaluru" },
+              { year: 2024, title: "CAP accreditation", description: "SVK's Health – Laboratory services gets prestigious CAP accreditation becoming first hospital in South India and fourth in India." },
+              { year: 2023, title: "JCI Enterprise Accreditation", description: "SVK's Health gets International JCI Enterprise Accreditation becoming first hospital group in the country " },
+              { year: 2022, title: "Acquired Sparsha Hospital", description: "Acquired Sparsha Hospital, Bommasandra and launched world class orthopaedic centre in SVK's Health City, Bengaluru" },
               
             ].map((item, index) => (
               <div className="swiper-slide" key={index}>
@@ -159,7 +155,7 @@ const AboutUsComponent = () => {
         Honours and Recognition
       </h2>
       <p className="fs--18 font--family font--medium color--black white--space-preline">
-        VK's Health's Accolades and Accreditations
+        SVK's Health's Accolades and Accreditations
       </p>
     </div>
 
@@ -167,7 +163,7 @@ const AboutUsComponent = () => {
 
 
     <div className="card-container">
-  <div className="card">
+  <div className="about-card">
     <div className="card-image">
       <img
         alt="Winning the Way Forward"
@@ -178,7 +174,7 @@ const AboutUsComponent = () => {
       <span className="card-title">Winning the Way Forward</span>
     </div>
   </div>
-  <div className="card">
+  <div className="about-card">
     <div className="card-image">
       <img
         alt="Winning the Way Forward"
@@ -189,7 +185,7 @@ const AboutUsComponent = () => {
       <span className="card-title">Gold Standard in Health Care</span>
     </div>
   </div>
-  <div className="card">
+  <div className="about-card">
     <div className="card-image">
       <img
         alt="Winning the Way Forward"
@@ -200,7 +196,7 @@ const AboutUsComponent = () => {
       <span className="card-title"> Guinness World Record</span>
     </div>
   </div>
-  <div className="card">
+  <div className="about-card">
     <div className="card-image">
       <img
         alt="Winning the Way Forward"
@@ -211,7 +207,7 @@ const AboutUsComponent = () => {
       <span className="card-title">Excellence in Patient Safety 2023</span>
     </div>
   </div>
-  <div className="card">
+  <div className="about-card">
     <div className="card-image">
       <img
         alt="Winning the Way Forward"
@@ -223,7 +219,7 @@ const AboutUsComponent = () => {
     </div>
   </div>
 
-  {/* Repeat .card for other items */}
+  
 </div>
 
 

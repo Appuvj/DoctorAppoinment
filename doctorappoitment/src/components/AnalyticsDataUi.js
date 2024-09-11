@@ -1,86 +1,175 @@
 import React, { useContext } from 'react'
 import { AdminContext } from './AdminDashContext';
-import { FaUser, FaUserMd, FaCalendarAlt, FaClipboardCheck, FaCheckCircle } from 'react-icons/fa';
+
+import {
+  Card,
+  CardContent,
+  Typography,
+  Grid,
+  CircularProgress,
+  Box,
+  styled,
+  Tooltip
+} from '@mui/material';
+import {
+  FaUser,
+  FaUserMd,
+  FaCalendarAlt,
+  FaClipboardCheck,
+  FaCheckCircle
+} from 'react-icons/fa';
+import { red, green, blue, orange, purple, grey } from '@mui/material/colors';
+const StyledCard = styled(Card)(({ theme, color }) => ({
+  backgroundColor: color,
+  color: theme.palette.common.white,
+  borderRadius: theme.shape.borderRadius,
+  boxShadow: theme.shadows[5],
+  transition: 'transform 0.3s, box-shadow 0.3s',
+  height: '100%', // Ensure the card occupies the full height of its container
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  '&:hover': {
+    transform: 'scale(1.05)',
+    boxShadow: theme.shadows[15],
+  },
+}));
+
+const IconWrapper = styled(Box)(({ theme, iconColor }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: 80, // Increased icon container size
+  height: 80,
+  borderRadius: '50%',
+  backgroundColor: theme.palette.common.white,
+  marginBottom: theme.spacing(2),
+  transition: 'background-color 0.3s, color 0.3s',
+  color: iconColor,
+  '&:hover': {
+    backgroundColor: iconColor,
+    color: theme.palette.common.white,
+  },
+}));
+
+const iconSize = 40; // Increased icon size
+
+const CardContentWrapper = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  textAlign: 'center',
+  height: '100%',
+  padding: theme.spacing(3), // Increased padding for better spacing
+}));
+
+const DashboardContainer = styled(Box)(({ theme }) => ({
+  flexGrow: 1,
+  padding: theme.spacing(4),
+  backgroundColor: '#f4f6f9',
+  minHeight: '100vh',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
 
 const AnalyticsDataUi = () => {
     const { analyticsData,fetchDatas } = useContext(AdminContext);
-
+    const renderContent = (count, label) => (
+      <Box textAlign="center">
+        <Typography variant="h6" component="div" gutterBottom sx={{ fontWeight: 'bold', mb: 1 }}>
+          {label}
+        </Typography>
+        <Typography variant="h3" component="div"> 
+          {analyticsData ? count : <CircularProgress color="inherit" size={30} />} 
+        </Typography>
+      </Box>
+    );
+  
   return (
-    <div className='d-flex align-items-center justify-content-center h-100 mt-5'>
-    <div className="row gx-4 gy-4">
-  <div className="col-md-4">
-    <div className="card text-white bg-primary mb-3">
-      <div className="card-body d-flex align-items-center">
-        <FaUser size={50} className="me-3" />
-        <div>
-          <h5 className="card-title">Patients Count</h5>
-          <p className="card-text">{analyticsData ? analyticsData.patientsCount : "loading.."}</p>
-        </div>
-      </div>
-    </div>
-  </div>
+    <DashboardContainer>
+    <Grid container spacing={3}>
+      <Grid item xs={12} sm={6} md={4} lg={3}>
+        <Tooltip title="Number of Patients" arrow>
+          <StyledCard color={red[600]}>
+            <CardContentWrapper>
+              <IconWrapper iconColor={red[100]}>
+                <FaUser size={iconSize} />
+              </IconWrapper>
+              {renderContent(analyticsData?.patientsCount, 'Patients Count')}
+            </CardContentWrapper>
+          </StyledCard>
+        </Tooltip>
+      </Grid>
 
-  <div className="col-md-4">
-    <div className="card text-white bg-success mb-3">
-      <div className="card-body d-flex align-items-center">
-        <FaUserMd size={50} className="me-3" />
-        <div>
-          <h5 className="card-title">Doctors Count</h5>
-          <p className="card-text">{analyticsData ? analyticsData.doctorsCount : "loading.."}</p>
-        </div>
-      </div>
-    </div>
-  </div>
+      <Grid item xs={12} sm={6} md={4} lg={3}>
+        <Tooltip title="Number of Doctors" arrow>
+          <StyledCard color={green[600]}>
+            <CardContentWrapper>
+              <IconWrapper iconColor={green[100]}>
+                <FaUserMd size={iconSize} />
+              </IconWrapper>
+              {renderContent(analyticsData?.doctorsCount, 'Doctors Count')}
+            </CardContentWrapper>
+          </StyledCard>
+        </Tooltip>
+      </Grid>
 
-  <div className="col-md-4">
-    <div className="card text-white bg-info mb-3">
-      <div className="card-body d-flex align-items-center">
-        <FaCalendarAlt size={50} className="me-3" />
-        <div>
-          <h5 className="card-title">Total Appointments</h5>
-          <p className="card-text">{analyticsData ? analyticsData.totalAppointments : "loading.."}</p>
-        </div>
-      </div>
-    </div>
-  </div>
+      <Grid item xs={12} sm={6} md={4} lg={3}>
+        <Tooltip title="Total Appointments" arrow>
+          <StyledCard color={blue[600]}>
+            <CardContentWrapper>
+              <IconWrapper iconColor={blue[100]}>
+                <FaCalendarAlt size={iconSize} />
+              </IconWrapper>
+              {renderContent(analyticsData?.totalAppointments, 'Total Appointments')}
+            </CardContentWrapper>
+          </StyledCard>
+        </Tooltip>
+      </Grid>
 
-  <div className="col-md-4">
-    <div className="card text-white bg-warning mb-3">
-      <div className="card-body d-flex align-items-center">
-        <FaClipboardCheck size={50} className="me-3" />
-        <div>
-          <h5 className="card-title">Pending Appointments</h5>
-          <p className="card-text">{analyticsData ? analyticsData.pendingAppointments : "loading.."}</p>
-        </div>
-      </div>
-    </div>
-  </div>
+      <Grid item xs={12} sm={6} md={4} lg={3}>
+        <Tooltip title="Pending Appointments" arrow>
+          <StyledCard color={orange[600]}>
+            <CardContentWrapper>
+              <IconWrapper iconColor={orange[100]}>
+                <FaClipboardCheck size={iconSize} />
+              </IconWrapper>
+              {renderContent(analyticsData?.pendingAppointments, 'Pending Appointments')}
+            </CardContentWrapper>
+          </StyledCard>
+        </Tooltip>
+      </Grid>
 
-  <div className="col-md-4">
-    <div className="card text-white bg-secondary mb-3">
-      <div className="card-body d-flex align-items-center">
-        <FaCalendarAlt size={50} className="me-3" />
-        <div>
-          <h5 className="card-title">Booked Appointments</h5>
-          <p className="card-text">{analyticsData ? analyticsData.bookedAppointments : "loading.."}</p>
-        </div>
-      </div>
-    </div>
-  </div>
+      <Grid item xs={12} sm={6} md={4} lg={3}>
+        <Tooltip title="Booked Appointments" arrow>
+          <StyledCard color={purple[600]}>
+            <CardContentWrapper>
+              <IconWrapper iconColor={purple[100]}>
+                <FaCalendarAlt size={iconSize} />
+              </IconWrapper>
+              {renderContent(analyticsData?.bookedAppointments, 'Booked Appointments')}
+            </CardContentWrapper>
+          </StyledCard>
+        </Tooltip>
+      </Grid>
 
-  <div className="col-md-4">
-    <div className="card text-Info bg-light mb-3">
-      <div className="card-body d-flex align-items-center">
-        <FaCheckCircle size={50} className="me-3" />
-        <div>
-          <h5 className="card-title">Completed Appointments</h5>
-          <p className="card-text">{analyticsData ? analyticsData.completedAppointments : "loading.."}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+      <Grid item xs={12} sm={6} md={4} lg={3}>
+        <Tooltip title="Completed Appointments" arrow>
+          <StyledCard color={grey[800]}>
+            <CardContentWrapper>
+              <IconWrapper iconColor={grey[300]}>
+                <FaCheckCircle size={iconSize} />
+              </IconWrapper>
+              {renderContent(analyticsData?.completedAppointments, 'Completed Appointments')}
+            </CardContentWrapper>
+          </StyledCard>
+        </Tooltip>
+      </Grid>
+    </Grid>
+  </DashboardContainer>
   )
 }
 

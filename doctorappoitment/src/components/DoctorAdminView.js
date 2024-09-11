@@ -4,6 +4,9 @@ import { useParams } from 'react-router-dom';
 import { AdminContext } from './AdminDashContext';
 import './doctoradminview.css'
 import DbService from '../Api/DbService';
+import { Card, CardMedia, CardContent, Typography, Box } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+
 const DoctorAdminView = () => {
   const { doctors, appointments, fetchDatas } = useContext(AdminContext);
   const { id } = useParams();
@@ -40,34 +43,153 @@ if(doctorsBookData)
 
 
   return (
-    <div className="doctor-list-container">
+    <div className="">
     {doctorsBookData ? (
-      <div key={doctorsBookData.doctorId} className="doctor-card card">
-        <div className="doctor-header">
-          <img
-            src={`data:image/jpeg;base64,${doctorsBookData.imageData}`}
-            alt={doctorsBookData.name}
-            className="doctor-image"
-          />
-          <div className="doctor-details">
-            <h3>{doctorsBookData.name}</h3>
-            <p><strong>Specialization:</strong> {doctorsBookData.specialization}</p>
-          </div>
-        </div>
-  
-        <div className="booking-list">
-          {doctorsBookData.bookings["$values"].length > 0 ? (
-            doctorsBookData.bookings["$values"].map((booking) => (
-              <div key={booking.bookingId} className="booking-card">
-                <p><strong>Booking Date:</strong> {new Date(booking.bookingDate).toLocaleDateString()}</p>
-                <p><strong>Status:</strong> {booking.status}</p>
-                <p><strong>Patient:</strong> {booking.patientName ? booking.patientName : "record deleted"}</p>
-              </div>
-            ))
-          ) : (
-            <p>No bookings available</p>
-          )}
-        </div>
+      <div key={doctorsBookData.doctorId} className="">
+         <Card
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        padding: 2,
+        boxShadow: 4, // Increased shadow for depth
+        borderRadius: 3, // Rounded corners
+        maxWidth: 500,
+        margin: '20px auto', // Added margin for spacing between cards
+        backgroundColor: '#f9f9f9', // Light background color for contrast
+        transition: 'transform 0.3s', // Add hover effect
+        '&:hover': {
+          transform: 'scale(1.05)', // Slight scale-up on hover
+        },
+      }}
+    >
+      {/* Profile Image */}
+      <CardMedia
+        component="img"
+        sx={{
+          width: 120, // Larger profile image
+          height: 120,
+          borderRadius: '50%',
+          marginRight: 2,
+          border: '3px solid #1976d2', // Border around image for style
+        }}
+        image={`data:image/jpeg;base64,${doctorsBookData.imageData}`}
+        alt={doctorsBookData.name}
+      />
+
+      {/* Doctor Details */}
+      <CardContent sx={{ flex: '1', padding: '0 16px' }}>
+        <Typography variant="h5" component="div" sx={{ fontWeight: 'bold', color: '#1976d2' }}>
+          {doctorsBookData.name}
+        </Typography>
+        <Typography variant="body1" color="text.secondary" sx={{ marginTop: 1 }}>
+          <strong>Specialization:</strong> {doctorsBookData.specialization}
+        </Typography>
+        <Typography variant="body1" color="text.secondary" sx={{ marginTop: 0.5 }}>
+          <strong>Hospital:</strong> {doctorsBookData.organization}
+        </Typography>
+      </CardContent>
+    </Card>
+      
+    <TableContainer
+  component={Paper}
+  sx={{
+    marginTop: 8,
+    boxShadow: 6, // Elevated shadow for depth
+    borderRadius: 4, // Smoother, rounder corners
+    maxWidth: '80%', // Reduced width for better centering
+    padding: 3, // Extra padding for breathing space
+    overflowX: 'auto', // Ensure responsiveness on small screens
+    margin: '0 auto', // Center the table horizontally
+  }}
+>
+  {doctorsBookData.bookings["$values"].length > 0 ? (
+    <Table sx={{ minWidth: 300, tableLayout: 'auto', borderCollapse: 'separate', borderSpacing: '0 8px' }}>
+      {/* Table Header */}
+      <TableHead>
+        <TableRow sx={{ backgroundColor: '#2196f3', borderRadius: '4px' }}>
+          <TableCell
+            sx={{
+              color: '#fff',
+              fontWeight: 'bold',
+              fontSize: '16px',
+              padding: '12px',
+              textAlign: 'center',
+              borderTopLeftRadius: '8px',
+              borderBottomLeftRadius: '8px',
+            }}
+          >
+            Booking Date
+          </TableCell>
+          <TableCell
+            sx={{
+              color: '#fff',
+              fontWeight: 'bold',
+              fontSize: '16px',
+              padding: '12px',
+              textAlign: 'center',
+            }}
+          >
+            Status
+          </TableCell>
+          <TableCell
+            sx={{
+              color: '#fff',
+              fontWeight: 'bold',
+              fontSize: '16px',
+              padding: '12px',
+              textAlign: 'center',
+              borderTopRightRadius: '8px',
+              borderBottomRightRadius: '8px',
+            }}
+          >
+            Patient
+          </TableCell>
+        </TableRow>
+      </TableHead>
+
+      {/* Table Body */}
+      <TableBody>
+        {doctorsBookData.bookings["$values"].map((booking) => (
+          <TableRow
+            key={booking.bookingId}
+            sx={{
+              backgroundColor: '#fff',
+              boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)', // Add shadow to rows
+              '&:hover': { backgroundColor: '#f5f5f5' }, // Hover effect
+              transition: 'background-color 0.3s ease', // Smooth transitions
+              borderRadius: '8px',
+            }}
+          >
+            <TableCell sx={{ padding: '12px', textAlign: 'center', fontSize: '14px', fontWeight: 500 }}>
+              {new Date(booking.bookingDate).toLocaleDateString()}
+            </TableCell>
+            <TableCell
+              sx={{
+                padding: '12px',
+                textAlign: 'center',
+                fontSize: '14px',
+                fontWeight: 500,
+                color: booking.status === 'Completed' ? '#4caf50' : '#f57c00',
+              }}
+            >
+              {booking.status}
+            </TableCell>
+            <TableCell sx={{ padding: '12px', textAlign: 'center', fontSize: '14px', fontWeight: 500 }}>
+              {booking.patientName ? booking.patientName : 'Record deleted'}
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  ) : (
+    <Box sx={{ padding: 2, textAlign: 'center' }}>
+      <Typography variant="body2" color="textSecondary">
+        No bookings available
+      </Typography>
+    </Box>
+  )}
+</TableContainer>
+     
       </div>
     ) : (
       <h1>Loading..</h1>
@@ -78,3 +200,54 @@ if(doctorsBookData)
 }
 
 export default DoctorAdminView
+
+
+
+
+// <Card sx={{ display: 'flex', alignItems: 'center', padding: 2, boxShadow: 3, maxWidth: 600, margin: '0 auto' }}>
+// {/* Profile Image */}
+// <CardMedia
+//   component="img"
+//   sx={{ width: 100, height: 100, borderRadius: '50%', marginRight: 2 }}
+//   image={`data:image/jpeg;base64,${doctorsBookData.imageData}`}
+//   alt={doctorsBookData.name}
+// />
+
+// {/* Doctor Details */}
+// <CardContent sx={{ flex: '1' }}>
+//   <Typography variant="h6" component="div">
+//     {doctorsBookData.name}
+//   </Typography>
+//   <Typography variant="body2" color="text.secondary">
+//     <strong>Specialization:</strong> {doctorsBookData.specialization}
+//   </Typography>
+// </CardContent>
+// </Card>
+
+// {/* <TableContainer component={Paper}>
+//       {doctorsBookData.bookings["$values"].length > 0 ? (
+//         <Table>
+//           {/* Table Header */}
+//           <TableHead>
+//             <TableRow>
+//               <TableCell><Typography variant="h6">Booking Date</Typography></TableCell>
+//               <TableCell><Typography variant="h6">Status</Typography></TableCell>
+//               <TableCell><Typography variant="h6">Patient</Typography></TableCell>
+//             </TableRow>
+//           </TableHead>
+          
+//           {/* Table Body */}
+//           <TableBody>
+//             {doctorsBookData.bookings["$values"].map((booking) => (
+//               <TableRow key={booking.bookingId}>
+//                 <TableCell>{new Date(booking.bookingDate).toLocaleDateString()}</TableCell>
+//                 <TableCell>{booking.status}</TableCell>
+//                 <TableCell>{booking.patientName ? booking.patientName : "Record deleted"}</TableCell>
+//               </TableRow>
+//             ))}
+//           </TableBody>
+//         </Table>
+//       ) : (
+//         <Typography variant="body1" sx={{ padding: 2 }}>No bookings available</Typography>
+//       )}
+//     </TableContainer> */}

@@ -130,7 +130,7 @@ const navigate = useNavigate()
 
   return (
       <div className="background" style={{ backgroundImage: `url(${getBackgroundImage()})` }}>
-          <div className="card-container">
+          <div className="card-contain">
               <div className="card-body">
                   <h2 className="card-title">Login</h2>
                   <form onSubmit={handleSubmit}>

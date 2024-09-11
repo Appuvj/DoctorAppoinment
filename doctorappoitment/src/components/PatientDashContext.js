@@ -181,7 +181,7 @@ export const PatientProvider = ({ children }) => {
           open={Boolean(anchorEl)}
           onClose={handleMenuClose}
         >
-          <MenuItem onClick={() => navigate("/edit-profile")}>Profile</MenuItem>
+          <MenuItem onClick={() => navigate("/patient-dash/edit-profile")}>Profile</MenuItem>
           <MenuItem onClick={handleLogout}>
             <Logout /> Logout
           </MenuItem>

@@ -31,6 +31,8 @@ import DoctorDoctorSearch from "../components/DoctorDoctorSearch";
 import DoctorEditComponent from "../components/DoctorEditComponent";
 import NotFoundPage from "../components/NotFoundPage";
 import EmergencyComp from "../components/EmergencyComp";
+import Services from "../components/Services";
+
 
 
 const router = createBrowserRouter([
@@ -50,7 +52,14 @@ const router = createBrowserRouter([
                 path:"emergency",
                 element:<EmergencyComp />
                 
+            },
+            {
+                path:"services",
+                element:<Services />
+                
             }
+
+            
         ]
     },
 {

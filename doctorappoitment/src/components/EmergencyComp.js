@@ -1,7 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './EmergencyComp.css'; // Import your custom CSS file
+import { Container } from 'react-bootstrap';
 
 const EmergencyComp = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: ''
+    });
+
+    const [errors, setErrors] = useState({});
+    const [submitted, setSubmitted] = useState(false);
+
+    const validateForm = () => {
+        const newErrors = {};
+        if (!formData.name) {
+            newErrors.name = 'Name is required';
+        }
+        if (!formData.email) {
+            newErrors.email = 'Email is required';
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            newErrors.email = 'Email is invalid';
+        }
+        if (!formData.message) {
+            newErrors.message = 'Message is required';
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (validateForm()) {
+            setSubmitted(true);
+            // Display the alert for successful submission
+            alert('Thank you for contacting us!');
+            // Reset the form if needed
+            setFormData({
+                name: '',
+                email: '',
+                message: ''
+            });
+        }
+    };
+
     return (
         <div>
             <div className="container-fluid bg-grey-lighter">
@@ -27,7 +75,7 @@ const EmergencyComp = () => {
                     <div className="service-card">
                         <div className="service-icon-container">
                             <i className="nh-envelope service-icon"></i>
-                            <a href="mailto:info.dwd@vkhealth.org" className="service-link">info.dwd@vkhealth.org</a>
+                            <a href="mailto:info.dwd@vkhealth.org" classname="service-link">info.dwd@vkhealth.org</a>
                         </div>
                         <h6 className="service-title">Email Us</h6>
                         <p className="service-description">Acute emergencies and accidents</p>
@@ -48,30 +96,68 @@ const EmergencyComp = () => {
             </section>
             <br />
 
-            <div className="banner--main-content-info position--absolute">
-                <h1 className="font--bold font--family color--grey-dark fs--40 mb--15" style={{ lineHeight: 1.2 }}>
-                    Delivering Care Nationwide
-                </h1>
-                <div className="font--medium fs--16 color--grey-dark font--family mb--15">
-                    <div>
-                        Trusted by millions for over 23 years, our NABL &amp; JCI-accredited network comprises 21 hospitals and numerous clinics across India. With over 4K+ top doctors &amp; 110+ specialties, we strive to deliver healthcare excellence to each individual we serve.
+            <Container>
+                <h2 className="headTitle">
+                    <strong>Message Us </strong>
+                    <span>Please fill out our form, and we will get in touch shortly</span>
+                </h2>
+            </Container>
+
+        
+            <section className="contact-us-section">
+                <div className="contact-us-container">
+                    <div className="contact-form-wrapper">
+                        <h2 className="contact-us-heading">Contact Us</h2>
+                        <form onSubmit={handleSubmit} className="contact-us-form">
+                            <div className="form-group">
+                                <label htmlFor="name">Name:</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    className={`form-input ${errors.name ? 'input-error' : ''}`}
+                                />
+                                {errors.name && <span className="error-text">{errors.name}</span>}
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="phone">Phone Number:</label>
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    className={`form-input ${errors.phone ? 'input-error' : ''}`}
+                                />
+                                {errors.phone && <span className="error-text">{errors.phone}</span>}
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="message">Message:</label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    className={`form-input ${errors.message ? 'input-error' : ''}`}
+                                ></textarea>
+                                {errors.message && <span className="error-text">{errors.message}</span>}
+                            </div>
+                            <button type="submit" className="submit-button">Submit</button>
+                        </form>
+                    </div>
+                    <div className="contact-image-wrapper">
+                        <img
+                            src="https://www.srmhospital.co.in/wp-content/themes/eightmedi-lite/images/srm/contactus/04_message.jpg"
+                            alt="Contact Us"
+                            className="contact-us-image"
+                        />
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <img
-                id="image-banner"
-                fetchPriority="high"
-                width="1920"
-                height="500"
-                decoding="async"
-                data-nimg="1"
-                className="banner-image banner--main-content-img undefined"
-                src="https://stgaccinwbsdevlrs01.blob.core.windows.net/newcorporatewbsite/page-banner-details/May2024/8qEsvW0op8bpACXdlXTV.webp?w=3840&q=100"
-                style={{ color: 'transparent' }}
-                alt="Delivering Care Nationwide"
-                srcSet="https://stgaccinwbsdevlrs01.blob.core.windows.net/newcorporatewbsite/page-banner-details/May2024/8qEsvW0op8bpACXdlXTV.webp?w=1920&q=100 1x, https://stgaccinwbsdevlrs01.blob.core.windows.net/newcorporatewbsite/page-banner-details/May2024/8qEsvW0op8bpACXdlXTV.webp?w=3840&q=100 2x"
-            />
+            <br />
         </div>
     );
 }

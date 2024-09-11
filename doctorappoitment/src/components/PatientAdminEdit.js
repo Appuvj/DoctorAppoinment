@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { AdminContext } from './AdminDashContext';
+import DbService from '../Api/DbService';
 
 const PatientAdminEdit = () => {
     const [name, setName] = useState('');
@@ -20,7 +21,7 @@ const [patientData,setpatientData] = useState()
 useEffect(()=>{
     if(! patientData)
     {
-    axios.get(`https://localhost:7146/api/Patient/${id}`).then((res)=>
+    DbService.get(`Patient/${id}`,{},sessionStorage.getItem("token")).then((res)=>
         {
             // console.log(res.data)
             setpatientData(res.data)
@@ -46,11 +47,11 @@ useEffect(()=>{
 
     try {
       // Post data to the backend
-      const response = await axios.put(`https://localhost:7146/api/Patient/${id}`, {
+      const response = await DbService.put(`Patient/${id}`, {
         "name": name,
         "email": email,
         "contact": mobile
-      });
+      },{},sessionStorage.getItem("token"));
 
       console.log('Response:', response); // Debugging log
 

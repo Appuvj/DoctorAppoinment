@@ -4,6 +4,7 @@ import { AdminContext } from './AdminDashContext';
 import { FaUserMd, FaPhoneAlt } from 'react-icons/fa';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import DbService from '../Api/DbService';
 
 const DoctorsCrud = () => {
   const { doctors, fetchDatas } = useContext(AdminContext);
@@ -41,8 +42,7 @@ const DoctorsCrud = () => {
   // Handle doctor deletion
   useEffect(() => {
     if (confirmed && modelData.id) {
-      axios
-        .delete(`https://localhost:7146/api/Doctor/${modelData.id}`)
+      DbService.remove(`Doctor/${modelData.id}`,{},sessionStorage.getItem("token"))
         .then((res) => {
           console.log(res);
           fetchDatas(); // Refresh doctor list after deletion

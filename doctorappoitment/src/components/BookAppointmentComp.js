@@ -3,6 +3,7 @@ import axios from 'axios';
 import "./bookappointment.css";
 import { PatientContext } from './PatientDashContext';
 import { Button, TextField, Typography, Box, Grid, Container } from "@mui/material";
+import DbService from '../Api/DbService';
 
 const BookAppointmentComp = () => {
   const [doctor, setDoctor] = useState();
@@ -43,13 +44,13 @@ const BookAppointmentComp = () => {
 
       const combinedDateTime = new Date(`${date}T${time}:00`);
       const formattedDateTime = combinedDateTime.toISOString();
-      axios.post("https://localhost:7146/api/Bookings", {
+      DbService.post("Bookings", {
         "bookingDate": formattedDateTime,
         "status": "Pending",
         "doctorId": doctor.id,
         "patientId": patients.patientId,
         "message": message
-      }).then((res) => console.log(res));
+      },{},sessionStorage.getItem("token")).then((res) => console.log(res));
 
     } else {
       setErrors(newErrors);

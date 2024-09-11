@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AdminContext } from './AdminDashContext';
 import { FaCheck, FaTimes, FaCalendarAlt, FaCalendarCheck ,FaBan} from 'react-icons/fa';
 import axios from "axios"
+import DbService from '../Api/DbService';
 const AppoimentsCrud = () => {
     const { appointments, fetchDatas } = useContext(AdminContext);
     const [pendingAppointments, setPendingAppointments] = useState([]);
@@ -15,7 +16,7 @@ const AppoimentsCrud = () => {
 
     useEffect(() => {
         if (appointments) {
-            console.log(appointments)
+            // console.log(appointments)
             setPendingAppointments(
                 appointments.filter(
                   appointment => 
@@ -92,11 +93,11 @@ const AppoimentsCrud = () => {
             formData.append("PatientId", selectedAppointment.patientId);
             formData.append("Prescription",null)
     
-            axios.put(`https://localhost:7146/api/Bookings/${selectedAppointment.bookingId}`, formData, {
+            DbService.put(`Bookings/${selectedAppointment.bookingId}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data' // Important for FormData
                 }
-            }).then((res) => {
+            },sessionStorage.getItem("token")).then((res) => {
                 setShowModal(false);
                 fetchDatas(); // Refetch data to update the list
             }).catch((err) => {

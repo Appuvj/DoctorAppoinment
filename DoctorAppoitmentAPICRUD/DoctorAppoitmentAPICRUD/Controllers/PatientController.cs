@@ -9,7 +9,6 @@ namespace DoctorAppoitmentAPICRUD.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
 
     public class PatientController : ControllerBase
     {
@@ -20,6 +19,7 @@ namespace DoctorAppoitmentAPICRUD.Controllers
             _patientRepository = patientRepository;
         }
 
+        [Authorize(Roles = "Admin,Patient")]
         // GET: api/patients
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Patient>>> GetPatients()
@@ -29,6 +29,7 @@ namespace DoctorAppoitmentAPICRUD.Controllers
         }
 
         // GET: api/patients/{id}
+        [Authorize(Roles = "Admin,Patient")]
         [HttpGet("{id}")]
         public async Task<ActionResult<PatientGetByIdDto>> GetPatient(int id)
         {
@@ -43,6 +44,7 @@ namespace DoctorAppoitmentAPICRUD.Controllers
         }
 
         // POST: api/patients
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> CreatePatient([FromForm] PatientRegisterDto patientRegisterDto)
         {
@@ -64,6 +66,7 @@ namespace DoctorAppoitmentAPICRUD.Controllers
         }
 
         // PUT: api/patients/{id}
+        [Authorize(Roles = "Admin,Patient")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePatient(int id, [FromForm] PatientRegisterDto patientRegisterDto)
         {
@@ -74,6 +77,7 @@ namespace DoctorAppoitmentAPICRUD.Controllers
         }
 
         // DELETE: api/patients/{id}
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePatient(int id)
         {

@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { AdminContext } from './AdminDashContext';
 import './doctoradminview.css'
+import DbService from '../Api/DbService';
 const DoctorAdminView = () => {
   const { doctors, appointments, fetchDatas } = useContext(AdminContext);
   const { id } = useParams();
@@ -12,7 +13,7 @@ const DoctorAdminView = () => {
 
 const getById = async () => {
 
- const response = await axios.get(`https://localhost:7146/api/Doctor/${id}`)
+ const response = await DbService.get(`Doctor/${id}`,{},sessionStorage.getItem("token"))
 
  setDoctorsBookData(response.data)
 

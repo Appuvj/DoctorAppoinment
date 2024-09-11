@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import "./patientadminview.css"
+import DbService from '../Api/DbService'
 const PatientAdminView = () => {
 
     const {id} = useParams()
@@ -9,7 +10,7 @@ const PatientAdminView = () => {
     const [patientsBookData,setPatientsBookData] = useState([])
 
     const GetById = async () => {
-      axios.get(`https://localhost:7146/api/Patient/${id}`).then((res)=>setPatientsBookData(res.data)).catch((err)=>console.log(err))
+      DbService.get(`Patient/${id}`,{},sessionStorage.getItem("token")).then((res)=>setPatientsBookData(res.data)).catch((err)=>console.log(err))
 
 
     }

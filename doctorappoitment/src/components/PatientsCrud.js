@@ -26,7 +26,7 @@ const PatientsCrud = () => {
   // Handle patient deletion
   useEffect(() => {
     if (confirmed && modelData.Id) {
-      DbService.remove(`Patient/${modelData.Id}`,{},localStorage.getItem("token"))
+      DbService.remove(`Patient/${modelData.Id}`,{},sessionStorage.getItem("token"))
         .then((res) => {
           // console.log(res);
           fetchDatas(); // Refresh patient list after deletion

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import DbService from '../Api/DbService';
 
 // src={`data:image/jpeg;base64,${item.prescription}`}
 
@@ -36,7 +37,7 @@ const DoctorBookingMedicalHistory = () => {
     const [selectedImage, setSelectedImage] = useState(null);
 
     const getmedicalHistory = async ()=>{
-        const response = await axios.get(`https://localhost:7146/api/Bookings/medicalhistory/${id}`)
+        const response = await DbService.get(`Bookings/medicalhistory/${id}`,{},sessionStorage.getItem("token"))
         // console.log(response.data.value["$values"])
         setMedicalhistory(response.data.value["$values"])
     }

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { PatientContext } from './PatientDashContext';
+import DbService from '../Api/DbService';
 
 const styles = {
     container: {
@@ -32,7 +33,7 @@ const PatientMedicalHistory = () => {
     const [selectedImage, setSelectedImage] = useState(null);
 
     const getmedicalHistory = async ()=>{
-        const response = await axios.get(`https://localhost:7146/api/Bookings/medicalhistory/${id}`)
+        const response = await DbService.get(`Bookings/medicalhistory/${id}`,{},sessionStorage.getItem("token"))
         console.log(response.data.value["$values"])
         setMedicalhistory(response.data.value["$values"])
     }

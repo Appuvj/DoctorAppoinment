@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { AdminContext } from './AdminDashContext';
+import DbService from '../Api/DbService';
 
 const DoctorAdminCrud = () => {
   const { fetchDatas } = useContext(AdminContext);
@@ -20,7 +21,7 @@ const DoctorAdminCrud = () => {
 
   useEffect(() => {
     if (!doctorData) {
-      axios.get(`https://localhost:7146/api/Doctor/${id}`)
+      DbService.get(`Doctor/${id}`,{},sessionStorage.getItem("token"))
         .then((res) => {
           setDoctorData(res.data);
         })
@@ -45,14 +46,14 @@ const DoctorAdminCrud = () => {
     }
 
     try {
-      const response = await axios.put(`https://localhost:7146/api/Doctor/${id}`, {
+      const response = await DbService.put(`Doctor/${id}`, {
         name,
         specialization,
         contact: mobile,
         email,
         organization,
         gender,
-      });
+      },{},sessionStorage.getItem("token"));
 
       if (response.status === 200) {
         setSuccess('Update successful!');

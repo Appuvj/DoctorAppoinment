@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DoctorAppoitmentAPICRUD")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1a65cfa64eb3707e6aaadfab758b5540cfbcc513")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a64f7fcb397c66b9175ac272a807a1b46e54034a")]
 [assembly: System.Reflection.AssemblyProductAttribute("DoctorAppoitmentAPICRUD")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DoctorAppoitmentAPICRUD")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

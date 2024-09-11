@@ -3,6 +3,7 @@ import { Container, Card, CardContent, Typography, TextField, MenuItem, Button, 
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { DoctorContext } from './DoctorDashContext';
+import DbService from '../Api/DbService';
 
 function base64ToImageFile(base64String, fileName) {
     // Decode base64 string
@@ -32,7 +33,7 @@ const getTodayDate = () => {
     return `${year}-${month}-${day}`;
   };
   
-  const apiUrl = 'https://localhost:7146/api/Doctor/'; // Update with your actual API URL
+  const apiUrl = 'Doctor/'; // Update with your actual API URL
   const extractDate = (dateTimeString) => {
     return dateTimeString.split('T')[0]; // Extracts "2024-09-10"
   };
@@ -174,9 +175,9 @@ const DoctorEditComponent = () => {
       if (photo) formData.append('Image', photo);
   
       try {
-        const response = await axios.put(apiUrl+id, formData, {
+        const response = await DbService.put(apiUrl+id, formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
-        });
+        },sessionStorage.getItem("token"));
   
         if (response.status === 200) {
           setSuccess('Registration successful!');
@@ -192,7 +193,6 @@ const DoctorEditComponent = () => {
           setAvailableDate('');
           setLocation('');
           setPhoto(null);
-          navigate("/login")
         }
       } catch (err) {
         console.error('Error registering doctor:', err);

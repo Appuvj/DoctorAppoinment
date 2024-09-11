@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Button, Modal, Card, CardContent, Typography, Grid, IconButton } from '@mui/material';
 import { FaCheckCircle, FaFileUpload } from 'react-icons/fa';
 import { PatientContext } from './PatientDashContext';
+import DbService from '../Api/DbService';
 
 const BookingCard = ({ booking, onComplete, submitData }) => {
   const formatDate = (dateString) => {
@@ -176,9 +177,9 @@ const Patientbookings = () => {
   const [PatientBookingData, SetpatientbookingData] = useState(null);
 
   const fetchDoctorData = async () => {
-    const apiUrl = `https://localhost:7146/api/Patient/${id}`;
+    const apiUrl = `Patient/${id}`;
     try {
-      const response = await axios.get(apiUrl);
+      const response = await DbService.get(apiUrl);
       SetpatientbookingData(response.data);
     } catch (error) {
       console.error('Error fetching doctor data:', error);
@@ -194,11 +195,11 @@ const Patientbookings = () => {
     formData.append('Prescription', file);
 
     try {
-      const response = await axios.put(`https://localhost:7146/api/bookings/${booking.bookingId}`, formData, {
+      const response = await DbService.put(`bookings/${booking.bookingId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-      });
+      },sessionStorage.getItem("token"));
       console.log('Booking updated successfully:', response.data);
     } catch (error) {
       console.error('Error updating booking:', error);

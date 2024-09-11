@@ -3,6 +3,7 @@ import React, { createContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { AppBar, Toolbar, IconButton, Menu, MenuItem, Typography, Avatar, Button } from '@mui/material';
 import { Home, EventNote, Search, History, Edit, Logout } from '@mui/icons-material';
+import DbService from '../Api/DbService';
 
 export const DoctorContext = createContext();
 
@@ -23,6 +24,7 @@ export const DoctorProvider = ({ children }) => {
     const handleLogout = () => {
       // Add logout logic here
       console.log("Logged out");
+      sessionStorage.clear()
       navigate("/login"); // Navigate to login page on logout
     };
     const [doctors, setDoctors] = useState();
@@ -54,7 +56,7 @@ export const DoctorProvider = ({ children }) => {
   // Function to fetch all data
   const fetchDatas = async () => {
     try {
-      const patientsRes = await axios.get(`https://localhost:7146/api/Doctor/${id}`);
+      const patientsRes = await DbService.get(`Doctor/${id}`,{},sessionStorage.getItem("token"));
         // console.log(patientsRes.data)
       setDoctors(patientsRes.data);
       // console.log(patientsRes)
@@ -64,7 +66,7 @@ export const DoctorProvider = ({ children }) => {
     }
   };
   const fetchDoctors = async () => {
-    const response = await axios.get("https://localhost:7146/api/Doctor/");
+    const response = await DbService.get("Doctor/",{},sessionStorage.getItem("token"));
     const data = response.data["$values"];
 
     const uniqueSpecializations = [...new Set(data.map(doctor => doctor.specialization))];

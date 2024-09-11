@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 // Create a context with a default value
 import { AppBar, Toolbar, IconButton, Menu, MenuItem, Typography, Avatar, Button } from '@mui/material';
 import { Home, EventNote, Search, History, Edit, Logout } from '@mui/icons-material';
+import DbService from '../Api/DbService';
 
 export const PatientContext = createContext();
 
@@ -44,7 +45,7 @@ export const PatientProvider = ({ children }) => {
   // Function to fetch all data
   const fetchDatas = async () => {
     try {
-      const patientsRes = await axios.get(`https://localhost:7146/api/Patient/${id}`);
+      const patientsRes = await DbService.get(`Patient/${id}`,{},sessionStorage.getItem("token"));
         // console.log(patientsRes.data)
       setPatients(patientsRes.data);
       // console.log(patientsRes)
@@ -54,7 +55,7 @@ export const PatientProvider = ({ children }) => {
     }
   };
   const fetchDoctors = async () => {
-    const response = await axios.get("https://localhost:7146/api/Doctor/");
+    const response = await DbService.get("Doctor/",{},sessionStorage.getItem("token"));
     const data = response.data["$values"];
 
     const uniqueSpecializations = [...new Set(data.map(doctor => doctor.specialization))];
@@ -100,6 +101,7 @@ export const PatientProvider = ({ children }) => {
   
     const handleLogout = () => {
       // Add logout logic here
+      sessionStorage.clear()
       console.log("Logged out");
       navigate("/login"); // Navigate to login page on logout
     };

@@ -20,8 +20,9 @@ import { styled } from '@mui/system';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { PatientContext } from './PatientDashContext';
+import DbService from '../Api/DbService';
 
-const apiUrl = 'https://localhost:7146/api/Patient/';
+const apiUrl = 'Patient/';
 
 
 function base64ToImageFile(base64String, fileName) {
@@ -137,11 +138,11 @@ const navigate = useNavigate()
     formData.append('Image', photo);
 
     try {
-      const response = await axios.put(apiUrl+id, formData, {
+      const response = await DbService.put(apiUrl+id, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-      });
+      },sessionStorage.getItem("token"));
 
       if (response.status === 200) {
         setSuccess('Registration successful!');
@@ -154,7 +155,7 @@ const navigate = useNavigate()
         setPassword('');
         setPhoto(null);
        
-        navigate("/login")
+      
 
       }
     } catch (err) {

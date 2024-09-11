@@ -9,7 +9,6 @@ namespace DoctorAppoitmentAPICRUD.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
 
     public class BookingsController : ControllerBase
     {
@@ -21,6 +20,8 @@ namespace DoctorAppoitmentAPICRUD.Controllers
         }
 
         // GET: api/bookings
+        [Authorize(Roles = "Admin,Doctor,Patient")]
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BookingGetDto>>> GetBookings()
         {
@@ -29,6 +30,8 @@ namespace DoctorAppoitmentAPICRUD.Controllers
         }
 
         // GET: api/bookings/{id}
+        [Authorize(Roles = "Admin,Doctor,Patient")]
+
         [HttpGet("{id}")]
         public async Task<ActionResult<BookingGetDto>> GetBooking(int id)
         {
@@ -43,6 +46,8 @@ namespace DoctorAppoitmentAPICRUD.Controllers
         }
 
         // POST: api/bookings
+        [Authorize(Roles = "Patient")]
+
         [HttpPost]
         public async Task<IActionResult> CreateBooking([FromBody] BookingPostDto bookingPostDto)
         {
@@ -58,6 +63,8 @@ namespace DoctorAppoitmentAPICRUD.Controllers
         }
 
         // PUT: api/bookings/{id}
+        [Authorize(Roles = "Admin,Doctor,Patient")]
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateBooking(int id, [FromForm] BookingDto bookingDto)
         {
@@ -69,6 +76,8 @@ namespace DoctorAppoitmentAPICRUD.Controllers
         }
 
         // DELETE: api/bookings/{id}
+        [Authorize(Roles = "Admin")]
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBooking(int id)
         {
@@ -83,7 +92,7 @@ namespace DoctorAppoitmentAPICRUD.Controllers
             }
         }
 
-
+        [Authorize(Roles = "Admin,Doctor,Patient")]
         [HttpGet("medicalhistory/{id}")]
         public async Task<ActionResult<IEnumerable<object>>> GetMedicalHistory(int id)
         {

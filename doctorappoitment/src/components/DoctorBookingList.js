@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Modal } from 'react-bootstrap';
 import { DoctorContext } from './DoctorDashContext';
+import DbService from '../Api/DbService';
 
 const BookingCard = ({ booking, submitData }) => {
   const navigate = useNavigate();
@@ -142,9 +143,9 @@ const DoctorBookingList = () => {
   const [changes, setChanges] = useState(false);
 
   const fetchDoctorData = async () => {
-    const apiUrl = `https://localhost:7146/api/Doctor/${id}`;
+    const apiUrl = `Doctor/${id}`;
     try {
-      const response = await axios.get(apiUrl);
+      const response = await DbService.get(apiUrl,{},sessionStorage.getItem("token"));
       SetDoctorbookingData(response.data);
     } catch (error) {
       console.error('Error fetching doctor data:', error);
@@ -160,9 +161,9 @@ const DoctorBookingList = () => {
     formData.append('Prescription', file);
 
     try {
-      await axios.put(`https://localhost:7146/api/bookings/${booking.bookingId}`, formData, {
+      await DbService.put(`bookings/${booking.bookingId}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
-      });
+      },sessionStorage.getItem("token"));
       setChanges(!changes);
     } catch (error) {
       console.error('Error updating booking:', error);

@@ -4,12 +4,14 @@ import "./bookappointment.css";
 import { PatientContext } from './PatientDashContext';
 import { Button, TextField, Typography, Box, Grid, Container } from "@mui/material";
 import DbService from '../Api/DbService';
+import { useNavigate } from 'react-router-dom';
 
 const BookAppointmentComp = () => {
+
   const [doctor, setDoctor] = useState();
   const [patient, setPatient] = useState();
-  const { patients, selectedDoctor } = useContext(PatientContext);
-
+  const { patients, selectedDoctor,fetchDatas ,fetchDoctors } = useContext(PatientContext);
+  const navigate = useNavigate()
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [patientName, setPatientName] = useState('');
@@ -30,11 +32,12 @@ const BookAppointmentComp = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
     const newErrors = validateForm();
     if (Object.keys(newErrors).length === 0) {
-      alert(`Appointment booked with Dr. ${doctor.name} on ${date} at ${time}`);
+      if(window.confirm(`Booking Request Sent To Admin `))
+      {
       setDate('');
       setTime('');
       setPatientName('');
@@ -44,19 +47,32 @@ const BookAppointmentComp = () => {
 
       const combinedDateTime = new Date(`${date}T${time}:00`);
       const formattedDateTime = combinedDateTime.toISOString();
-      DbService.post("Bookings", {
+   const response =   await  DbService.post("Bookings", {
         "bookingDate": formattedDateTime,
         "status": "Pending",
         "doctorId": doctor.id,
         "patientId": patients.patientId,
         "message": message
-      },{},sessionStorage.getItem("token")).then((res) => console.log(res));
+      },{},sessionStorage.getItem("token"));
+
+      if(response.status == 201)
+      {
+        await fetchDatas()
+        await fetchDoctors()
+setTimeout(()=>
+
+{
+  navigate("/patient-dash/patient-bookings")
+
+},1000)
+      }
 
     } else {
       setErrors(newErrors);
     }
+  
   };
-
+  }
   return (
     <Container maxWidth="sm" className="book-appointment">
       <Box className="appointment-container" sx={{ bgcolor: '#f7f7f7', p: 4, borderRadius: 2, boxShadow: 3 }}>

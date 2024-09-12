@@ -1,0 +1,122 @@
+/* Ensuring the whole page is centered and styled nicely */
+.not-found-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #f7f7f7, #e3e3e3);
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Content box styling with rounded corners, shadow, and padding */
+  .not-found-content {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  /* Animated fade-in effect for the content */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Styling the error image to be larger and keep its original shape */
+  .not-found-image {
+    max-width: 500px; /* Adjust this value as needed for larger images */
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    animation: popIn 0.6s ease-out;
+    border: none; /* Remove the circular border */
+  }
+  
+  /* Slight pop animation for the image */
+  @keyframes popIn {
+    0% {
+      transform: scale(0.7);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* Title styling with some color and weight */
+  .not-found-title {
+    font-size: 2.5rem;
+    color: #ff6f61;
+    font-weight: 700;
+    margin-bottom: 30px;
+    animation: textBounce 1.5s ease infinite;
+  }
+  
+  /* Bounce effect for the title */
+  @keyframes textBounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  /* Button with rounded edges and smooth hover effect */
+  .not-found-button {
+    background-color: #4caf50 !important;
+    color: #fff !important;
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+    animation: buttonSlideIn 1s ease;
+  }
+  
+  /* Button hover effect */
+  .not-found-button:hover {
+    background-color: #388e3c !important;
+  }
+  
+  /* Button sliding in animation */
+  @keyframes buttonSlideIn {
+    0% {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Responsive design for mobile */
+  @media (max-width: 600px) {
+    .not-found-title {
+      font-size: 2rem;
+    }
+  
+    .not-found-content {
+      padding: 20px;
+    }
+  
+    .not-found-button {
+      font-size: 1rem;
+      padding: 8px 20px;
+    }
+  
+    .not-found-image {
+      max-width: 100%;
+    }
+  }
+  

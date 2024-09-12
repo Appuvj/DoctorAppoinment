@@ -5,19 +5,25 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
+
 const apiUrl = 'https://localhost:7146/api/Patient';
+
 const validationSchema = Yup.object({
   name: Yup.string().required('Name is required'),
-  mobile: Yup.string().matches(/^\d{10}$/, 'Mobile number must be 10 digits').required('Mobile number is required'),
+  mobile: Yup.string()
+    .matches(/^\d{10}$/, 'Mobile number must be 10 digits')
+    .required('Mobile number is required'),
   email: Yup.string().email('Invalid email address').required('Email is required'),
   address: Yup.string().required('Address is required'),
   gender: Yup.string().required('Gender is required'),
   password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
-  photo: Yup.string().required('Photo is required')
+  photo: Yup.mixed().required('Photo is required').test('fileType', 'Only .jpg, .jpeg, and .png files are allowed', value => {
+    return !value || ['image/jpeg', 'image/jpg', 'image/png'].includes(value.type);
+  })
 });
 
 const PatientRegistrationForm = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -29,16 +35,9 @@ const PatientRegistrationForm = () => {
       photo: null,
     },
     validationSchema,
-    onSubmit: async (values, {setSubmitting, setErrors, setStatus }) => {
+    onSubmit: async (values, { setSubmitting, setErrors, setStatus }) => {
       setSubmitting(true);
 
-      // Check if photo is provided
-      if (!values.photo) {
-        setErrors({ photo: 'Photo is required' });
-        setSubmitting(false);
-        return;
-      }
-  
       const formData = new FormData();
       formData.append('Name', values.name);
       formData.append('Contact', values.mobile);
@@ -47,14 +46,14 @@ const PatientRegistrationForm = () => {
       formData.append('Gender', values.gender);
       formData.append('Password', values.password);
       formData.append('Image', values.photo);
-  
+
       try {
         const response = await axios.post(apiUrl, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
-  
+
         if (response.status === 200) {
           setStatus('success');
           navigate("/login");
@@ -93,30 +92,27 @@ const PatientRegistrationForm = () => {
         <Box component="form" onSubmit={formik.handleSubmit} sx={{ width: '100%' }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 2 }}>
             <Avatar
-              sx={{ width: 100, height: 100, mb: 2 }} // Added margin-bottom for spacing
+              sx={{ width: 100, height: 100, mb: 2 }}
               src={formik.values.photo ? URL.createObjectURL(formik.values.photo) : ''}
             />
-         <IconButton
-  color="primary"
-  aria-label="upload picture"
-  component="label"
->
-  <input
-    type="file"
-    accept="image/*"
-    hidden
-    onChange={(e) => {
-      formik.setFieldValue('photo', e.target.files[0]);
-      if (e.target.files[0]) {
-        formik.setFieldError('photo', ''); // Clear the error if a file is selected
-      }
-    }}
-  />
-  <PhotoCamera />
-</IconButton>
-{formik.errors.photo && formik.touched.photo && (
-  <FormHelperText error>{formik.errors.photo}</FormHelperText>
-)}
+            <IconButton color="primary" aria-label="upload picture" component="label">
+              <input
+                type="file"
+                accept=".jpg, .jpeg, .png"
+                hidden
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  formik.setFieldValue('photo', file);
+                  if (file) {
+                    formik.setFieldError('photo', ''); // Clear the error if a file is selected
+                  }
+                }}
+              />
+              <PhotoCamera />
+            </IconButton>
+            {formik.errors.photo && formik.touched.photo && (
+              <FormHelperText error>{formik.errors.photo}</FormHelperText>
+            )}
           </Box>
           <TextField
             fullWidth
@@ -145,7 +141,6 @@ const PatientRegistrationForm = () => {
             fullWidth
             label="Email"
             name="email"
-            type="email"
             value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -207,17 +202,8 @@ const PatientRegistrationForm = () => {
           </Button>
         </Box>
       </Box>
-      {formik.status && (
-  <Alert severity={formik.status === 'success' ? 'success' : 'error'}>
-    {formik.status === 'success'
-      ? 'Registration successful!'
-      : 'Registration failed! Please try again.'}
-  </Alert>
-)}
     </Container>
   );
 };
 
 export default PatientRegistrationForm;
-
-

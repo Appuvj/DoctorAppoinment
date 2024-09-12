@@ -15,7 +15,7 @@ function App() {
         alt="SVk Hospital Logo"
         className="logo"
       />
-      <span className="hospital-title">SVk Hospital</span>
+      <span className="hospital-title">SVK Hospital</span>
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="navbarScroll" />
     <Navbar.Collapse id="navbarScroll">
@@ -26,15 +26,8 @@ function App() {
         <Nav.Link onClick={()=>navigate("emergency")}>Emergency</Nav.Link>
         
       </Nav>
-      <Form className="d-flex">
-        <Form.Control
-          type="search"
-          placeholder="Search"
-          className="me-2"
-          aria-label="Search"
-        />
-        <Button variant="outline-light">Search</Button>
-      </Form>
+      
+      
     </Navbar.Collapse>
   </Container>
 </Navbar>

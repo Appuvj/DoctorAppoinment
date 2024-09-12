@@ -411,3 +411,4 @@ C:\Users\sanjai.j\Desktop\DoctorAppoinment\DoctorAppoitmentAPICRUD\DoctorAppoitm
 C:\Users\sanjai.j\Desktop\DoctorAppoinment\DoctorAppoitmentAPICRUD\DoctorAppoitmentAPICRUD\obj\Debug\net8.0\ref\DoctorAppoitmentAPICRUD.dll
 C:\Users\Admin\Desktop\DoctorAppoinment\DoctorAppoitmentAPICRUD\DoctorAppoitmentAPICRUD\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\sanjai.j\Desktop\DoctorAppoinment\DoctorAppoitmentAPICRUD\DoctorAppoitmentAPICRUD\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\vijaykumar.v\Desktop\DoctorAppointment\DoctorAppoitmentAPICRUD\DoctorAppoitmentAPICRUD\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

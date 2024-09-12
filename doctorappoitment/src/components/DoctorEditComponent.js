@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { DoctorContext } from './DoctorDashContext';
 import DbService from '../Api/DbService';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function base64ToImageFile(base64String, fileName) {
     // Decode base64 string
@@ -180,7 +182,7 @@ const DoctorEditComponent = () => {
         },sessionStorage.getItem("token"));
   
         if (response.status === 200) {
-          setSuccess('Registration successful!');
+          setSuccess('Update successful!');
           setErrors({});
           // Reset form
           setName('');
@@ -193,20 +195,47 @@ const DoctorEditComponent = () => {
           setAvailableDate('');
           setLocation('');
           setPhoto(null);
+
+
+          toast.success('Update completed successfully!', {
+            position: "bottom-right",
+            autoClose: 3000, // Auto close after 3 seconds
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+
+
         }
       } catch (err) {
-        console.error('Error registering doctor:', err);
-        setErrors({ global: 'Registration failed. Please try again.' });
+        console.error('Error updating doctor:', err);
+        setErrors({ global: 'update failed. Please try again.' });
         setSuccess('');
+
+
+        toast.error('Update failed, please try again.', {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
+
+
       }
     };
   
     return (
+      
       <Container sx={{ py: 5 }}>
         <Card sx={{ maxWidth: 500, mx: 'auto', boxShadow: 3 }}>
           <CardContent>
             <Typography variant="h5" component="div" align="center" gutterBottom>
-              Doctor Registration
+            Doctor Update
             </Typography>
             <form onSubmit={handleSubmit}>
               <TextField
@@ -397,12 +426,15 @@ const DoctorEditComponent = () => {
               >
                 Update
               </Button>
+
+              
   
               {errors.global && <Typography color="error" align="center" sx={{ mt: 2 }}>{errors.global}</Typography>}
               {success && <Typography color="success" align="center" sx={{ mt: 2 }}>{success}</Typography>}
             </form>
           </CardContent>
         </Card>
+        <ToastContainer />
       </Container>
     );
 }

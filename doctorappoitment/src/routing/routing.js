@@ -32,6 +32,7 @@ import DoctorEditComponent from "../components/DoctorEditComponent";
 import NotFoundPage from "../components/NotFoundPage";
 import EmergencyComp from "../components/EmergencyComp";
 import Services from "../components/Services";
+import ErrorBound from "../components/ErrorBound";
 
 
 
@@ -204,7 +205,7 @@ element:<AnalyticsDataUi/>
 },
 {
     path : "*",
-    element  : <NotFoundPage/>
+    element  : <ErrorBound/>
 }
 
 

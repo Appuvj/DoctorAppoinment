@@ -7,6 +7,9 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { PhotoCamera } from '@mui/icons-material';
 import { Container, Card, CardContent, Typography, TextField, MenuItem, Button, FormControl, InputLabel, Select, FormHelperText } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function base64ToImageFile(base64String, fileName) {
   // Decode base64 string
@@ -155,7 +158,16 @@ console.log(formData)
       if (response.status === 200) {
         setSuccess('update successful!');
         setErrors({});
-        // Reset form
+        
+        toast.success('Update completed successfully!', {
+          position: "bottom-right",
+          autoClose: 3000, // Auto close after 3 seconds
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
 
         await fetchDatas()
         setTimeout(()=>{
@@ -169,6 +181,18 @@ console.log(formData)
       console.error('Error updating patient:', err);
       setErrors({ global: 'updation failed. Please try again.' });
       setSuccess('');
+
+      toast.error('Update failed, please try again.', {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+
+
     }
   };
   useEffect(() => {
@@ -476,6 +500,9 @@ console.log(formData)
         </Alert>
       )}
     </Container> */}
+
+
+<ToastContainer />
     </>
   );
 }

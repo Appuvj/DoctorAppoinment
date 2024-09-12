@@ -104,7 +104,6 @@ export const DoctorProvider = ({ children }) => {
       <DoctorContext.Provider value={{doctors,id, doctorsList,filteredDoctors,specializations,organizations,locations,setFilteredDoctors,selectedDoctor,setSelectedDoctor, fetchDatas ,fetchDoctors }}>
         <AppBar position="static">
         <Toolbar>
-          {/* Navigation Icons */}
           <IconButton
             edge="start"
             color="inherit"
@@ -114,13 +113,7 @@ export const DoctorProvider = ({ children }) => {
             <Home />
           </IconButton>
 
-          <IconButton
-            color="inherit"
-            aria-label="search doctor"
-            onClick={() => navigate("doctor-search")}
-          >
-            <Search />
-          </IconButton>
+       
 
           <IconButton
             color="inherit"
@@ -146,20 +139,16 @@ export const DoctorProvider = ({ children }) => {
             <Edit />
           </IconButton>
 
-          {/* Spacer to push content to the right */}
           <div style={{ flexGrow: 1 }} />
 
-          {/* Welcome Message */}
           <Typography variant="h6" style={{ marginRight: '16px' }}>
             Welcome {doctors?.name}
           </Typography>
 
-          {/* Profile Picture */}
           <IconButton onClick={handleMenuOpen} color="inherit">
             <Avatar alt="Doctor Profile" src={`data:image/png;base64,${doctors?.imageData}`} />
           </IconButton>
 
-          {/* Menu for Profile and Logout */}
           <Menu
             anchorEl={anchorEl}
             open={Boolean(anchorEl)}

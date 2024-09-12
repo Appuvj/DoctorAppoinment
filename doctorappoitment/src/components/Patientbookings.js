@@ -74,7 +74,6 @@ const BookingCard = ({ booking, onComplete, submitData }) => {
       </Grid>
 
 
-      {/* Modal for displaying messages */}
       <Modal open={showModal} onClose={() => setShowModal(false)}>
         <Card sx={{ padding: 2, margin: 2 }}>
           <Typography variant="h6">Error</Typography>
@@ -126,24 +125,165 @@ const CompletedCard = ({ booking }) => {
         </Grid>
       </Grid>
 
-      {/* Modal for prescription */}
       <Modal open={showModal} onClose={handleCloseModal}>
-        <Card sx={{ padding: 2, margin: 2 }}>
-          <Typography variant="h6">Prescription</Typography>
-          <img
-            src={`data:image/png;base64,${booking.prescription}`}
-            alt="Prescription"
-            style={{ width: '100%', height: 'auto' }}
-          />
-          <Button variant="contained" color="secondary" onClick={handleCloseModal} sx={{ marginTop: 2 }}>
-            Close
-          </Button>
-        </Card>
-      </Modal>
+  <Card 
+    sx={{ 
+      padding: 2, 
+      margin: 'auto', 
+      maxWidth: '90%', 
+      maxHeight: '90vh', 
+      overflowY: 'auto', 
+      display: 'flex', 
+      flexDirection: 'column',
+      alignItems: 'center',
+      position: 'absolute', 
+      top: '50%', 
+      left: '50%', 
+      transform: 'translate(-50%, -50%)'
+    }}
+  >
+    <Typography variant="h6" gutterBottom>
+      Prescription
+    </Typography>
+    <img
+      src={`data:image/png;base64,${booking.prescription}`}
+      alt="Prescription"
+      style={{ 
+        width: '500px', 
+        height: '500px', 
+        objectFit: 'contain' // Maintain aspect ratio
+      }}
+    />
+    <Button 
+      variant="contained" 
+      color="secondary" 
+      onClick={handleCloseModal} 
+      sx={{ 
+        marginTop: 2, 
+        width: '150px'  // A fixed width for the button to make it look uniform
+      }}
+    >
+      Close
+    </Button>
+  </Card>
+</Modal>
+<Modal open={showModal} onClose={handleCloseModal}>
+  <Card 
+    sx={{ 
+      padding: 2, 
+      margin: 'auto', 
+      maxWidth: '90%', 
+      maxHeight: '90vh', 
+      overflowY: 'auto', 
+      display: 'flex', 
+      flexDirection: 'column',
+      alignItems: 'center',
+      position: 'absolute', 
+      top: '50%', 
+      left: '50%', 
+      transform: 'translate(-50%, -50%)'
+    }}
+  >
+    <Typography variant="h6" gutterBottom>
+      Prescription
+    </Typography>
+    <img
+      src={`data:image/png;base64,${booking.prescription}`}
+      alt="Prescription"
+      style={{ 
+        width: '500px', 
+        height: '500px', 
+        objectFit: 'contain' // Maintain aspect ratio
+      }}
+    />
+    <Button 
+      variant="contained" 
+      color="secondary" 
+      onClick={handleCloseModal} 
+      sx={{ 
+        marginTop: 2, 
+        width: '150px'  // A fixed width for the button to make it look uniform
+      }}
+    >
+      Close
+    </Button>
+  </Card>
+</Modal>
+
+    </Card>
+  );
+};
+const PendingCard = ({ booking }) => {
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(); // Adjust to your preferred date format
+  };
+
+  const [showModal, setShowModal] = useState(false);  // Modal visibility state
+  const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+
+  const Base64Image = ({ base64String }) => {
+    const imageSrc = `data:image/png;base64,${base64String}`;
+    return (
+      <img src={imageSrc} alt="Converted" style={{ width: '100%', height: 'auto' }} />
+    );
+  };
+
+  return (
+    <Card sx={{ display: 'flex', flexDirection: 'column', padding: 2, marginBottom: 2, boxShadow: 3 }}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={4}>
+          <Base64Image base64String={booking.doctorImage} />
+        </Grid>
+        <Grid item xs={12} sm={8}>
+          <Typography variant="h6" gutterBottom>{booking.doctorName}</Typography>
+          <Typography variant="body1" color="textSecondary">Status: {booking.status}</Typography>
+          <Typography variant="body1" color="textSecondary">Date: {formatDate(booking.bookingDate)}</Typography>
+         
+        </Grid>
+      </Grid>
+
+    
     </Card>
   );
 };
 
+const CancelledCard = ({ booking }) => {
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(); // Adjust to your preferred date format
+  };
+
+  const [showModal, setShowModal] = useState(false);  // Modal visibility state
+  const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+
+  const Base64Image = ({ base64String }) => {
+    const imageSrc = `data:image/png;base64,${base64String}`;
+    return (
+      <img src={imageSrc} alt="Converted" style={{ width: '100%', height: 'auto' }} />
+    );
+  };
+
+  return (
+    <Card sx={{ display: 'flex', flexDirection: 'column', padding: 2, marginBottom: 2, boxShadow: 3 }}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={4}>
+          <Base64Image base64String={booking.doctorImage} />
+        </Grid>
+        <Grid item xs={12} sm={8}>
+          <Typography variant="h6" gutterBottom>{booking.doctorName}</Typography>
+          <Typography variant="body1" color="textSecondary">Status: {booking.status}</Typography>
+          <Typography variant="body1" color="textSecondary">Date: {formatDate(booking.bookingDate)}</Typography>
+         
+        </Grid>
+      </Grid>
+
+    
+    </Card>
+  );
+};
 const BookingList = ({ bookings, submitData }) => {
   return (
     <Grid container spacing={2}>
@@ -172,8 +312,35 @@ const CompletedList = ({ bookings }) => {
   );
 };
 
+const PendingList = ({ bookings }) => {
+  return (
+    <Grid container spacing={2}>
+      {bookings.map((booking) => (
+        booking.status.toLowerCase() === 'pending' && (
+          <Grid item xs={12} sm={6} md={4} key={booking.bookingId}>
+            <PendingCard booking={booking} />
+          </Grid>
+        )
+      ))}
+    </Grid>
+  );
+};
+
+const CancelledList = ({ bookings }) => {
+  return (
+    <Grid container spacing={2}>
+      {bookings.map((booking) => (
+        booking.status.toLowerCase() === 'cancelled' && (
+          <Grid item xs={12} sm={6} md={4} key={booking.bookingId}>
+            <CancelledCard booking={booking} />
+          </Grid>
+        )
+      ))}
+    </Grid>
+  );
+};
 const Patientbookings = () => {
-  const { patients, id } = useContext(PatientContext);
+  const { patients, id ,fetchDatas ,fetchDoctors} = useContext(PatientContext);
   const [PatientBookingData, SetpatientbookingData] = useState(null);
 
   const fetchDoctorData = async () => {
@@ -207,6 +374,7 @@ const Patientbookings = () => {
   };
 
   useEffect(() => {
+    console.log(patients)
     SetpatientbookingData(patients ? patients.bookings["$values"] : []);
   }, [patients]);
 
@@ -217,6 +385,13 @@ const Patientbookings = () => {
       
       <Typography variant="h4" gutterBottom>Completed Appointments</Typography>
       {PatientBookingData && <CompletedList bookings={PatientBookingData} />}
+
+
+      <Typography variant="h4" gutterBottom>Pending Appointments</Typography>
+      {PatientBookingData && <PendingList bookings={PatientBookingData} />}
+
+      <Typography variant="h4" gutterBottom>Cancelled Appointments</Typography>
+      {PatientBookingData && <CancelledList bookings={PatientBookingData} />}
     </div>
   );
 };

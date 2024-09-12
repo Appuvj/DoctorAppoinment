@@ -4,6 +4,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { AdminContext } from './AdminDashContext';
 import DbService from '../Api/DbService';
 import { Container, Card, CardContent, Typography, TextField, MenuItem, Button, FormControl, InputLabel, Select, FormHelperText } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function base64ToImageFile(base64String, fileName) {
   // Decode base64 string
@@ -179,16 +182,38 @@ const DoctorAdminCrud = () => {
         setAvailableDate('');
         setLocation('');
         setPhoto(null);
+
+        toast.success('Update completed successfully!', {
+          position: "bottom-right",
+          autoClose: 3000, // Auto close after 3 seconds
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
+
         setTimeout(()=>{
           navigate("/admin/dashboard/doctors")
 
-        },2000)
+        },3000)
       }
       await fetchDatas()
     } catch (err) {
       console.error('Error Updating doctor:', err);
       setErrors({ global: 'Updation failed. Please try again.' });
       setSuccess('');
+
+
+      toast.error('Update failed, please try again.', {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
     }
   };
 
@@ -394,6 +419,8 @@ const DoctorAdminCrud = () => {
           </form>
         </CardContent>
       </Card>
+
+      <ToastContainer />
     </Container>
   );
 }

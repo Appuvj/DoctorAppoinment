@@ -112,7 +112,6 @@ export const PatientProvider = ({ children }) => {
     }}>
         <AppBar position="static">
       <Toolbar>
-        {/* Navigation Icons */}
         <IconButton
           edge="start"
           color="inherit"
@@ -122,13 +121,7 @@ export const PatientProvider = ({ children }) => {
           <Home />
         </IconButton>
         
-        <IconButton
-          color="inherit"
-          aria-label="book appointment"
-         
-        >
-          <EventNote />
-        </IconButton>
+       
 
         <IconButton
           color="inherit"
@@ -162,20 +155,16 @@ export const PatientProvider = ({ children }) => {
           <Edit />
         </IconButton>
 
-        {/* Spacer to push content to the right */}
         <div style={{ flexGrow: 1 }} />
 
-        {/* Welcome Message */}
         <Typography variant="h6" style={{ marginRight: '16px' }}>
           Welcome {patients ? patients.name : ""}
         </Typography>
 
-        {/* Profile Picture */}
         <IconButton onClick={handleMenuOpen} color="inherit">
           <Avatar alt="Patient Profile" src={`data:image/jpeg;base64,${patients?.image}`} />
         </IconButton>
 
-        {/* Menu for Profile and Logout */}
         <Menu
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}

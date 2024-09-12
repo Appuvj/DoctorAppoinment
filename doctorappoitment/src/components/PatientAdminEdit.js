@@ -1,15 +1,17 @@
-import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+
 import { AdminContext } from './AdminDashContext';
-import DbService from '../Api/DbService';
+
+import React, { useContext, useEffect, useState } from 'react';
+import { Container, Box, Typography, TextField, Button, FormControl, InputLabel, Select, MenuItem, Avatar, IconButton, CircularProgress, FormHelperText, Alert } from '@mui/material';
+import { PhotoCamera } from '@mui/icons-material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { PhotoCamera } from '@mui/icons-material';
-import { Container, Card, CardContent, Typography, TextField, MenuItem, Button, FormControl, InputLabel, Select, FormHelperText } from '@mui/material';
+import { useNavigate, useParams } from 'react-router';
+import axios from 'axios';
+import { PatientContext } from './PatientDashContext';
+import DbService from '../Api/DbService';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 
 function base64ToImageFile(base64String, fileName) {
   // Decode base64 string
@@ -30,7 +32,19 @@ function base64ToImageFile(base64String, fileName) {
       return null;
   }
 }
-
+const validationSchema = Yup.object({
+  name: Yup.string().required('Name is required'),
+  mobile: Yup.string()
+    .matches(/^\d{10}$/, 'Mobile number must be 10 digits')
+    .required('Mobile number is required'),
+  email: Yup.string().email('Invalid email address').required('Email is required'),
+  address: Yup.string().required('Address is required'),
+  gender: Yup.string().required('Gender is required'),
+  password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
+  photo: Yup.mixed().required('Photo is required').test('fileType', 'Only .jpg, .jpeg, and .png files are allowed', value => {
+    return !value || ['image/jpeg', 'image/jpg', 'image/png'].includes(value.type);
+  })
+});
 const getTodayDate = () => {
   const today = new Date();
   const year = today.getFullYear();
@@ -39,7 +53,8 @@ const getTodayDate = () => {
   return `${year}-${month}-${day}`;
 };
 
-const apiUrl = 'Patient/'; // Update with your actual API URL
+const apiUrl = 'Patient/';
+ // Update with your actual API URL
 const extractDate = (dateTimeString) => {
   return dateTimeString.split('T')[0]; // Extracts "2024-09-10"
 };
@@ -61,22 +76,92 @@ const PatientAdminEdit = () => {
 
 
   const today = new Date().toISOString().split('T')[0];
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      mobile: '',
+      email: '',
+      address: '',
+      gender: '',
+      password: '',
+      photo: null,
+    },
+    validationSchema,
+    onSubmit: async (values, { setSubmitting, setErrors, setStatus }) => {
+      setSubmitting(true);
 
+      const formData = new FormData();
+      formData.append('Name', values.name);
+      formData.append('Contact', values.mobile);
+      formData.append('Email', values.email);
+      formData.append('Address', values.address);
+      formData.append('Gender', values.gender);
+      formData.append('Password', values.password);
+      formData.append('Image', values.photo);
+
+      try {
+        const response = await DbService.put(apiUrl+id, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        },sessionStorage.getItem("token"));
+
+        if (response.status === 200) {
+          setStatus('success');
+      await fetchDatas()
+
+      toast.success('Update completed successfully!', {
+        position: "bottom-right",
+        autoClose: 3000, // Auto close after 3 seconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+
+    setTimeout(()=>{
+      navigate("/admin/dashboard/patients")
+
+    },3000)
+     
+        }
+      } catch (err) {
+        setStatus('error');
+        console.error('Error registering patient:', err);
+
+        toast.error('Update failed, please try again.', {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
+
+
+      } finally {
+        setSubmitting(false);
+      }
+    },
+  });
   const getPatient = async () =>{
     DbService.get(`Patient/${id}`, {}, sessionStorage.getItem("token")).then((res) => {
-        
-      setName(res.data.name)
-      setMobile(res.data.contact)
-       
-       setEmail(res.data.email)
-       setAddress(res.data.address)
-       setGender(res.data.gender)
-       setPassword(res.data.password)
-      
-         const base64String = `data:image/jpg;base64,${res.data.image}`;
-         const imageFile = base64ToImageFile(base64String, 'image.jpg');
-         setPhoto(imageFile);  // Set the file
-     }).catch((err) => console.log(err));
+      formik.setFieldValue('name',res.data.name)
+      formik.setFieldValue('mobile',res.data.contact)
+      formik.setFieldValue('email',res.data.email)
+      formik.setFieldValue('address',res.data.address)
+      formik.setFieldValue('gender',res.data.gender)
+      formik.setFieldValue('password',res.data.password)
+
+      const base64String = `data:image/jpeg;base64,${res.data.image}` ; // Assuming your API returns a base64 string
+     
+      const file = base64ToImageFile(base64String, 'photo.jpg');
+    
+      formik.setFieldValue('photo', file);
+    }
+     ).catch((err) => console.log(err));
   }
 
   const validateField = (fieldName, value) => {
@@ -204,165 +289,8 @@ console.log(formData)
   return (
 
     <>
-      <Container sx={{ py: 5 }}>
-        <Card sx={{ maxWidth: 500, mx: 'auto', boxShadow: 3 }}>
-          <CardContent>
-            <Typography variant="h5" component="div" align="center" gutterBottom>
-              Patient 
-            </Typography>
-            <form onSubmit={handleSubmit}>
-              <TextField
-                fullWidth
-                margin="normal"
-                id="name"
-                label="Name"
-                variant="outlined"
-                value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                  validateField('name', e.target.value);
-                }}
-                onBlur={() => validateField('name', name)}
-                error={!!errors.name}
-                helperText={errors.name}
-              />
-  
-              <TextField
-                fullWidth
-                margin="normal"
-                id="mobile"
-                label="Mobile"
-                variant="outlined"
-                value={mobile}
-                onChange={(e) => {
-                  setMobile(e.target.value);
-                  validateField('mobile', e.target.value);
-                }}
-                onBlur={() => validateField('mobile', mobile)}
-                error={!!errors.mobile}
-                helperText={errors.mobile}
-              />
-   
-   <TextField
-                fullWidth
-                margin="normal"
-                id="email"
-                label="email"
-                type="email"
-                variant="outlined"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  validateField('email', e.target.value);
-                }}
-                onBlur={() => validateField('email', email)}
-                error={!!errors.email}
-                helperText={errors.email}
-              />
-  
-              <TextField
-                fullWidth
-                margin="normal"
-                id="address"
-                label="address"
-                
-                variant="outlined"
-                value={address}
-                onChange={(e) => {
-                  setAddress(e.target.value);
-                  validateField('address', e.target.value);
-                }}
-                onBlur={() => validateField('address', address)}
-                error={!!errors.address}
-                helperText={errors.address}
-              />
- 
-  
-              
-  
-              <FormControl fullWidth margin="normal" error={!!errors.gender}>
-                <InputLabel id="gender-label">Gender</InputLabel>
-                <Select
-                  labelId="gender-label"
-                  id="gender"
-                  value={gender}
-                  onChange={(e) => {
-                    setGender(e.target.value);
-                    validateField('gender', e.target.value);
-                  }}
-                  onBlur={() => validateField('gender', gender)}
-                >
-                  <MenuItem value="" disabled>Select gender</MenuItem>
-                  <MenuItem value="Male">Male</MenuItem>
-                  <MenuItem value="Female">Female</MenuItem>
-                </Select>
-                <FormHelperText>{errors.gender}</FormHelperText>
-              </FormControl>
-  
-              <TextField
-                fullWidth
-                margin="normal"
-                id="password"
-                label="Password"
-                type="password"
-                variant="outlined"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  validateField('password', e.target.value);
-                }}
-                onBlur={() => validateField('password', password)}
-                error={!!errors.password}
-                helperText={errors.password}
-              />
-
-  
-              <Button
-                fullWidth
-                variant="contained"
-                component="label"
-                sx={{ mt: 3 }}
-              >
-                Upload Photo
-                <input
-                  type="file"
-                  hidden
-                  accept=".jpg, .jpeg, .png"
-                  onChange={handlePhotoChange}
-                />
-              </Button>
-
-              {photo && typeof photo === 'object' && (
-    <div style={{ marginTop: '10px' }}>
-        Previous choosen : 
-      <img 
-        src={URL.createObjectURL(photo)} 
-        alt="Image Preview" 
-        width="100" 
-      />
-    </div>
-  )}
-              {errors.photo && <FormHelperText error>{errors.photo}</FormHelperText>}
-  
-              <Button
-                fullWidth
-                variant="contained"
-                type="submit"
-                sx={{ mt: 3 }}
-              >
-                Update
-              </Button>
-  
-              {errors.global && <Typography color="error" align="center" sx={{ mt: 2 }}>{errors.global}</Typography>}
-              {success && <Typography color="success" align="center" sx={{ mt: 2 }}>{success}</Typography>}
-            </form>
-          </CardContent>
-        </Card>
-      </Container>
-
-
-
-    {/* <Container maxWidth="sm">
+    
+    <Container maxWidth="sm">
       <Box
         sx={{
           display: 'flex',
@@ -376,32 +304,37 @@ console.log(formData)
         }}
       >
         <Typography variant="h4" gutterBottom>
-          Patient Update
+          Patient Update 
         </Typography>
         {formik.status && (
           <Alert severity={formik.status === 'success' ? 'success' : 'error'}>
-            {formik.status === 'success' ? 'Update successful!' : 'Update failed!'}
+            {formik.status === 'success' ? 'Updated  successful!' : 'Update failed Please Check Credentials!'}
           </Alert>
         )}
         <Box component="form" onSubmit={formik.handleSubmit} sx={{ width: '100%' }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 2 }}>
             <Avatar
-              sx={{ width: 100, height: 100, mb: 2 }} // Added margin-bottom for spacing
-              src={formik.values.photo ? URL.createObjectURL(formik.values.photo) : `data:image/jpeg;base64,${patientData?.image}`}
+              sx={{ width: 100, height: 100, mb: 2 }}
+              src={formik.values.photo ? URL.createObjectURL(formik.values.photo) : ''}
             />
-            <IconButton
-              color="primary"
-              aria-label="upload picture"
-              component="label"
-            >
+            <IconButton color="primary" aria-label="upload picture" component="label">
               <input
                 type="file"
-                accept="image/*"
+                accept=".jpg, .jpeg, .png"
                 hidden
-                onChange={handleFileChange}
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  formik.setFieldValue('photo', file);
+                  if (file) {
+                    formik.setFieldError('photo', ''); // Clear the error if a file is selected
+                  }
+                }}
               />
               <PhotoCamera />
             </IconButton>
+            {formik.errors.photo && formik.touched.photo && (
+              <FormHelperText error>{formik.errors.photo}</FormHelperText>
+            )}
           </Box>
           <TextField
             fullWidth
@@ -430,7 +363,6 @@ console.log(formData)
             fullWidth
             label="Email"
             name="email"
-            type="email"
             value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -488,22 +420,14 @@ console.log(formData)
             fullWidth
             disabled={formik.isSubmitting}
           >
-            {formik.isSubmitting ? <CircularProgress size={24} /> : 'Update '}
+            {formik.isSubmitting ? <CircularProgress size={24} /> : 'Update'}
           </Button>
         </Box>
       </Box>
-      {formik.status && (
-        <Alert severity={formik.status === 'success' ? 'success' : 'error'}>
-          {formik.status === 'success'
-            ? 'Update successful!'
-            : 'Update failed! Please try again.'}
-        </Alert>
-      )}
-    </Container> */}
 
+      <ToastContainer />
 
-<ToastContainer />
-    </>
+    </Container></>
   );
 }
 

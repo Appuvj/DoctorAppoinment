@@ -33,13 +33,24 @@ import NotFoundPage from "../components/NotFoundPage";
 import EmergencyComp from "../components/EmergencyComp";
 import Services from "../components/Services";
 import ErrorBound from "../components/ErrorBound";
+import ErrorBoundary from "../components/ErrorHandle";
 
 
 
 const router = createBrowserRouter([
     {
+
+        path : "/error-page",
+        element :<ErrorBound/>
+    },
+    {
         path :"",
-        element : <App/>,
+        element :  (
+        <ErrorBoundary>
+
+<App/>
+        </ErrorBoundary>
+        ),
         children : [
             {
                 path:"",
@@ -65,21 +76,27 @@ const router = createBrowserRouter([
     },
 {
 path:"login",
-element:<LoginComponent/>
+element: (<ErrorBoundary><LoginComponent/> </ErrorBoundary>)
 },
 
 {
     path:"/doctor-register",
-    element:<DoctorRegisteration/>
+    element:(<ErrorBoundary><DoctorRegisteration/></ErrorBoundary>)
 },
 {
     path:"/patient-register",
-    element:<PatientRegister/>
+    element:(<ErrorBoundary><PatientRegister/></ErrorBoundary>)
 },
 
 {
     path:"/patient-dash",
-element : <PatientDashBoard/>,
+    
+element : (
+    <ErrorBoundary>
+
+<PatientDashBoard/>
+</ErrorBoundary>)
+,
 children : [{
 path : "",
 element :<PatientDashUi/>
@@ -113,7 +130,7 @@ element : <BookAppointmentComp/>
 },
 {
     path : "/doctor-dash",
-    element : <DoctorDashBoard/>,
+    element :( <ErrorBoundary><DoctorDashBoard/></ErrorBoundary>) ,
     children : [
 
         {
@@ -145,7 +162,7 @@ element : <BookAppointmentComp/>
 
 {
     path:"/admin",
-   element:<AdminDashBoard/>,
+   element:(<ErrorBoundary><AdminDashBoard/></ErrorBoundary>),
 children : [
 
 {
@@ -205,7 +222,7 @@ element:<AnalyticsDataUi/>
 },
 {
     path : "*",
-    element  : <ErrorBound/>
+    element  : <NotFoundPage/>
 }
 
 

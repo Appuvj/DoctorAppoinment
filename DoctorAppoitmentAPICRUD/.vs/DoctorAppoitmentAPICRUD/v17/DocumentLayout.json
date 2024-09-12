@@ -1,10 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\vijaykumar.v\\Desktop\\DoctorAppointment\\DoctorAppoitmentAPICRUD\\",
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Desktop\\DoctorAppoinment\\DoctorAppoitmentAPICRUD\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vijaykumar.v\\Desktop\\DoctorAppointment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240912051629_Migrations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DoctorAppoitmentAPICRUD\\Migrations\\20240912051629_Migrations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Hospital/True/SqlTable/dbo.Doctors.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +18,11 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "20240912051629_Migrations.cs",
-              "DocumentMoniker": "C:\\Users\\vijaykumar.v\\Desktop\\DoctorAppointment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240912051629_Migrations.cs",
-              "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Migrations\\20240912051629_Migrations.cs",
-              "ToolTip": "C:\\Users\\vijaykumar.v\\Desktop\\DoctorAppointment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240912051629_Migrations.cs",
-              "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Migrations\\20240912051629_Migrations.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-12T05:16:31.494Z",
+              "Title": "dbo.Doctors [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Hospital/True/SqlTable/dbo.Doctors.sql",
+              "ToolTip": "dbo.Doctors [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-09-12T14:44:31.683Z",
               "EditorCaption": ""
             }
           ]

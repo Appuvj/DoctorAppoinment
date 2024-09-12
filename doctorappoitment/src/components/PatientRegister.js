@@ -21,7 +21,6 @@ const validationSchema = Yup.object({
     return !value || ['image/jpeg', 'image/jpg', 'image/png'].includes(value.type);
   })
 });
-
 const PatientRegistrationForm = () => {
   const navigate = useNavigate();
   const formik = useFormik({

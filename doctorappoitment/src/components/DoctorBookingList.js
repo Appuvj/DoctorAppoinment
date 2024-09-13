@@ -187,7 +187,9 @@ const DoctorBookingList = () => {
               <BookingCard key={booking.bookingId} booking={booking} submitData={submitData} />
             ))
         ) : (
-          <Typography>No bookings available.</Typography>
+          <Typography variant="h6" color="textSecondary" align="center" sx={{ marginTop: 2 }}>
+          No records found
+      </Typography>
         )}
       </Grid>
       <Typography variant="h4" gutterBottom mt={4}>Completed List</Typography>
@@ -199,7 +201,9 @@ const DoctorBookingList = () => {
               <BookingCard key={booking.bookingId} booking={booking} />
             ))
         ) : (
-          <Typography>No data available.</Typography>
+          <Typography variant="h6" color="textSecondary" align="center" sx={{ marginTop: 2 }}>
+          No records found
+      </Typography>
         )}
       </Grid>
     </Box>

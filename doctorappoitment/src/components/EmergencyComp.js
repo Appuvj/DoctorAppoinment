@@ -45,11 +45,11 @@ const EmergencyComp = () => {
         e.preventDefault();
         if (validateForm()) {
             setSubmitted(true);
-            alert('Thank you for contacting us!');
+            alert(`Hey ${submitted.name}, Thank you for contacting us!`);
             setFormData({
                 name: '',
                 email: '',
-                phone: '',  // Reset phone field as well
+                phone: '',  
                 message: ''
             });
         }
@@ -127,9 +127,7 @@ const EmergencyComp = () => {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="email">Email:</label>
-                                <input
-                                    type="email"
-                                    id="email"
+                                <input id="email"
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}

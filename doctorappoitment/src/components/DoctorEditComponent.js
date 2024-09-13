@@ -133,6 +133,10 @@ const DoctorEditComponent = () => {
             });
   
             await fetchDoctors()
+
+            setTimeout(() => {
+              navigate("/doctor-dash/doctor-search")
+            }, 2000);
           }
         } catch (err) {
           setStatus('error');
@@ -508,7 +512,7 @@ const DoctorEditComponent = () => {
             fullWidth
             disabled={formik.isSubmitting}
           >
-            {formik.isSubmitting ? <CircularProgress size={24} /> : 'Register'}
+            {formik.isSubmitting ? <CircularProgress size={24} /> : 'Update'}
           </Button>
         </Box>
       </Box>

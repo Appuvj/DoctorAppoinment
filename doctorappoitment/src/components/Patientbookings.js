@@ -1,4 +1,6 @@
 import axios from 'axios';
+import {  CircularProgress, Box } from '@mui/material';
+
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Modal, Card, CardContent, Typography, Grid, IconButton } from '@mui/material';
 import { FaCheckCircle, FaFileUpload } from 'react-icons/fa';
@@ -74,6 +76,7 @@ const BookingCard = ({ booking, onComplete, submitData }) => {
       </Grid>
 
 
+      
       <Modal open={showModal} onClose={() => setShowModal(false)}>
         <Card sx={{ padding: 2, margin: 2 }}>
           <Typography variant="h6">Error</Typography>
@@ -125,6 +128,7 @@ const CompletedCard = ({ booking }) => {
         </Grid>
       </Grid>
 
+    
       <Modal open={showModal} onClose={handleCloseModal}>
   <Card 
     sx={{ 
@@ -327,6 +331,8 @@ const PendingList = ({ bookings }) => {
 };
 
 const CancelledList = ({ bookings }) => {
+
+
   return (
     <Grid container spacing={2}>
       {bookings.map((booking) => (
@@ -338,21 +344,27 @@ const CancelledList = ({ bookings }) => {
       ))}
     </Grid>
   );
+
 };
 const Patientbookings = () => {
-  const { patients, id ,fetchDatas ,fetchDoctors} = useContext(PatientContext);
-  const [PatientBookingData, SetpatientbookingData] = useState(null);
+  const { patients, id } = useContext(PatientContext); // Destructure from context
+  const [PatientBookingData, SetPatientBookingData] = useState([]);
+  const [pendingData, setPendingData] = useState([]);
+  const [completedData, setCompletedData] = useState([]);
+  const [bookedData, setBookedData] = useState([]);
+  const [cancelledData, setCancelledData] = useState([]);
 
-  const fetchDoctorData = async () => {
-    const apiUrl = `Patient/${id}`;
+  const fetchPatientData = async () => {
     try {
+      const apiUrl = `Patient/${id}`;
       const response = await DbService.get(apiUrl);
-      SetpatientbookingData(response.data);
+      SetPatientBookingData(response.data.bookings["$values"]); // Set bookings data
     } catch (error) {
-      console.error('Error fetching doctor data:', error);
+      console.error('Error fetching patient data:', error);
     }
   };
 
+  // Handle file submission for completing bookings
   const submitData = async (booking, file) => {
     const formData = new FormData();
     formData.append('BookingDate', booking.bookingDate);
@@ -365,33 +377,63 @@ const Patientbookings = () => {
       const response = await DbService.put(`bookings/${booking.bookingId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${sessionStorage.getItem('token')}`, // Include the token
         },
-      },sessionStorage.getItem("token"));
+      });
       console.log('Booking updated successfully:', response.data);
     } catch (error) {
       console.error('Error updating booking:', error);
     }
   };
 
+  // Organize bookings based on status
   useEffect(() => {
-    console.log(patients)
-    SetpatientbookingData(patients ? patients.bookings["$values"] : []);
+    if (patients) {
+      const allBookings = patients.bookings["$values"];
+      SetPatientBookingData(allBookings);
+
+      // Categorize bookings based on their status
+      setPendingData(allBookings.filter(booking => booking.status.toLowerCase() === 'pending'));
+      setCompletedData(allBookings.filter(booking => booking.status.toLowerCase() === 'completed'));
+      setBookedData(allBookings.filter(booking => booking.status.toLowerCase() === 'booked'));
+      setCancelledData(allBookings.filter(booking => booking.status.toLowerCase() === 'cancelled'));
+    }
   }, [patients]);
 
   return (
-    <div style={{ padding: '20px' }}>
-      <Typography variant="h4" gutterBottom>Booked Appointments</Typography>
-      {PatientBookingData && <BookingList bookings={PatientBookingData} submitData={submitData} />}
+    <div>
+      <Typography variant="h4" gutterBottom>Patient Bookings</Typography>
       
-      <Typography variant="h4" gutterBottom>Completed Appointments</Typography>
-      {PatientBookingData && <CompletedList bookings={PatientBookingData} />}
+      <Typography variant="h6" color="textSecondary" align="center" sx={{ marginTop: 2 }}>
+                        No records found
+                    </Typography>
 
+      {bookedData.length > 0 ? <BookingList bookings={bookedData} submitData={submitData} /> :
+      <Typography variant="h6" color="textSecondary" align="center" sx={{ marginTop: 2 }}>
+      No records found
+  </Typography>
+}
 
-      <Typography variant="h4" gutterBottom>Pending Appointments</Typography>
-      {PatientBookingData && <PendingList bookings={PatientBookingData} />}
+      <Typography variant="h6">Pending Appointments</Typography>
+      {pendingData.length > 0 ? <PendingList bookings={pendingData} /> :
+        <Typography variant="h6" color="textSecondary" align="center" sx={{ marginTop: 2 }}>
+        No records found
+    </Typography>
+}
 
-      <Typography variant="h4" gutterBottom>Cancelled Appointments</Typography>
-      {PatientBookingData && <CancelledList bookings={PatientBookingData} />}
+      <Typography variant="h6">Completed Appointments</Typography>
+      {completedData.length > 0 ? <CompletedList bookings={completedData} /> :
+         <Typography variant="h6" color="textSecondary" align="center" sx={{ marginTop: 2 }}>
+         No records found
+     </Typography>
+}
+
+      <Typography variant="h6">Cancelled Appointments</Typography>
+      {cancelledData.length > 0 ? <CancelledList bookings={cancelledData} /> :
+        <Typography variant="h6" color="textSecondary" align="center" sx={{ marginTop: 2 }}>
+        No records found
+    </Typography>
+}
     </div>
   );
 };

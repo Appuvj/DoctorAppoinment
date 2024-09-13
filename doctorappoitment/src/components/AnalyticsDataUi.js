@@ -3,7 +3,7 @@ import { AdminContext } from './AdminDashContext';
 
 import {
   Card,
-  CardContent,
+
   Typography,
   Grid,
   CircularProgress,
@@ -25,7 +25,7 @@ const StyledCard = styled(Card)(({ theme, color }) => ({
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.shadows[5],
   transition: 'transform 0.3s, box-shadow 0.3s',
-  height: '100%', // Ensure the card occupies the full height of its container
+  height: '100%', 
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -40,7 +40,7 @@ const IconWrapper = styled(Box)(({ theme, iconColor }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: 80, // Increased icon container size
+  width: 80, 
   height: 80,
   borderRadius: '50%',
   backgroundColor: theme.palette.common.white,
@@ -53,7 +53,7 @@ const IconWrapper = styled(Box)(({ theme, iconColor }) => ({
   },
 }));
 
-const iconSize = 40; // Increased icon size
+const iconSize = 40; 
 
 const CardContentWrapper = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -62,7 +62,7 @@ const CardContentWrapper = styled(Box)(({ theme }) => ({
   justifyContent: 'center',
   textAlign: 'center',
   height: '100%',
-  padding: theme.spacing(3), // Increased padding for better spacing
+  padding: theme.spacing(3), 
 }));
 
 const DashboardContainer = styled(Box)(({ theme }) => ({
@@ -76,7 +76,7 @@ const DashboardContainer = styled(Box)(({ theme }) => ({
 }));
 
 const AnalyticsDataUi = () => {
-    const { analyticsData,fetchDatas } = useContext(AdminContext);
+    const { analyticsData} = useContext(AdminContext);
     const renderContent = (count, label) => (
       <Box textAlign="center">
         <Typography variant="h6" component="div" gutterBottom sx={{ fontWeight: 'bold', mb: 1 }}>

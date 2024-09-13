@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useContext } from 'react';
 import { AdminContext } from './AdminDashContext';
-import { FaUserMd, FaPhoneAlt } from 'react-icons/fa';
-import axios from 'axios';
+
 import { useNavigate } from 'react-router-dom';
 import DbService from '../Api/DbService';
 import { Grid, Card, CardMedia, CardContent, Button} from '@mui/material';
@@ -20,7 +19,6 @@ const DoctorsCrud = () => {
   const [modelData, setModelData] = useState({});
   const [confirmed, setConfirmed] = useState(false);
 
-  // Filter doctors based on specialization
   useEffect(() => {
     if (doctors) {
       setSpecializations([...new Set(doctors.map((doctor) => doctor.specialization))]);
@@ -44,13 +42,12 @@ const DoctorsCrud = () => {
   const handleView = (doctorId) => {
     navigate(`/admin/dashboard/doctorview/${doctorId}`)
   }
-  // Handle doctor deletion
   useEffect(() => {
     if (confirmed && modelData.id) {
       DbService.remove(`Doctor/${modelData.id}`,{},sessionStorage.getItem("token"))
         .then((res) => {
           console.log(res);
-          fetchDatas(); // Refresh doctor list after deletion
+          fetchDatas(); 
         })
         .catch((err) => console.log(err))
         .finally(() => {
@@ -71,7 +68,7 @@ const DoctorsCrud = () => {
 
   const navigate = useNavigate();
   const handleEdit = (doctorId) => {
-    // console.log(`Editing doctor with ID: ${doctorId}`);
+   
     navigate(`${doctorId}`)
   };
 
@@ -89,19 +86,19 @@ const DoctorsCrud = () => {
       fullWidth
       sx={{
         '& .MuiDialog-paper': {
-          padding: 3, // Add padding inside the dialog
-          borderRadius: 2, // Rounded corners
-          boxShadow: 3, // Default shadow
-          transition: 'transform 0.3s ease', // Smooth transition
+          padding: 3, 
+          borderRadius: 2, 
+          boxShadow: 3, 
+          transition: 'transform 0.3s ease', 
         },
       }}
     >
       <DialogTitle
         id="confirmation-dialog-title"
         sx={{
-          fontSize: '1.25rem', // Title font size
-          fontWeight: 'bold', // Title font weight
-          textAlign: 'center', // Centered title
+          fontSize: '1.25rem', 
+          fontWeight: 'bold', 
+          textAlign: 'center', 
           paddingBottom: 2,
         }}
       >
@@ -161,11 +158,11 @@ const DoctorsCrud = () => {
 
   <FormControl
       sx={{
-        minWidth: 300, // Adjust width as needed
-        backgroundColor: '#f5f5f5', // Optional: Add a background color
-        borderRadius: 1, // Optional: Add rounded corners
-        boxShadow: 1, // Optional: Add a shadow effect
-        p: 2, // Optional: Add padding
+        minWidth: 300, 
+        backgroundColor: '#f5f5f5', 
+        borderRadius: 1, 
+        boxShadow: 1,
+        p: 2,
       }}
     >
       <InputLabel id="specializationFilterLabel">Filter by Specialization</InputLabel>
@@ -180,7 +177,7 @@ const DoctorsCrud = () => {
           value={selectedSpecialization}
           onChange={handleSpecializationChange}
           label="Filter by Specialization"
-          sx={{ backgroundColor: 'white' }} // Optional: Adjust background color
+          sx={{ backgroundColor: 'white' }}
         >
           <MenuItem value="">All Specializations</MenuItem>
           {specializations.map((spec, index) => (
@@ -199,14 +196,14 @@ const DoctorsCrud = () => {
 
 <Grid container spacing={3}>
       {filteredDoctors === null ? (
-        // Loading state
+      
         <Grid item xs={12}>
           <Box
             sx={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              minHeight: '60vh', // Adjust height as needed
+              minHeight: '60vh', 
             }}
           >
             <CircularProgress size={60} />
@@ -214,7 +211,7 @@ const DoctorsCrud = () => {
           </Box>
         </Grid>
       ) : filteredDoctors.length > 0 ? (
-        // Doctors found
+        
         filteredDoctors.map((doctor, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
             <Card
@@ -223,15 +220,15 @@ const DoctorsCrud = () => {
                 display: 'flex',
                 alignItems: 'center',
                 height: '100%',
-                borderRadius: 2, // Rounded corners
-                backgroundColor: '#f9f9f9', // Light background
-                border: '1px solid #ddd', // Light outline
-                transition: 'transform 0.3s, box-shadow 0.3s', // Smooth transition
-                boxShadow: 2, // Default shadow
+                borderRadius: 2, 
+                backgroundColor: '#f9f9f9', 
+                border: '1px solid #ddd', 
+                transition: 'transform 0.3s, box-shadow 0.3s', 
+                boxShadow: 2, 
                 '&:hover': {
-                  transform: 'scale(1.03)', // Slight scaling on hover
-                  boxShadow: 5, // Stronger shadow on hover
-                  backgroundColor: '#e3f2fd', // Light blue background on hover
+                  transform: 'scale(1.03)', 
+                  boxShadow: 5, 
+                  backgroundColor: '#e3f2fd', 
                 },
               }}
             >
@@ -241,8 +238,8 @@ const DoctorsCrud = () => {
                 sx={{
                   width: 100,
                   height: 100,
-                  borderRadius: '50%', // Circular profile image
-                  border: '2px solid #1976d2', // Border around image for style
+                  borderRadius: '50%', 
+                  border: '2px solid #1976d2', 
                 }}
                 image={`data:image/jpeg;base64,${doctor.imageData}`}
                 alt="Doctor Profile"
@@ -277,14 +274,13 @@ const DoctorsCrud = () => {
           </Grid>
         ))
       ) : (
-        // No Records Found
         <Grid item xs={12}>
           <Box
             sx={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              minHeight: '60vh', // Adjust height as needed
+              minHeight: '60vh', 
             }}
           >
             <Typography variant="h6" color="text.secondary">

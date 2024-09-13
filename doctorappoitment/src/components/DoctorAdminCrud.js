@@ -102,6 +102,10 @@ const DoctorAdminCrud = () => {
             pauseOnHover: true,
             draggable: true,
           });
+          setTimeout(() => {
+            navigate("/admin/dashboard/doctors")
+            
+          }, 3000);
         }
       } catch (err) {
         setStatus('error');
@@ -159,7 +163,7 @@ const DoctorAdminCrud = () => {
         }}
       >
         <Typography variant="h4" gutterBottom>
-          Doctor Registration
+          Doctor Update
         </Typography>
         {formik.status && (
           <Alert severity={formik.status === 'success' ? 'success' : 'error'}>
@@ -323,7 +327,7 @@ const DoctorAdminCrud = () => {
           fullWidth
           disabled={formik.isSubmitting}
         >
-          {formik.isSubmitting ? <CircularProgress size={24} /> : 'Register'}
+          {formik.isSubmitting ? <CircularProgress size={24} /> : 'Update'}
         </Button>
       </Box>
     </Box>

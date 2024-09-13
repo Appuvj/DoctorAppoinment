@@ -1,7 +1,6 @@
-import React, { useContext } from 'react'
+import React  from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import '../App.css';
-import { AdminContext } from './AdminDashContext';
 
 import { FaUserMd, FaUsers, FaCalendarCheck, FaChartBar, FaSignOutAlt } from 'react-icons/fa';
 
@@ -9,7 +8,6 @@ import { FaUserMd, FaUsers, FaCalendarCheck, FaChartBar, FaSignOutAlt } from 're
 
 const AdminDashUi = () => {
 
-  const { analyticsData,fetchDatas } = useContext(AdminContext);
  const navigate = useNavigate()
  const logout = () =>{
 navigate("/login")

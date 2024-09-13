@@ -1,9 +1,6 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import axios  from 'axios';
+import React, { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { DoctorContext } from './DoctorDashContext';
 import DbService from '../Api/DbService';
-// Create a context with a default value
 
 
 export const AdminContext = createContext();
@@ -11,31 +8,19 @@ export const AdminContext = createContext();
 export const AdminProvider = ({ children }) => {
 
   const navigate = useNavigate();
-  const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+ 
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleLogout = () => {
-    // Add logout logic here
-    console.log("Logged out");
-    navigate("/login"); // Navigate to login page on logout
-  };
+  
   const [patients, setPatients] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [appointments, setAppointments] = useState([]);
   const [analyticsData, setAnalyticsData] = useState();
   const token = sessionStorage.getItem("token")
-  // Function to fetch all data
   const fetchDatas = async () => {
     try {
       const doctorsRes = await DbService.get("Doctor",{},token);
-      if(doctorsRes.status ==401)
+      if(doctorsRes.status === 401)
       {
         if(window.confirm("Token Expired!"))
         {
@@ -55,7 +40,6 @@ export const AdminProvider = ({ children }) => {
     }
   };
 
-  // Fetch data when the component mounts
   useEffect(() => {
     fetchDatas();
   }, []);

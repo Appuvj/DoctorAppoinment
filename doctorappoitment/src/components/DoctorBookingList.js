@@ -146,6 +146,7 @@ const DoctorBookingList = () => {
     const apiUrl = `Doctor/${id}`;
     try {
       const response = await DbService.get(apiUrl,{},sessionStorage.getItem("token"));
+      console.log(response)
       SetDoctorbookingData(response.data);
     } catch (error) {
       console.error('Error fetching doctor data:', error);
@@ -180,7 +181,10 @@ const DoctorBookingList = () => {
     <Box p={3}>
       <Typography variant="h4" gutterBottom>Doctor Booking List</Typography>
       <Grid container spacing={3}>
-        {DoctorBookingData ? (
+
+        
+        {DoctorBookingData ? DoctorBookingData.bookings["$values"]
+            .filter((booking) => booking.status.toLowerCase() === 'booked').length >0 ? ( 
           DoctorBookingData.bookings["$values"]
             .filter((booking) => booking.status.toLowerCase() === 'booked')
             .map((booking) => (
@@ -190,11 +194,14 @@ const DoctorBookingList = () => {
           <Typography variant="h6" color="textSecondary" align="center" sx={{ marginTop: 2 }}>
           No records found
       </Typography>
-        )}
+        ):  <Typography variant="h6" color="textSecondary" align="center" sx={{ marginTop: 2 }}>
+        Loading..
+    </Typography>}
       </Grid>
       <Typography variant="h4" gutterBottom mt={4}>Completed List</Typography>
       <Grid container spacing={3}>
-        {DoctorBookingData ? (
+        {DoctorBookingData ?DoctorBookingData.bookings["$values"]
+            .filter((booking) => booking.status.toLowerCase() === 'completed').length >0 ? (
           DoctorBookingData.bookings["$values"]
             .filter((booking) => booking.status.toLowerCase() === 'completed')
             .map((booking) => (
@@ -204,7 +211,9 @@ const DoctorBookingList = () => {
           <Typography variant="h6" color="textSecondary" align="center" sx={{ marginTop: 2 }}>
           No records found
       </Typography>
-        )}
+        ):  <Typography variant="h6" color="textSecondary" align="center" sx={{ marginTop: 2 }}>
+        Loading..
+    </Typography>}
       </Grid>
     </Box>
   );

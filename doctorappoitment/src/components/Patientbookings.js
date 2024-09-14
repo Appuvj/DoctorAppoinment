@@ -404,9 +404,9 @@ const Patientbookings = () => {
     <div>
       <Typography variant="h4" gutterBottom>Patient Bookings</Typography>
       
-      <Typography variant="h6" color="textSecondary" align="center" sx={{ marginTop: 2 }}>
-                        No records found
-                    </Typography>
+
+      <Typography variant="h6">Booked Appointments</Typography>
+
 
       {bookedData.length > 0 ? <BookingList bookings={bookedData} submitData={submitData} /> :
       <Typography variant="h6" color="textSecondary" align="center" sx={{ marginTop: 2 }}>

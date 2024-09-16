@@ -19,6 +19,7 @@ import {
     DialogActions,
     Button,
     Divider,
+    useMediaQuery,
   } from '@mui/material';import { useTheme } from '@mui/material/styles';
 
 import { green, red, yellow } from '@mui/material/colors';
@@ -30,7 +31,7 @@ const AppoimentsCrud = () => {
     const [completedAppointments, setCompletedAppointments] = useState([]);
     const [cancelledAppointments, setCancelledAppointments] = useState([]);
     const theme = useTheme(); // Get the theme object
-
+    const isMobileLarge = useMediaQuery(theme.breakpoints.down('lg'));
     const [showModal, setShowModal] = useState(false);
     const [modalAction, setModalAction] = useState(""); // "confirm" or "cancel"
     const [selectedAppointment, setSelectedAppointment] = useState(null);
@@ -179,50 +180,57 @@ const AppoimentsCrud = () => {
         ) : pendingAppointments.length > 0 ? (
           <List>
             {pendingAppointments.map((appointment) => (
-              <ListItem
-              key={appointment.bookingId}
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                borderBottom: '1px solid #ddd',
-                paddingY: 1,
-              }}
-            >
-              <ListItemText
-                primary={
-                  <Typography variant="body1">
-                    <strong>Patient:</strong> {appointment.patientName} <br />
-                    <strong>Doctor:</strong> {appointment.doctorName} <br />
-                    <strong>Booked Time:</strong> {new Date(appointment.bookingDate).toLocaleString()} <br />
-                    <strong>Status:</strong> {appointment.status}
-                  </Typography>
-                }
-              />
-              <ListItemSecondaryAction sx={{ display: 'flex', gap: 1 }}>
-                <IconButton
-                  onClick={() => handleAction(appointment,'confirm')}
-                  edge="end"
+                <ListItem
+                key={appointment.bookingId}
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  borderBottom: '1px solid #ddd',
+                  paddingY: 1,
+                }}
+              >
+                <ListItemText
+                  primary={
+                    <Typography variant="body1">
+                      <strong>Patient:</strong> {appointment.patientName} <br />
+                      <strong>Doctor:</strong> {appointment.doctorName} <br />
+                      <strong>Booked Time:</strong> {new Date(appointment.bookingDate).toLocaleString()} <br />
+                      <strong>Status:</strong> {appointment.status}
+                    </Typography>
+                  }
+                />
+                <ListItemSecondaryAction
                   sx={{
-                    color: green[500],
-                    '&:hover': { color: green[700] },
-                    marginRight: 1, // Gap between buttons
+                    display: 'flex',
+                    flexDirection: isMobileLarge ? 'column' : 'row',
+                    gap: 1,
+                    marginTop: isMobileLarge ? 1 : 0, // Margin on top when in mobile view
+                    marginLeft: isMobileLarge ? 0 : 'auto', // Align buttons to the right in large screens
                   }}
                 >
-                  <FaCheck />
-                </IconButton>
-                <IconButton
-                  onClick={() =>handleAction(appointment,'cancel')}
-                  edge="end"
-                  sx={{
-                    color: red[500],
-                    '&:hover': { color: red[700] },
-                  }}
-                >
-                  <FaTimes />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
+                  <IconButton
+                    onClick={() => handleAction(appointment, 'confirm')}
+                    edge="end"
+                    sx={{
+                      color: green[500],
+                      '&:hover': { color: green[700] },
+                      marginBottom: isMobileLarge ? 1 : 0, // Space between buttons on mobile
+                    }}
+                  >
+                    <FaCheck />
+                  </IconButton>
+                  <IconButton
+                    onClick={() => handleAction(appointment, 'cancel')}
+                    edge="end"
+                    sx={{
+                      color: red[500],
+                      '&:hover': { color: red[700] },
+                    }}
+                  >
+                    <FaTimes />
+                  </IconButton>
+                </ListItemSecondaryAction>
+              </ListItem>
          ))}
           </List>
         ) : (

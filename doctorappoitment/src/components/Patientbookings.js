@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {  CircularProgress, Box } from '@mui/material';
+import {  CircularProgress, Box, Container } from '@mui/material';
 
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Modal, Card, CardContent, Typography, Grid, IconButton } from '@mui/material';
@@ -104,7 +104,7 @@ const CompletedCard = ({ booking }) => {
   const Base64Image = ({ base64String }) => {
     const imageSrc = `data:image/png;base64,${base64String}`;
     return (
-      <img src={imageSrc} alt="Converted" style={{ width: '100px', height: '100px', borderRadius:'50%' }} />
+      <img src={imageSrc} alt="Converted" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
     );
   };
 
@@ -129,156 +129,155 @@ const CompletedCard = ({ booking }) => {
         </Grid>
       </Grid>
 
-    
       <Modal open={showModal} onClose={handleCloseModal}>
-  <Card 
-    sx={{ 
-      padding: 2, 
-      margin: 'auto', 
-      maxWidth: '90%', 
-      maxHeight: '90vh', 
-      overflowY: 'auto', 
-      display: 'flex', 
-      flexDirection: 'column',
-      alignItems: 'center',
-      position: 'absolute', 
-      top: '50%', 
-      left: '50%', 
-      transform: 'translate(-50%, -50%)'
-    }}
-  >
-    <Typography variant="h6" gutterBottom>
-      Prescription
-    </Typography>
-    <img
-      src={`data:image/png;base64,${booking.prescription}`}
-      alt="Prescription"
-      style={{ 
-        width: '500px', 
-        height: '500px', 
-        objectFit: 'contain' // Maintain aspect ratio
-      }}
-    />
-    <Button 
-      variant="contained" 
-      color="secondary" 
-      onClick={handleCloseModal} 
-      sx={{ 
-        marginTop: 2, 
-        width: '150px'  // A fixed width for the button to make it look uniform
-      }}
-    >
-      Close
-    </Button>
-  </Card>
-</Modal>
-<Modal open={showModal} onClose={handleCloseModal}>
-  <Card 
-    sx={{ 
-      padding: 2, 
-      margin: 'auto', 
-      maxWidth: '90%', 
-      maxHeight: '90vh', 
-      overflowY: 'auto', 
-      display: 'flex', 
-      flexDirection: 'column',
-      alignItems: 'center',
-      position: 'absolute', 
-      top: '50%', 
-      left: '50%', 
-      transform: 'translate(-50%, -50%)'
-    }}
-  >
-    <Typography variant="h6" gutterBottom>
-      Prescription
-    </Typography>
-    <img
-      src={`data:image/png;base64,${booking.prescription}`}
-      alt="Prescription"
-      style={{ 
-        width: '100px', height: '100px', borderRadius:'50%',
-        objectFit: 'contain' // Maintain aspect ratio
-      }}
-    />
-    <Button 
-      variant="contained" 
-      color="secondary" 
-      onClick={handleCloseModal} 
-      sx={{ 
-        marginTop: 2, 
-        width: '150px'  // A fixed width for the button to make it look uniform
-      }}
-    >
-      Close
-    </Button>
-  </Card>
-</Modal>
-
-    </Card>
-  );
+        <Card
+          sx={{
+            padding: 2,
+            margin: 'auto',
+            maxWidth: '90%',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)'
+          }}
+        >
+          <Typography variant="h6" gutterBottom>
+            Prescription
+          </Typography>
+          <img
+            src={`data:image/png;base64,${booking.prescription}`}
+            alt="Prescription"
+            style={{
+              width: '500px',
+              height: '500px',
+              objectFit: 'contain' // Maintain aspect ratio
+            }}
+          />
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleCloseModal}
+            sx={{
+              marginTop: 2,
+              width: '150px' // A fixed width for the button to make it look uniform
+            }}
+          >
+            Close
+          </Button>
+        </Card>
+      </Modal>
+    </Card>);
 };
-const PendingCard = ({ booking ,fetchDatas}) => {
+const PendingCard = ({ booking, fetchDatas }) => {
+  const [showModal, setShowModal] = useState(false);  // Modal visibility state
+  const [showConfirmModal, setShowConfirmModal] = useState(false);  // Confirmation modal visibility state
+  const [cancelLoading, setCancelLoading] = useState(false); // Loading state for cancel action
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString(); // Adjust to your preferred date format
   };
 
-  const [showModal, setShowModal] = useState(false);  // Modal visibility state
-  const handleShowModal = () => setShowModal(true);
-  const handleCloseModal = () => setShowModal(false);
+  const handleShowConfirmModal = () => setShowConfirmModal(true);
+  const handleCloseConfirmModal = () => setShowConfirmModal(false);
 
-  const handlecancel = async() =>{
-
+  const handleCancel = async () => {
+    setCancelLoading(true);
     const formData = new FormData();
     formData.append("status", "Cancelled");
     formData.append("DoctorId", booking.doctorId);
     formData.append("PatientId", booking.patientId);
-    formData.append("Prescription",null)
+    formData.append("Prescription", null);
 
-    DbService.put(`Bookings/${booking.bookingId}`, formData, {
+    try {
+      await DbService.put(`Bookings/${booking.bookingId}`, formData, {
         headers: {
-            'Content-Type': 'multipart/form-data' // Important for FormData
+          'Content-Type': 'multipart/form-data' // Important for FormData
         }
-    },sessionStorage.getItem("token")).then((res) => {
-        setShowModal(false);
-    }).catch((err) => {
-        console.log(err);
-        setShowModal(false);
-    });
-    await fetchDatas()
+      }, sessionStorage.getItem("token"));
+      await fetchDatas();
+    } catch (error) {
+      console.error('Error canceling booking:', error);
+    } finally {
+      setCancelLoading(false);
+      handleCloseConfirmModal(); // Close the confirmation modal
+    }
+  };
 
-  }
   const Base64Image = ({ base64String }) => {
     const imageSrc = `data:image/png;base64,${base64String}`;
     return (
-      <img src={imageSrc} alt="Converted" style={{width: '100px', height: '100px', borderRadius:'50%' }} />
+      <img src={imageSrc} alt="Converted" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
     );
   };
 
   return (
     <Card sx={{ display: 'flex', flexDirection: 'column', padding: 2, marginBottom: 2, boxShadow: 3 }}>
-    <Grid container spacing={2}>
-      <Grid item xs={12} sm={4}>
-        <Base64Image base64String={booking.doctorImage} />
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={4}>
+          <Base64Image base64String={booking.doctorImage} />
+        </Grid>
+        <Grid item xs={12} sm={8}>
+          <Typography variant="h6" gutterBottom>{booking.doctorName}</Typography>
+          <Typography variant="body1" color="textSecondary">Status: {booking.status}</Typography>
+          <Typography variant="body1" color="textSecondary">Date: {formatDate(booking.bookingDate)}</Typography>
+        </Grid>
       </Grid>
-      <Grid item xs={12} sm={8}>
-        <Typography variant="h6" gutterBottom>{booking.doctorName}</Typography>
-        <Typography variant="body1" color="textSecondary">Status: {booking.status}</Typography>
-        <Typography variant="body1" color="textSecondary">Date: {formatDate(booking.bookingDate)}</Typography>
-      </Grid>
-    </Grid>
-    <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: 2 }}>
-      <IconButton
-      onClick={handlecancel}
-        sx={{
-          color: red[500],
-          '&:hover': { color: red[700] },
-        }}
-      >
-        <FaTimes />
-      </IconButton>
-    </Box>
-  </Card>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: 2 }}>
+        <IconButton
+          onClick={handleShowConfirmModal}
+          sx={{
+            color: red[500],
+            '&:hover': { color: red[700] },
+          }}
+        >
+          <FaTimes />
+        </IconButton>
+      </Box>
+
+      {/* Confirmation Modal */}
+      <Modal open={showConfirmModal} onClose={handleCloseConfirmModal}>
+        <Card sx={{
+          padding: 2,
+          margin: 'auto',
+          maxWidth: '90%',
+          maxHeight: '90vh',
+          overflowY: 'auto',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)'
+        }}>
+          <Typography variant="h6" gutterBottom>
+            Are you sure you want to cancel this appointment?
+          </Typography>
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleCancel}
+              disabled={cancelLoading}
+            >
+              {cancelLoading ? <CircularProgress size={24} /> : 'Confirm'}
+            </Button>
+            <Button
+              variant="outlined"
+              onClick={handleCloseConfirmModal}
+            >
+              Cancel
+            </Button>
+          </Box>
+        </Card>
+      </Modal>
+    </Card>
   );
 };
 
@@ -430,7 +429,7 @@ const Patientbookings = () => {
   }, [patients]);
 
   return (
-    <div>
+    <Container>
       <Typography variant="h4" gutterBottom>Patient Bookings</Typography>
       
 
@@ -463,7 +462,7 @@ const Patientbookings = () => {
         No records found
     </Typography>
 }
-    </div>
+    </Container>
   );
 };
 

@@ -1,88 +1,100 @@
 import axios from 'axios';
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Home, EventNote, Search, History, Edit, Logout,Close  } from '@mui/icons-material';
 import {
-  AppBar, Toolbar, IconButton, Avatar, Menu, MenuItem, Typography, Dialog,
-  DialogActions, DialogContent, DialogTitle, Button, Box
+  Home, EventNote, History, Edit, Logout, Close, Menu as MenuIcon
+} from '@mui/icons-material';
+import {
+  AppBar, Toolbar, IconButton, Avatar, Menu, MenuItem, Typography,
+  Dialog, DialogActions, DialogContent, DialogTitle, Box, Drawer, List, ListItem, ListItemIcon, ListItemText
 } from '@mui/material';
 import DbService from '../Api/DbService';
-import { styled } from '@mui/material/styles';
+import { Button, styled } from '@mui/material';
 
+// Create a styled button component
+const StyledButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.primary.contrastText,
+  backgroundColor: theme.palette.primary.main,
+  borderRadius: '8px',
+  margin: theme.spacing(1),
+  padding: theme.spacing(1.5, 2),
+  '&:hover': {
+    backgroundColor: theme.palette.primary.dark,
+  },
+  fontWeight: 'bold',
+  textTransform: 'none',
+}));
 
 export const DoctorContext = createContext();
 
 export const DoctorProvider = ({ children }) => {
-   
-  
-    const navigate = useNavigate()
-    const [anchorEl, setAnchorEl] = useState(null);
-  
-    const handleMenuOpen = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-  
-    const handleMenuClose = () => {
-      setAnchorEl(null);
-    };
-  
-    const handleLogout = () => {
-      // Add logout logic here
-      console.log("Logged out");
-      sessionStorage.clear()
-      navigate("/login"); // Navigate to login page on logout
-    };
-    const [doctors, setDoctors] = useState();
-    const id = sessionStorage.getItem("Doctor")
-    const [doctorsList, setDoctorsList] = useState([]);
-    const [filteredDoctors, setFilteredDoctors] = useState([]);
-    const [specializations, setSpecializations] = useState([]);
-    const [organizations, setOrganizations] = useState([]);
-    const [locations, setLocations] = useState([]);
-    const [selectedDoctor,setSelectedDoctor] = useState()
-    
-    const [openModal, setOpenModal] = useState(false);
+  const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [doctors, setDoctors] = useState(null);
+  const [doctorsList, setDoctorsList] = useState([]);
+  const [filteredDoctors, setFilteredDoctors] = useState([]);
+  const [specializations, setSpecializations] = useState([]);
+  const [organizations, setOrganizations] = useState([]);
+  const [locations, setLocations] = useState([]);
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
+  const id = sessionStorage.getItem("Doctor");
 
-    // Function to handle modal open
-    const handleModalOpen = () => setOpenModal(true);
-  
-    // Function to handle modal close
-    const handleModalClose = () => setOpenModal(false);
-    const StyledButton = styled(Button)(({ theme }) => ({
-      color: theme.palette.primary.contrastText,
-      margin: theme.spacing(1),
-    }));
+  // Function to handle modal open
+  const handleModalOpen = () => setOpenModal(true);
 
+  // Function to handle modal close
+  const handleModalClose = () => setOpenModal(false);
 
-    const formatDate = (dateTimeString) => {
-        const date = new Date(dateTimeString);
-        const day = getDayWithSuffix(date.getDate());
-        const month = date.toLocaleString('default', { month: 'short' });
-        return `${day} ${month}`;
-      }; 
-      const getDayWithSuffix = (day) => {
-        if (day > 3 && day < 21) return `${day}th`;
-        switch (day % 10) {
-          case 1: return `${day}st`;
-          case 2: return `${day}nd`;
-          case 3: return `${day}rd`;
-          default: return `${day}th`;
-        }
-      };
-  // Function to fetch all data
+  // Function to handle drawer open
+  const handleDrawerOpen = () => setDrawerOpen(true);
+
+  // Function to handle drawer close
+  const handleDrawerClose = () => setDrawerOpen(false);
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    console.log("Logged out");
+    sessionStorage.clear();
+    navigate("/login");
+  };
+
+  const formatDate = (dateTimeString) => {
+    const date = new Date(dateTimeString);
+    const day = getDayWithSuffix(date.getDate());
+    const month = date.toLocaleString('default', { month: 'short' });
+    return `${day} ${month}`;
+  };
+
+  const getDayWithSuffix = (day) => {
+    if (day > 3 && day < 21) return `${day}th`;
+    switch (day % 10) {
+      case 1: return `${day}st`;
+      case 2: return `${day}nd`;
+      case 3: return `${day}rd`;
+      default: return `${day}th`;
+    }
+  };
+
   const fetchDatas = async () => {
     try {
-      const patientsRes = await DbService.get(`Doctor/${id}`,{},sessionStorage.getItem("token"));
-        // console.log(patientsRes.data)
+      const patientsRes = await DbService.get(`Doctor/${id}`, {}, sessionStorage.getItem("token"));
       setDoctors(patientsRes.data);
-      // console.log(patientsRes)
-      // console.log("yess")
     } catch (err) {
       console.log(err);
     }
   };
+
   const fetchDoctors = async () => {
-    const response = await DbService.get("Doctor/",{},sessionStorage.getItem("token"));
+    const response = await DbService.get("Doctor/", {}, sessionStorage.getItem("token"));
     const data = response.data["$values"];
 
     const uniqueSpecializations = [...new Set(data.map(doctor => doctor.specialization))];
@@ -108,69 +120,76 @@ export const DoctorProvider = ({ children }) => {
     setDoctorsList(doctorsData);
     setFilteredDoctors(doctorsData);
   };
-  // Fetch data when the component mounts
+
   useEffect(() => {
-    
     fetchDatas();
     fetchDoctors();
   }, [id]);
-  
 
-  
-    return (
-      <DoctorContext.Provider value={{doctors, id, doctorsList, filteredDoctors, specializations, organizations, locations, 
-      setFilteredDoctors, selectedDoctor, setSelectedDoctor, fetchDatas, fetchDoctors }}>
-    <AppBar position="static">
+  return (
+    <DoctorContext.Provider value={{
+      doctors, id, doctorsList, filteredDoctors, specializations, organizations, locations,
+      setFilteredDoctors, selectedDoctor, setSelectedDoctor, fetchDatas, fetchDoctors
+    }}>
+      <AppBar position="static">
         <Toolbar>
-          {/* Home Button */}
-          <StyledButton
-  variant="contained" // Using "contained" variant for a solid background
-  startIcon={<Home />}
-  onClick={() => navigate("/doctor-dash")}
->
-  Home
-</StyledButton>
+          {/* Hamburger Menu Button */}
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={handleDrawerOpen}
+            sx={{ display: { xs: 'block', sm: 'none' } }}
+          >
+            <MenuIcon />
+          </IconButton>
 
-{/* Doctor Bookings Button */}
-<StyledButton
-  variant="contained"
-  startIcon={<EventNote />}
-  onClick={() => navigate("doctor-bookings")}
->
-  Bookings
-</StyledButton>
+          {/* Desktop Menu Buttons */}
+          <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 1 }}>
+            <StyledButton
+              variant="contained"
+              startIcon={<Home />}
+              onClick={() => navigate("/doctor-dash")}
+            >
+              Home
+            </StyledButton>
+            <StyledButton
+              variant="contained"
+              startIcon={<EventNote />}
+              onClick={() => navigate("doctor-bookings")}
+            >
+              Bookings
+            </StyledButton>
+            <StyledButton
+              variant="contained"
+              startIcon={<History />}
+            >
+              Medical History
+            </StyledButton>
+            <StyledButton
+              variant="contained"
+              startIcon={<Edit />}
+              onClick={() => navigate("doctor-edit")}
+            >
+              Edit Profile
+            </StyledButton>
+          </Box>
 
-{/* Medical History Button */}
-<StyledButton
-  variant="contained"
-  startIcon={<History />}
->
-  Medical History
-</StyledButton>
+          <Box sx={{ flexGrow: 1, textAlign: 'center' }}>
+            <Typography variant="h6" >
+              Welcome {doctors?.name}
+            </Typography>
+          </Box>
 
-{/* Edit Profile Button */}
-<StyledButton
-  variant="contained"
-  startIcon={<Edit />}
-  onClick={() => navigate("doctor-edit")}
->
-  Edit Profile
-</StyledButton>
-
-          <div style={{ flexGrow: 1 }} />
-          <Typography variant="h6" gutterBottom>
-          Welcome {doctors?.name}
-
-        </Typography>
           {/* Doctor Profile Avatar and X Button */}
-          <IconButton onClick={handleMenuOpen} color="inherit">
-            <Avatar alt="Doctor Profile" src={`data:image/png;base64,${doctors?.imageData}`} />
-          </IconButton>
-
-          {/* X Button to Open Modal */}
-          <IconButton onClick={handleModalOpen} color="inherit">
-            <Close />
-          </IconButton>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <IconButton onClick={handleMenuOpen} color="inherit">
+              <Avatar alt="Doctor Profile" src={`data:image/png;base64,${doctors?.imageData}`} />
+            </IconButton>
+            <IconButton onClick={handleModalOpen} color="inherit">
+              <Close />
+            </IconButton>
+          </Box>
 
           <Menu
             anchorEl={anchorEl}
@@ -185,51 +204,77 @@ export const DoctorProvider = ({ children }) => {
         </Toolbar>
       </AppBar>
 
-      <Dialog open={openModal} onClose={handleModalClose}>
-  <DialogTitle>
-    Close Profile
-    {/* Styled X Button */}
-    <IconButton
-      aria-label="close"
-      onClick={handleModalClose}
-      sx={{
-        position: 'absolute',
-        right: 8,
-        top: 8,
-        backgroundColor: '#f5f5f5',  // Light background
-        color: '#ff1744',  // Red color for the X
-        border: '1px solid #ff1744',  // Red border
-        '&:hover': {
-          backgroundColor: '#ff1744',  // Red background on hover
-          color: '#ffffff',  // White X on hover
-        },
-        transition: 'all 0.3s ease',  // Smooth hover transition
-        width: 40,  // Increase size
-        height: 40,
-      }}
-    >
-      <Close />
-    </IconButton>
-  </DialogTitle>
-  <DialogContent>
-    <Typography variant="body1">
-      Are you sure you want to close the profile section?
-    </Typography>
-  </DialogContent>
-  <DialogActions>
-    <Button onClick={handleModalClose} color="primary">
-      Cancel
-    </Button>
-    <Button onClick={() => { handleLogout() }} color="primary" autoFocus>
-      Confirm
-    </Button>
-  </DialogActions>
-</Dialog>
+      <Drawer
+        anchor="left"
+        open={drawerOpen}
+        onClose={handleDrawerClose}
+      >
+        <List>
+          <ListItem button onClick={() => { navigate("/doctor-dash"); handleDrawerClose(); }}>
+            <ListItemIcon><Home /></ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem button onClick={() => { navigate("doctor-bookings"); handleDrawerClose(); }}>
+            <ListItemIcon><EventNote /></ListItemIcon>
+            <ListItemText primary="Bookings" />
+          </ListItem>
+          <ListItem button onClick={() => { handleDrawerClose(); }}>
+            <ListItemIcon><History /></ListItemIcon>
+            <ListItemText primary="Medical History" />
+          </ListItem>
+          <ListItem button onClick={() => { navigate("doctor-edit"); handleDrawerClose(); }}>
+            <ListItemIcon><Edit /></ListItemIcon>
+            <ListItemText primary="Edit Profile" />
+          </ListItem>
+          <ListItem button onClick={handleLogout}>
+            <ListItemIcon><Logout /></ListItemIcon>
+            <ListItemText primary="Logout" />
+          </ListItem>
+        </List>
+      </Drawer>
 
+      <Dialog open={openModal} onClose={handleModalClose}>
+        <DialogTitle>
+          Close Profile
+          <IconButton
+            aria-label="close"
+            onClick={handleModalClose}
+            sx={{
+              position: 'absolute',
+              right: 8,
+              top: 8,
+              backgroundColor: '#f5f5f5',
+              color: '#ff1744',
+              border: '1px solid #ff1744',
+              '&:hover': {
+                backgroundColor: '#ff1744',
+                color: '#ffffff',
+              },
+              transition: 'all 0.3s ease',
+              width: 40,
+              height: 40,
+            }}
+          >
+            <Close />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <Typography variant="body1">
+            Are you sure you want to close the profile section?
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleModalClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleLogout} color="primary" autoFocus>
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       {/* Render child components */}
       {children}
-</DoctorContext.Provider>
-
-    );
-  };
+    </DoctorContext.Provider>
+  );
+};

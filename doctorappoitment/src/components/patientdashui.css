@@ -451,4 +451,65 @@
       opacity: 1;
     }
   }
+  /* Styles for large screens and above */
+#doctor-desktop-filter {
+  display: block;
+}
+
+.search-results-summary,
+.doctor--card-container {
+  margin-top: 20px;
+}
+
+/* Styles for mobile large screens and below */
+@media (max-width: 992px) {
+  #doctor-desktop-filter {
+    display: none; /* Hide filters on mobile */
+  }
+
+  .search-results-summary {
+    order: 1; /* Place the search results summary above the filters on mobile */
+  }
+
+  .cardiac-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .doctor--card-container {
+    margin-top: 20px;
+  }
   
+  /* Adjust the search input and filter section for mobile view */
+  .filter--item {
+    margin-bottom: 10px;
+  }
+}
+
+/* Base styles for the search box container */
+.search-box-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adjust spacing as needed */
+}
+
+/* Styles for the search input */
+.search-input {
+  flex: 1; /* Allows input to take up available space */
+}
+
+/* Styles for the search button */
+.search-button {
+  /* Add any button-specific styles here */
+}
+
+/* Media query for mobile large and below */
+@media (max-width: 992px) {
+  .search-box-container {
+    flex-direction: column; /* Stack input and button vertically */
+  }
+  
+  .search-button {
+    margin-top: 10px; /* Add spacing between input and button */
+  }
+}

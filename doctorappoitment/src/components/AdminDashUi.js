@@ -1,68 +1,104 @@
-import React  from 'react'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { AppBar, Toolbar, Typography, IconButton, Box, Button, Modal, Container, Grid } from '@mui/material';
+import { FaUserMd, FaUsers, FaCalendarCheck, FaChartBar, FaSignOutAlt } from 'react-icons/fa';
 import '../App.css';
 
-import { FaUserMd, FaUsers, FaCalendarCheck, FaChartBar, FaSignOutAlt } from 'react-icons/fa';
-
-
-
 const AdminDashUi = () => {
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
 
- const navigate = useNavigate()
- const logout = () =>{
-navigate("/login")
- }
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-    return (
+  const logout = () => {
+    navigate("/login");
+  };
 
-      
-      <>
-      <div className="px-3 py-2 bg-dark text-white">
-        <div className="container">
-          <div className="d-flex flex-wrap align-items-center justify-content-between">
-            
-            <ul className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-              <li>
-                <Link to="analytics" className="nav-link text-secondary" style={{ color: '#ffffff', fontSize: '1rem' }}>
-                  <FaChartBar size={24} style={{ color: '#f8f9fa' }} /> Analytics
-                </Link>
-              </li>
-              <li>
-                <Link to="doctors" className="nav-link text-secondary" style={{ color: '#ffffff', fontSize: '1rem' }}>
-                  <FaUserMd size={24} style={{ color: '#f8f9fa' }} /> Doctors
-                </Link>
-              </li>
-              <li>
-                <Link to="patients" className="nav-link text-secondary" style={{ color: '#ffffff', fontSize: '1rem' }}>
-                  <FaUsers size={24} style={{ color: '#f8f9fa' }} /> Patients
-                </Link>
-              </li>
-              <li>
-                <Link to="appointments" className="nav-link text-secondary" style={{ color: '#ffffff', fontSize: '1rem' }}>
-                  <FaCalendarCheck size={24} style={{ color: '#f8f9fa' }} /> Appointments
-                </Link>
-              </li>
-            </ul>
+  return (
+    <>
+      <AppBar position="static" sx={{ bgcolor: 'darkblue' }}>
+        <Toolbar>
+          <Container maxWidth="lg">
+            <Grid container alignItems="center" justifyContent="space-between">
+              <Grid item xs={12} md={8}>
+                <Box display="flex" justifyContent={{ xs: 'center', md: 'flex-start' }} flexWrap="wrap">
+                  <Button
+                    component={Link}
+                    to="analytics"
+                    startIcon={<FaChartBar />}
+                    sx={{ color: '#ffffff', textTransform: 'none', fontSize: '1rem', mx: 1 }}
+                  >
+                    Analytics
+                  </Button>
+                  <Button
+                    component={Link}
+                    to="doctors"
+                    startIcon={<FaUserMd />}
+                    sx={{ color: '#ffffff', textTransform: 'none', fontSize: '1rem', mx: 1 }}
+                  >
+                    Doctors
+                  </Button>
+                  <Button
+                    component={Link}
+                    to="patients"
+                    startIcon={<FaUsers />}
+                    sx={{ color: '#ffffff', textTransform: 'none', fontSize: '1rem', mx: 1 }}
+                  >
+                    Patients
+                  </Button>
+                  <Button
+                    component={Link}
+                    to="appointments"
+                    startIcon={<FaCalendarCheck />}
+                    sx={{ color: '#ffffff', textTransform: 'none', fontSize: '1rem', mx: 1 }}
+                  >
+                    Appointments
+                  </Button>
+                </Box>
+              </Grid>
+              <Grid item xs={12} md={4} textAlign={{ xs: 'center', md: 'right' }}>
+                <IconButton
+                  edge="end"
+                  color="inherit"
+                  onClick={handleOpen}
+                  sx={{ fontSize: '1rem', color: '#ffffff' }}
+                >
+                  <FaSignOutAlt size={20} />
+                  <Typography sx={{ ml: 1, display: { xs: 'none', md: 'inline' } }}>Logout</Typography>
+                </IconButton>
+              </Grid>
+            </Grid>
+          </Container>
+        </Toolbar>
+      </AppBar>
 
-        
-            <div className="d-flex align-items-center">
-            
-              <button
-                onClick={logout}
-                className="btn btn-outline-light"
-                style={{ fontSize: '1rem' }}
-              >
-                <FaSignOutAlt size={20} /> Logout
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
+      {/* Logout Confirmation Modal */}
+      <Modal open={open} onClose={handleClose}>
+        <Box 
+          sx={{
+            position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+            width: { xs: 250, sm: 300 }, bgcolor: 'background.paper', boxShadow: 24, p: 4, borderRadius: '10px',
+          }}
+        >
+          <Typography variant="h6" gutterBottom>Confirm Logout</Typography>
+          <Typography variant="body2" gutterBottom>Are you sure you want to logout?</Typography>
+          <Box display="flex" justifyContent="space-between" mt={2}>
+            <Button variant="contained" color="primary" onClick={logout}>
+              Confirm
+            </Button>
+            <Button variant="outlined" color="secondary" onClick={handleClose}>
+              Cancel
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
+
+      <Container>
         <Outlet />
-      </div>
+      </Container>
     </>
-    )
-}
+  );
+};
 
-export default AdminDashUi
+export default AdminDashUi;

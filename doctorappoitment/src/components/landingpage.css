@@ -19,6 +19,10 @@
   }
   
   
+  .login-button {
+    width: 100px;
+    margin-left: auto; /* Pushes the button to the right */
+  }
   
   /* LandingPage.css */
   .custom-navbar {

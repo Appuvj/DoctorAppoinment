@@ -360,6 +360,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "DoctorAppoitmentAPICRUD.Controllers.LoginController",
+    "Method": "ResetPasswordAsync",
+    "RelativePath": "api/Login/forgot-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "DoctorAppoitmentAPICRUD.Dtos.ForgotPasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "DoctorAppoitmentAPICRUD.Controllers.PatientController",
     "Method": "GetPatients",
     "RelativePath": "api/Patient",

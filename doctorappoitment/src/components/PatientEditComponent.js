@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const apiUrl = 'Patient/';
 
 const validationSchema = Yup.object({
-  name: Yup.string().required('Name is required'),
+  name: Yup.string().min(4, 'Name must be at least 4 characters').matches(/^[A-Za-z\s]+$/, 'Name must contain only alphabets').required('Name is required'),
   mobile: Yup.string()
     .matches(/^\d{10}$/, 'Mobile number must be 10 digits')
     .required('Mobile number is required'),

@@ -260,10 +260,10 @@ const DoctorsCrud = () => {
                 
                 <Box sx={{ marginTop: 2, display: 'flex', gap: 1 }}>
                   <Button variant="contained" color="primary" onClick={() => handleView(doctor.doctorId)}>
-                    View
+                    Bookings
                   </Button>
                   <Button variant="contained" color="warning" onClick={() => handleEdit(doctor.doctorId)}>
-                    Edit
+                    View
                   </Button>
                   <Button variant="contained" color="error" onClick={() => handleDelete(doctor.doctorId)}>
                     Delete

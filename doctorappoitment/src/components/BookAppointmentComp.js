@@ -7,23 +7,44 @@ import DbService from '../Api/DbService';
 import { useNavigate } from 'react-router-dom';
 
 const BookAppointmentComp = () => {
-
   const [doctor, setDoctor] = useState();
   const [patient, setPatient] = useState();
-  const { patients, selectedDoctor,fetchDatas ,fetchDoctors } = useContext(PatientContext);
-  const navigate = useNavigate()
+  const { patients, selectedDoctor, fetchDatas, fetchDoctors } = useContext(PatientContext);
+  const navigate = useNavigate();
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [patientName, setPatientName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState({});
+  const [minTime, setMinTime] = useState('');
 
   const today = new Date().toISOString().split('T')[0]; // Get current date in 'YYYY-MM-DD' format
+
+  // Function to get current time in HH:MM format
+  const getCurrentTime = () => {
+    const now = new Date();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    hours = hours < 10 ? `0${hours}` : hours;
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+    return `${hours}:${minutes}`;
+  };
+
+  const currentTime = getCurrentTime(); // Get current time
 
   useEffect(() => {
     setDoctor(selectedDoctor);
   }, [selectedDoctor]);
+
+  useEffect(() => {
+    // Update minTime based on selected date
+    if (date === today) {
+      setMinTime(currentTime);
+    } else {
+      setMinTime('00:00'); // No restriction for dates other than today
+    }
+  }, [date, currentTime, today]);
 
   const validateForm = () => {
     const newErrors = {};
@@ -32,47 +53,41 @@ const BookAppointmentComp = () => {
     return newErrors;
   };
 
-  const handleSubmit =async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validateForm();
     if (Object.keys(newErrors).length === 0) {
-      if(window.confirm(`Booking Request Sent To Admin `))
-      {
-      setDate('');
-      setTime('');
-      setPatientName('');
-      setEmail('');
-      setMessage('');
-      setErrors({});
+      if (window.confirm("Booking Request Sent To Admin")) {
+        setDate('');
+        setTime('');
+        setPatientName('');
+        setEmail('');
+        setMessage('');
+        setErrors({});
 
-      const combinedDateTime = new Date(`${date}T${time}:00`);
-      const formattedDateTime = combinedDateTime.toISOString();
-   const response =   await  DbService.post("Bookings", {
-        "bookingDate": formattedDateTime,
-        "status": "Pending",
-        "doctorId": doctor.id,
-        "patientId": patients.patientId,
-        "message": message
-      },{},sessionStorage.getItem("token"));
+        const combinedDateTime = new Date(`${date}T${time}:00`);
+        const formattedDateTime = combinedDateTime.toISOString();
+        const response = await DbService.post("Bookings", {
+          "bookingDate": formattedDateTime,
+          "status": "Pending",
+          "doctorId": doctor.id,
+          "patientId": patients.patientId,
+          "message": message
+        }, {}, sessionStorage.getItem("token"));
 
-      if(response.status == 201)
-      {
-        await fetchDatas()
-        await fetchDoctors()
-setTimeout(()=>
-
-{
-  navigate("/patient-dash/patient-bookings")
-
-},1000)
+        if (response.status === 201) {
+          await fetchDatas();
+          await fetchDoctors();
+          setTimeout(() => {
+            navigate("/patient-dash/patient-bookings");
+          }, 1000);
+        }
       }
-
     } else {
       setErrors(newErrors);
     }
-  
   };
-  }
+
   return (
     <Container maxWidth="sm" className="book-appointment">
       <Box className="appointment-container" sx={{ bgcolor: '#f7f7f7', p: 4, borderRadius: 2, boxShadow: 3 }}>
@@ -113,6 +128,7 @@ setTimeout(()=>
                 label=""
                 type="time"
                 value={time}
+                InputProps={{ inputProps: { min: minTime } }} // Set min time to minTime
                 onChange={(e) => setTime(e.target.value)}
                 error={Boolean(errors.time)}
                 helperText={errors.time}
@@ -164,3 +180,4 @@ setTimeout(()=>
 }
 
 export default BookAppointmentComp;
+

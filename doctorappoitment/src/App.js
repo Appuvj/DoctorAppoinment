@@ -27,7 +27,14 @@ function App() {
         
       </Nav>
       
-      
+      <Button
+            variant="primary"
+            onClick={() => navigate("login")}
+            className="login-button"
+            
+          >
+            Login
+          </Button>
     </Navbar.Collapse>
   </Container>
 </Navbar>

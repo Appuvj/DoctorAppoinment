@@ -63,5 +63,48 @@ namespace DoctorAppoitmentAPICRUD.Controllers
                 return BadRequest("Invalid role specified");
             }
         }
+
+
+        [HttpPost ("forgot-password")]
+        public async Task<IActionResult> ResetPasswordAsync(ForgotPasswordRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(request.Email) ||
+                string.IsNullOrWhiteSpace(request.NewPassword) ||
+                string.IsNullOrWhiteSpace(request.UserType))
+            {
+                return BadRequest();
+            }
+
+            if (request.UserType == "Doctor")
+            {
+                var doctor = await _context.Doctors.FirstOrDefaultAsync(d => d.Email == request.Email);
+                if (doctor == null) return NotFound();
+                doctor.Password = request.NewPassword;
+                _context.Doctors.Update(doctor);
+            }
+            else if (request.UserType == "Patient")
+            {
+                var patient = await _context.Patients.FirstOrDefaultAsync(p => p.Email == request.Email);
+                if (patient == null) return NotFound();
+                patient.Password = request.NewPassword;
+                _context.Patients.Update(patient);
+
+            }
+            else
+            {
+                return BadRequest(); // Invalid user type
+            }
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
     }
 }

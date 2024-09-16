@@ -304,7 +304,7 @@ console.log(formData)
         }}
       >
         <Typography variant="h4" gutterBottom>
-          Patient Update 
+          Patient View 
         </Typography>
         {formik.status && (
           <Alert severity={formik.status === 'success' ? 'success' : 'error'}>
@@ -322,13 +322,7 @@ console.log(formData)
                 type="file"
                 accept=".jpg, .jpeg, .png"
                 hidden
-                onChange={(e) => {
-                  const file = e.target.files[0];
-                  formik.setFieldValue('photo', file);
-                  if (file) {
-                    formik.setFieldError('photo', ''); // Clear the error if a file is selected
-                  }
-                }}
+               disabled
               />
               <PhotoCamera />
             </IconButton>
@@ -341,7 +335,6 @@ console.log(formData)
             label="Name"
             name="name"
             value={formik.values.name}
-            onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             error={formik.touched.name && Boolean(formik.errors.name)}
             helperText={formik.touched.name && formik.errors.name}
@@ -353,7 +346,6 @@ console.log(formData)
             name="mobile"
             type="tel"
             value={formik.values.mobile}
-            onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             error={formik.touched.mobile && Boolean(formik.errors.mobile)}
             helperText={formik.touched.mobile && formik.errors.mobile}
@@ -364,7 +356,6 @@ console.log(formData)
             label="Email"
             name="email"
             value={formik.values.email}
-            onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             error={formik.touched.email && Boolean(formik.errors.email)}
             helperText={formik.touched.email && formik.errors.email}
@@ -375,7 +366,6 @@ console.log(formData)
             label="Address"
             name="address"
             value={formik.values.address}
-            onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             error={formik.touched.address && Boolean(formik.errors.address)}
             helperText={formik.touched.address && formik.errors.address}
@@ -389,7 +379,6 @@ console.log(formData)
               name="gender"
               value={formik.values.gender}
               label="Gender"
-              onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               sx={{ mb: 2 }}
             >
@@ -407,21 +396,12 @@ console.log(formData)
             name="password"
             type="password"
             value={formik.values.password}
-            onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
             sx={{ mb: 2 }}
           />
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            disabled={formik.isSubmitting}
-          >
-            {formik.isSubmitting ? <CircularProgress size={24} /> : 'Update'}
-          </Button>
+          
         </Box>
       </Box>
 

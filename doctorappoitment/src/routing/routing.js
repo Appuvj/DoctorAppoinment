@@ -34,6 +34,7 @@ import EmergencyComp from "../components/EmergencyComp";
 import Services from "../components/Services";
 import ErrorBound from "../components/ErrorBound";
 import ErrorBoundary from "../components/ErrorHandle";
+import ForgotPasswordForm from "../components/ForgotPasswordForm";
 
 
 
@@ -158,8 +159,11 @@ element : <BookAppointmentComp/>
     ]
 
 },
-
-
+{
+path : "/forgot-password",
+element : <ForgotPasswordForm/>
+}
+,
 {
     path:"/admin",
    element:(<ErrorBoundary><AdminDashBoard/></ErrorBoundary>),

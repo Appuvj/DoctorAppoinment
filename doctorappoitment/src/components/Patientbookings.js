@@ -3,9 +3,10 @@ import {  CircularProgress, Box } from '@mui/material';
 
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Modal, Card, CardContent, Typography, Grid, IconButton } from '@mui/material';
-import { FaCheckCircle, FaFileUpload } from 'react-icons/fa';
+import { FaCheckCircle, FaFileUpload, FaTimes } from 'react-icons/fa';
 import { PatientContext } from './PatientDashContext';
 import DbService from '../Api/DbService';
+import { red } from '@mui/material/colors';
 
 const BookingCard = ({ booking, onComplete, submitData }) => {
   const formatDate = (dateString) => {
@@ -58,7 +59,7 @@ const BookingCard = ({ booking, onComplete, submitData }) => {
   const Base64Image = ({ base64String }) => {
     const imageSrc = `data:image/png;base64,${base64String}`;
     return (
-      <img src={imageSrc} alt="Converted" style={{ width: '100%', height: 'auto' }} />
+      <img src={imageSrc} alt="Converted" style={{ width: '100px', height: '100px', borderRadius:'50%' }} />
     );
   };
 
@@ -103,7 +104,7 @@ const CompletedCard = ({ booking }) => {
   const Base64Image = ({ base64String }) => {
     const imageSrc = `data:image/png;base64,${base64String}`;
     return (
-      <img src={imageSrc} alt="Converted" style={{ width: '100%', height: 'auto' }} />
+      <img src={imageSrc} alt="Converted" style={{ width: '100px', height: '100px', borderRadius:'50%' }} />
     );
   };
 
@@ -195,8 +196,7 @@ const CompletedCard = ({ booking }) => {
       src={`data:image/png;base64,${booking.prescription}`}
       alt="Prescription"
       style={{ 
-        width: '500px', 
-        height: '500px', 
+        width: '100px', height: '100px', borderRadius:'50%',
         objectFit: 'contain' // Maintain aspect ratio
       }}
     />
@@ -217,7 +217,7 @@ const CompletedCard = ({ booking }) => {
     </Card>
   );
 };
-const PendingCard = ({ booking }) => {
+const PendingCard = ({ booking ,fetchDatas}) => {
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString(); // Adjust to your preferred date format
@@ -227,29 +227,58 @@ const PendingCard = ({ booking }) => {
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
+  const handlecancel = async() =>{
+
+    const formData = new FormData();
+    formData.append("status", "Cancelled");
+    formData.append("DoctorId", booking.doctorId);
+    formData.append("PatientId", booking.patientId);
+    formData.append("Prescription",null)
+
+    DbService.put(`Bookings/${booking.bookingId}`, formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data' // Important for FormData
+        }
+    },sessionStorage.getItem("token")).then((res) => {
+        setShowModal(false);
+    }).catch((err) => {
+        console.log(err);
+        setShowModal(false);
+    });
+    await fetchDatas()
+
+  }
   const Base64Image = ({ base64String }) => {
     const imageSrc = `data:image/png;base64,${base64String}`;
     return (
-      <img src={imageSrc} alt="Converted" style={{ width: '100%', height: 'auto' }} />
+      <img src={imageSrc} alt="Converted" style={{width: '100px', height: '100px', borderRadius:'50%' }} />
     );
   };
 
   return (
     <Card sx={{ display: 'flex', flexDirection: 'column', padding: 2, marginBottom: 2, boxShadow: 3 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={4}>
-          <Base64Image base64String={booking.doctorImage} />
-        </Grid>
-        <Grid item xs={12} sm={8}>
-          <Typography variant="h6" gutterBottom>{booking.doctorName}</Typography>
-          <Typography variant="body1" color="textSecondary">Status: {booking.status}</Typography>
-          <Typography variant="body1" color="textSecondary">Date: {formatDate(booking.bookingDate)}</Typography>
-         
-        </Grid>
+    <Grid container spacing={2}>
+      <Grid item xs={12} sm={4}>
+        <Base64Image base64String={booking.doctorImage} />
       </Grid>
-
-    
-    </Card>
+      <Grid item xs={12} sm={8}>
+        <Typography variant="h6" gutterBottom>{booking.doctorName}</Typography>
+        <Typography variant="body1" color="textSecondary">Status: {booking.status}</Typography>
+        <Typography variant="body1" color="textSecondary">Date: {formatDate(booking.bookingDate)}</Typography>
+      </Grid>
+    </Grid>
+    <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: 2 }}>
+      <IconButton
+      onClick={handlecancel}
+        sx={{
+          color: red[500],
+          '&:hover': { color: red[700] },
+        }}
+      >
+        <FaTimes />
+      </IconButton>
+    </Box>
+  </Card>
   );
 };
 
@@ -266,7 +295,7 @@ const CancelledCard = ({ booking }) => {
   const Base64Image = ({ base64String }) => {
     const imageSrc = `data:image/png;base64,${base64String}`;
     return (
-      <img src={imageSrc} alt="Converted" style={{ width: '100%', height: 'auto' }} />
+      <img src={imageSrc} alt="Converted" style={{width: '100px', height: '100px', borderRadius:'50%' }} />
     );
   };
 
@@ -316,13 +345,13 @@ const CompletedList = ({ bookings }) => {
   );
 };
 
-const PendingList = ({ bookings }) => {
+const PendingList = ({ bookings,fetchDatas }) => {
   return (
     <Grid container spacing={2}>
       {bookings.map((booking) => (
         booking.status.toLowerCase() === 'pending' && (
           <Grid item xs={12} sm={6} md={4} key={booking.bookingId}>
-            <PendingCard booking={booking} />
+            <PendingCard booking={booking} fetchDatas={fetchDatas}/>
           </Grid>
         )
       ))}
@@ -347,7 +376,7 @@ const CancelledList = ({ bookings }) => {
 
 };
 const Patientbookings = () => {
-  const { patients, id } = useContext(PatientContext); // Destructure from context
+  const { patients, id,fetchDatas } = useContext(PatientContext); // Destructure from context
   const [PatientBookingData, SetPatientBookingData] = useState([]);
   const [pendingData, setPendingData] = useState([]);
   const [completedData, setCompletedData] = useState([]);
@@ -415,7 +444,7 @@ const Patientbookings = () => {
 }
 
       <Typography variant="h6">Pending Appointments</Typography>
-      {pendingData.length > 0 ? <PendingList bookings={pendingData} /> :
+      {pendingData.length > 0 ? <PendingList bookings={pendingData} fetchDatas = {fetchDatas} /> :
         <Typography variant="h6" color="textSecondary" align="center" sx={{ marginTop: 2 }}>
         No records found
     </Typography>

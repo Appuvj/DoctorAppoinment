@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import './EmergencyComp.css'; // Import your custom CSS file
 import { Container } from 'react-bootstrap';
+import axios from 'axios';
 
 const EmergencyComp = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         phone: '',  // Added phone field here
-        message: ''
+        message: '',
+        isRead : false
     });
 
     const [errors, setErrors] = useState({});
@@ -17,6 +19,10 @@ const EmergencyComp = () => {
         const newErrors = {};
         if (!formData.name) {
             newErrors.name = 'Name is required';
+        }
+        if(formData.name.length<=3)
+        {
+            newErrors.name = 'Name must be greater than 3 characters';
         }
         if (!formData.email) {
             newErrors.email = 'Email is required';
@@ -41,11 +47,25 @@ const EmergencyComp = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit =async (e) => {
         e.preventDefault();
         if (validateForm()) {
-            setSubmitted(true);
-            alert(`Hey ${submitted.name}, Thank you for contacting us!`);
+            try {
+                const response = await axios.post('https://localhost:7146/api/Login/ContactForm', formData);
+                if (response.status === 200) {
+                    setSubmitted(true);
+                    alert(`Hey ${formData.name}, thank you for contacting us!`);
+                    setFormData({
+                        name: '',
+                        email: '',
+                        phone: '',
+                        message: ''
+                    });
+                }
+            } catch (error) {
+                alert(`Error Occured!`);
+                console.error("There was an error posting the data!", error);
+            }
             setFormData({
                 name: '',
                 email: '',

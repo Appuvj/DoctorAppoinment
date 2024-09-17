@@ -35,6 +35,7 @@ import Services from "../components/Services";
 import ErrorBound from "../components/ErrorBound";
 import ErrorBoundary from "../components/ErrorHandle";
 import ForgotPasswordForm from "../components/ForgotPasswordForm";
+import AdminContactForm from "../components/AdminContactForm";
 
 
 
@@ -216,7 +217,10 @@ element:<AnalyticsDataUi/>
         element : <DoctorAdminView/>
 
     }
-
+,{
+    path : "ContactForm",
+    element : <AdminContactForm/>
+}
 
 
 ]

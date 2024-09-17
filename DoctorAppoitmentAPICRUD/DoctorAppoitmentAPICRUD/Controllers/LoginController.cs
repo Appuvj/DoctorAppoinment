@@ -1,5 +1,6 @@
 ﻿using DoctorAppoitmentAPICRUD.Data;
 using DoctorAppoitmentAPICRUD.Dtos;
+using DoctorAppoitmentAPICRUD.Models;
 using DoctorAppoitmentAPICRUD.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -104,6 +105,20 @@ namespace DoctorAppoitmentAPICRUD.Controllers
             {
                 return BadRequest();
             }
+        }
+
+
+        [HttpPost("ContactForm")]
+        public async Task<IActionResult> PostContactForm([FromBody] ContactForm contactForm)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.ContactForms.Add(contactForm);
+                await _context.SaveChangesAsync();
+                return Ok(contactForm);
+            }
+
+            return BadRequest(ModelState);
         }
 
     }

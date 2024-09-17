@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, IconButton, Box, Button, Modal, Container, Grid } from '@mui/material';
-import { FaUserMd, FaUsers, FaCalendarCheck, FaChartBar, FaSignOutAlt } from 'react-icons/fa';
+import { FaUserMd, FaUsers, FaCalendarCheck, FaChartBar, FaSignOutAlt, FaEnvelopeOpen } from 'react-icons/fa';
 import '../App.css';
 
 const AdminDashUi = () => {
@@ -17,62 +17,70 @@ const AdminDashUi = () => {
 
   return (
     <>
-      <AppBar position="static" sx={{ bgcolor: 'darkblue' }}>
-        <Toolbar>
-          <Container maxWidth="lg">
-            <Grid container alignItems="center" justifyContent="space-between">
-              <Grid item xs={12} md={8}>
-                <Box display="flex" justifyContent={{ xs: 'center', md: 'flex-start' }} flexWrap="wrap">
-                  <Button
-                    component={Link}
-                    to="analytics"
-                    startIcon={<FaChartBar />}
-                    sx={{ color: '#ffffff', textTransform: 'none', fontSize: '1rem', mx: 1 }}
-                  >
-                    Analytics
-                  </Button>
-                  <Button
-                    component={Link}
-                    to="doctors"
-                    startIcon={<FaUserMd />}
-                    sx={{ color: '#ffffff', textTransform: 'none', fontSize: '1rem', mx: 1 }}
-                  >
-                    Doctors
-                  </Button>
-                  <Button
-                    component={Link}
-                    to="patients"
-                    startIcon={<FaUsers />}
-                    sx={{ color: '#ffffff', textTransform: 'none', fontSize: '1rem', mx: 1 }}
-                  >
-                    Patients
-                  </Button>
-                  <Button
-                    component={Link}
-                    to="appointments"
-                    startIcon={<FaCalendarCheck />}
-                    sx={{ color: '#ffffff', textTransform: 'none', fontSize: '1rem', mx: 1 }}
-                  >
-                    Appointments
-                  </Button>
-                </Box>
-              </Grid>
-              <Grid item xs={12} md={4} textAlign={{ xs: 'center', md: 'right' }}>
-                <IconButton
-                  edge="end"
-                  color="inherit"
-                  onClick={handleOpen}
-                  sx={{ fontSize: '1rem', color: '#ffffff' }}
-                >
-                  <FaSignOutAlt size={20} />
-                  <Typography sx={{ ml: 1, display: { xs: 'none', md: 'inline' } }}>Logout</Typography>
-                </IconButton>
-              </Grid>
-            </Grid>
-          </Container>
-        </Toolbar>
-      </AppBar>
-
+       <AppBar position="static" sx={{ bgcolor: 'darkblue' }}>
+    <Toolbar>
+      <Container maxWidth="lg">
+        <Grid container alignItems="center" justifyContent="space-between">
+          <Grid item xs={12} md={8}>
+            <Box display="flex" justifyContent={{ xs: 'center', md: 'flex-start' }} flexWrap="wrap">
+              <Button
+                component={Link}
+                to="analytics"
+                startIcon={<FaChartBar />}
+                sx={{ color: '#ffffff', textTransform: 'none', fontSize: '1rem', mx: 1 }}
+              >
+                Analytics
+              </Button>
+              <Button
+                component={Link}
+                to="doctors"
+                startIcon={<FaUserMd />}
+                sx={{ color: '#ffffff', textTransform: 'none', fontSize: '1rem', mx: 1 }}
+              >
+                Doctors
+              </Button>
+              <Button
+                component={Link}
+                to="patients"
+                startIcon={<FaUsers />}
+                sx={{ color: '#ffffff', textTransform: 'none', fontSize: '1rem', mx: 1 }}
+              >
+                Patients
+              </Button>
+              <Button
+                component={Link}
+                to="appointments"
+                startIcon={<FaCalendarCheck />}
+                sx={{ color: '#ffffff', textTransform: 'none', fontSize: '1rem', mx: 1 }}
+              >
+                Appointments
+              </Button>
+              {/* Add Contact Form Button Here */}
+              <Button
+                component={Link}
+                to="contactform"
+                startIcon={<FaEnvelopeOpen />} 
+                sx={{ color: '#ffffff', textTransform: 'none', fontSize: '1rem', mx: 1 }}
+              >
+                Contact Form
+              </Button>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4} textAlign={{ xs: 'center', md: 'right' }}>
+            <IconButton
+              edge="end"
+              color="inherit"
+              onClick={handleOpen}
+              sx={{ fontSize: '1rem', color: '#ffffff' }}
+            >
+              <FaSignOutAlt size={20} />
+              <Typography sx={{ ml: 1, display: { xs: 'none', md: 'inline' } }}>Logout</Typography>
+            </IconButton>
+          </Grid>
+        </Grid>
+      </Container>
+    </Toolbar>
+  </AppBar>
       {/* Logout Confirmation Modal */}
       <Modal open={open} onClose={handleClose}>
         <Box 

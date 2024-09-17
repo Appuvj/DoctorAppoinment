@@ -2,13 +2,15 @@ import React, { useEffect, useState, useContext } from 'react';
 import { AdminContext } from './AdminDashContext';
 import DbService from '../Api/DbService';
 import { useNavigate } from 'react-router-dom';
-import { Grid, Card, CardMedia, CardContent, Button, TextField, Typography, Box, CircularProgress, Dialog, DialogTitle, DialogContent, DialogActions, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { Grid, Card, CardMedia, CardContent, Button, TextField, Typography, Box, CircularProgress, Dialog, DialogTitle, DialogContent, DialogActions, FormControl, InputLabel, Select, MenuItem, Pagination } from '@mui/material';
 
 const DoctorsCrud = () => {
   const { doctors, fetchDatas } = useContext(AdminContext);
   const [specializations, setSpecializations] = useState([]);
   const [selectedSpecialization, setSelectedSpecialization] = useState('');
   const [filteredDoctors, setFilteredDoctors] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [doctorsPerPage] = useState(9); // Maximum 9 doctors per page
   const [showModal, setShowModal] = useState(false);
   const [modelData, setModelData] = useState({});
   const [confirmed, setConfirmed] = useState(false);
@@ -66,6 +68,17 @@ const DoctorsCrud = () => {
 
   const handleSpecializationChange = (event) => {
     setSelectedSpecialization(event.target.value);
+    setCurrentPage(1); // Reset to first page when filtering
+  };
+
+  // Calculate the index for the sliced array
+  const indexOfLastDoctor = currentPage * doctorsPerPage;
+  const indexOfFirstDoctor = indexOfLastDoctor - doctorsPerPage;
+  const currentDoctors = filteredDoctors.slice(indexOfFirstDoctor, indexOfLastDoctor);
+
+  // Handle page change
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
   };
 
   return (
@@ -195,8 +208,8 @@ const DoctorsCrud = () => {
               <Typography variant="h6" sx={{ ml: 2 }}>Loading...</Typography>
             </Box>
           </Grid>
-        ) : filteredDoctors.length > 0 ? (
-          filteredDoctors.map((doctor, index) => (
+        ) : currentDoctors.length > 0 ? (
+          currentDoctors.map((doctor, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Card
                 sx={{
@@ -241,13 +254,13 @@ const DoctorsCrud = () => {
                   </Typography>
                 </CardContent>
                 <Box sx={{ padding: 2, display: 'flex', gap: 1, justifyContent: 'center', width: '100%' }}>
-                  <Button variant="contained" color="primary" onClick={() => handleView(doctor.doctorId)} sx={{ flex: 1 }}>
-                    Bookings
-                  </Button>
-                  <Button variant="contained" color="warning" onClick={() => handleEdit(doctor.doctorId)} sx={{ flex: 1 }}>
+                  <Button size="small" color="info" variant="contained" onClick={() => handleView(doctor.doctorId)}>
                     View
                   </Button>
-                  <Button variant="contained" color="error" onClick={() => handleDelete(doctor.doctorId)} sx={{ flex: 1 }}>
+                  <Button size="small" color="primary" variant="contained" onClick={() => handleEdit(doctor.doctorId)}>
+                    Edit
+                  </Button>
+                  <Button size="small" color="error" variant="contained" onClick={() => handleDelete(doctor.doctorId)}>
                     Delete
                   </Button>
                 </Box>
@@ -256,12 +269,24 @@ const DoctorsCrud = () => {
           ))
         ) : (
           <Grid item xs={12}>
-            <Typography variant="h6" align="center" color="text.secondary" sx={{ mt: 4 }}>
-              No Records Found
+            <Typography variant="body1" sx={{ textAlign: 'center', mt: 4 }}>
+              No doctors found.
             </Typography>
           </Grid>
         )}
       </Grid>
+
+      {/* Pagination */}
+      <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
+        <Pagination
+          count={Math.ceil(filteredDoctors.length / doctorsPerPage)} // Calculate the total number of pages
+          page={currentPage}
+          onChange={handlePageChange}
+          variant="outlined"
+          shape="rounded"
+          size="large"
+        />
+      </Box>
     </div>
   );
 };

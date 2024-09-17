@@ -1,4 +1,5 @@
 ﻿using DoctorAppoitmentAPICRUD.Data;
+using DoctorAppoitmentAPICRUD.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -44,6 +45,31 @@ namespace DoctorAppoitmentAPICRUD.Controllers
             return Ok(stats);
         }
 
+
+
+        [HttpGet("contact-form")]
+        public async Task<IActionResult> GetContactForms()
+        {
+            var contactForms = await _context.ContactForms.ToListAsync();
+            return Ok(contactForms);
+        }
+
+        [HttpPut("contact-form/{id}")]
+        public async Task<IActionResult> MarkAsRead(int id,ContactForm contactForms)
+        {
+            var contactForm = await _context.ContactForms.FindAsync(id);
+
+            if (contactForm == null)
+            {
+                return NotFound();
+            }
+
+            // Mark the contact form as read
+            contactForm.IsRead = true; // Assuming there is an 'IsRead' field in your ContactForm model
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Contact form marked as read" });
+        }
 
     }
 }

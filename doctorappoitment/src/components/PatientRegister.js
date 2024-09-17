@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Box, Typography, TextField, Button, FormControl, InputLabel, Select, MenuItem, Avatar, IconButton, CircularProgress, FormHelperText, Alert } from '@mui/material';
-import { PhotoCamera } from '@mui/icons-material';
+import { PhotoCamera, Visibility, VisibilityOff } from '@mui/icons-material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router';
@@ -9,19 +9,28 @@ import axios from 'axios';
 const apiUrl = 'https://localhost:7146/api/Patient';
 
 const validationSchema = Yup.object({
-  name: Yup.string().min(4, 'Name must be at least 4 characters').matches(/^[A-Za-z\s]+$/, 'Name must contain only alphabets').required('Name is required'),
-  mobile: Yup.string()
+  name: Yup.string().trim().min(4, 'Name must be at least 4 characters').matches(/^[A-Za-z\s]+$/, 'Name must contain only alphabets').required('Name is required'),
+  mobile: Yup.string().trim()
     .matches(/^\d{10}$/, 'Mobile number must be 10 digits')
     .required('Mobile number is required'),
-  email: Yup.string().matches(/^[a-zA-Z0-9._%+-]+@gmail\.com$/, 'Email must be in the format').email('Invalid email address').required('Email is required'),
-  address: Yup.string().required('Address is required'),
-  gender: Yup.string().required('Gender is required'),
-  password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
+  email: Yup.string().trim().matches(/^[a-zA-Z0-9._%+-]+@gmail\.com$/, 'Email must be in the format').email('Invalid email address').required('Email is required'),
+  address: Yup.string().trim().required('Address is required'),
+  gender: Yup.string().trim().required('Gender is required'),
+  password: Yup.string().trim()
+  .matches(/^(?!.*\s).+$/, 'Password must not contain spaces') // Updated regex to disallow spaces
+  .matches(/(?=.*[a-z])/, 'Must contain at least one lowercase letter')
+  .matches(/(?=.*[A-Z])/, 'Must contain at least one uppercase letter')
+  .matches(/(?=.*\d)/, 'Must contain at least one number')
+  .matches(/(?=.*[@$!%*?&])/, 'Must contain at least one special character')
+  .min(8, 'Password must be at least 8 characters long')
+  .required('Password is required'),
   photo: Yup.mixed().required('Photo is required').test('fileType', 'Only .jpg, .jpeg, and .png files are allowed', value => {
     return !value || ['image/jpeg', 'image/jpg', 'image/png'].includes(value.type);
   })
 });
+
 const PatientRegistrationForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -38,12 +47,12 @@ const PatientRegistrationForm = () => {
       setSubmitting(true);
 
       const formData = new FormData();
-      formData.append('Name', values.name);
-      formData.append('Contact', values.mobile);
-      formData.append('Email', values.email);
-      formData.append('Address', values.address);
+      formData.append('Name', values.name.trim());
+      formData.append('Contact', values.mobile.trim());
+      formData.append('Email', values.email.trim());
+      formData.append('Address', values.address.trim());
       formData.append('Gender', values.gender);
-      formData.append('Password', values.password);
+      formData.append('Password', values.password.trim());
       formData.append('Image', values.photo);
 
       try {
@@ -128,7 +137,6 @@ const PatientRegistrationForm = () => {
             fullWidth
             label="Mobile"
             name="mobile"
-            type="tel"
             value={formik.values.mobile}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -182,13 +190,24 @@ const PatientRegistrationForm = () => {
             fullWidth
             label="Password"
             name="password"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             value={formik.values.password}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
             sx={{ mb: 2 }}
+            InputProps={{
+              endAdornment: (
+                <IconButton
+                  onClick={() => setShowPassword(prev => !prev)}
+                  onMouseDown={(e) => e.preventDefault()}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              ),
+            }}
           />
           <Button
             type="submit"

@@ -76,7 +76,7 @@
               "RelativeDocumentMoniker": "DoctorAppoitmentAPICRUD\\Migrations\\20240918035738_InitialCase.cs",
               "ToolTip": "C:\\Users\\vijaykumar.v\\Desktop\\DoctorAppointment\\DoctorAppoitmentAPICRUD\\DoctorAppoitmentAPICRUD\\Migrations\\20240918035738_InitialCase.cs",
               "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Migrations\\20240918035738_InitialCase.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAgwAwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-18T03:57:39.709Z",
               "EditorCaption": ""
@@ -115,8 +115,7 @@
               "RelativeToolTip": "DoctorAppoitmentAPICRUD\\Controllers\\LoginController.cs",
               "ViewState": "AgIAAGgAAAAAAAAAAAAgwG4AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T04:27:34.386Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-16T04:27:34.386Z"
             },
             {
               "$type": "Document",
@@ -145,9 +144,9 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "dbo.Doctors [Data]",
+              "Title": "dbo.Doctors.sql",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Hospital/True/SqlTable/dbo.Doctors.sql",
-              "ToolTip": "dbo.Doctors [Data]",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Hospital/True/SqlTable/dbo.Doctors.sql",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
               "WhenOpened": "2024-09-16T06:49:56.352Z"
             },

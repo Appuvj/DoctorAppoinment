@@ -255,10 +255,10 @@ const DoctorsCrud = () => {
                 </CardContent>
                 <Box sx={{ padding: 2, display: 'flex', gap: 1, justifyContent: 'center', width: '100%' }}>
                   <Button size="small" color="info" variant="contained" onClick={() => handleView(doctor.doctorId)}>
-                    View
+                    Bookings
                   </Button>
                   <Button size="small" color="primary" variant="contained" onClick={() => handleEdit(doctor.doctorId)}>
-                    Edit
+                    View
                   </Button>
                   <Button size="small" color="error" variant="contained" onClick={() => handleDelete(doctor.doctorId)}>
                     Delete

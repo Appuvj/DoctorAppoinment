@@ -90,24 +90,64 @@
     transform: scale(1.05);
 }
 
+
+
 .btn-register {
     background: linear-gradient(45deg, #6a11cb, #2575fc);
     border: none;
     padding: 12px;
     font-size: 1.1rem;
     font-weight: bold;
-    color: white;
+    color: white !important;
     text-transform: uppercase;
     border-radius: 25px;
     width: 100%;
     margin-top: 10px;
-    transition: background 0.3s ease, transform 0.3s ease;
+    transition: background 0.4s ease, transform 0.3s ease, box-shadow 0.4s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    letter-spacing: 1.2px;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-register:hover {
     background: linear-gradient(45deg, #5a10b3, #1e5fcf);
-    transform: scale(1.05);
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
+
+.btn-register::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+    transition: opacity 0.6s ease;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.btn-register:hover::before {
+    opacity: 1;
+    animation: glow 1.2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(50%, 50%);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+
 
 .btn-secondary {
     background: #6a11cb;
@@ -180,4 +220,42 @@
         font-size: 1rem;
         padding: 10px;
     }
+}
+
+
+
+
+.home-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Adjust margin as needed */
+}
+
+.btn-home {
+  background-color: #007bff; /* Initial button color */
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+.btn-home:hover {
+  background-color: #0056b3 !important; /* Darker shade on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+  transform: scale(1.05); /* Slightly enlarge the button */
+}
+
+.btn-home svg {
+  margin-right: 8px; /* Space between icon and text */
+  transition: transform 0.3s ease; /* Smooth transition for icon scaling */
+}
+
+.btn-home:hover svg {
+  transform: scale(1.2); /* Slightly enlarge the icon on hover */
 }

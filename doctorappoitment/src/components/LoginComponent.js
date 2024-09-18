@@ -1,8 +1,8 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DbService from '../Api/DbService';
 import './logincomponent.css';
+import { FaHome } from 'react-icons/fa'; // Import the Home icon
 
 const dataUrl = 'https://localhost:7146/api/Login'; // Replace with your local server URL
 
@@ -86,6 +86,10 @@ const LoginComponent = () => {
         navigate("/forgot-password");
     };
 
+    const handleHomeClick = () => {
+        navigate("/"); // Redirect to landing page
+    };
+
     const getBackgroundImage = () => {
         switch (role) {
             case 'Admin':
@@ -152,6 +156,11 @@ const LoginComponent = () => {
                         {error && <div className="error-message">{error}</div>}
                         {success && <div className="success-message">{success}</div>}
                     </form>
+                </div>
+                <div className="home-button">
+                    <button onClick={handleHomeClick} className="btn btn-home">
+                        <FaHome size={24} /> Home
+                    </button>
                 </div>
             </div>
         </div>

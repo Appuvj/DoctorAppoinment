@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import DbService from '../Api/DbService';
+import { Container, Typography } from '@mui/material';
 
 // src={`data:image/jpeg;base64,${item.prescription}`}
 
@@ -58,6 +59,7 @@ const DoctorBookingMedicalHistory = () => {
         setSelectedImage(null);
       };
       return (
+        <Container>
         <div>
           {/* Card List */}
           <div style={styles.container}>
@@ -75,7 +77,9 @@ const DoctorBookingMedicalHistory = () => {
                   <p>Visited Date: {formatDate(item.bookingDate)}</p>
                 </div>
               </div>
-            )):"loading.."}
+            )): <Typography variant="body1" sx={{ textAlign: 'center', mt: 4 }}>
+            No History found.
+          </Typography>}
           </div>
     
           {/* Bootstrap Modal */}
@@ -104,6 +108,7 @@ const DoctorBookingMedicalHistory = () => {
             </div>
           )}
         </div>
+        </Container>
       );
 }
 

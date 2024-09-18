@@ -15,9 +15,20 @@ const AdminDashUi = () => {
     navigate("/login");
   };
 
+  
+
   return (
     <>
-       <AppBar position="static" sx={{ bgcolor: 'darkblue' }}>
+       <AppBar position="static" sx={{
+        bgcolor: 'transparent', // Make AppBar transparent to use the gradient background
+        boxShadow: 'none', // Remove default shadow
+        position: 'sticky', // Make navbar sticky
+        top: 0,
+        zIndex: 1000, // Ensure navbar stays above content
+        background: 'linear-gradient(90deg, #007bff, #00d084)', // Gradient background
+        padding: '1rem 2rem', // Adjusted padding
+        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // Subtle shadow
+      }}>
     <Toolbar>
       <Container maxWidth="lg">
         <Grid container alignItems="center" justifyContent="space-between">

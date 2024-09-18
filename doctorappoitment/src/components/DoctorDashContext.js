@@ -23,6 +23,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
   fontWeight: 'bold',
   textTransform: 'none',
+
 }));
 
 export const DoctorContext = createContext();
@@ -131,7 +132,18 @@ export const DoctorProvider = ({ children }) => {
       doctors, id, doctorsList, filteredDoctors, specializations, organizations, locations,
       setFilteredDoctors, selectedDoctor, setSelectedDoctor, fetchDatas, fetchDoctors
     }}>
-      <AppBar position="static">
+
+
+      <AppBar
+        position="sticky"
+        sx={{
+          background: 'linear-gradient(90deg, #007bff, #00d084)', // Gradient background
+          padding: { xs: '0.5rem 1rem', sm: '1rem 2rem' }, // Responsive padding
+          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // Subtle shadow
+          zIndex: 1000,
+          top: 0
+        }}
+      >
         <Toolbar>
           {/* Hamburger Menu Button */}
           <IconButton
@@ -175,13 +187,14 @@ export const DoctorProvider = ({ children }) => {
             </StyledButton>
           </Box>
 
-          <Box sx={{ flexGrow: 1, textAlign: 'center' }}>
+          {/* Centered Welcome Message */}
+          <Box sx={{ flexGrow: 1, textAlign: 'right' }}>
             <Typography variant="h6" >
               Welcome {doctors?.name}
             </Typography>
           </Box>
 
-          {/* Doctor Profile Avatar and X Button */}
+          {/* Doctor Profile Avatar and Close Button */}
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <IconButton onClick={handleMenuOpen} color="inherit">
               <Avatar alt="Doctor Profile" src={`data:image/png;base64,${doctors?.imageData}`} />
@@ -191,18 +204,15 @@ export const DoctorProvider = ({ children }) => {
             </IconButton>
           </Box>
 
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleMenuClose}
-          >
-            <MenuItem onClick={() => navigate("doctor-edit")}>Profile</MenuItem>
-            <MenuItem onClick={handleLogout}>
-              <Logout /> Logout
-            </MenuItem>
-          </Menu>
+
         </Toolbar>
       </AppBar>
+
+      <Box sx={{ marginTop: '64px' }}> {/* Adjust the value as needed */}
+      </Box>
+
+
+
 
       <Drawer
         anchor="left"

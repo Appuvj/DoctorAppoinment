@@ -2,7 +2,7 @@
 
 import { Navbar, Nav, NavDropdown, Container, Form, Button, Row, Col, Card } from 'react-bootstrap';
 import { Outlet, useNavigate } from 'react-router-dom';
-
+import "./App.css";
 function App() {
   const navigate = useNavigate()
   return (

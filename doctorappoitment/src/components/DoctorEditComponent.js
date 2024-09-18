@@ -14,21 +14,52 @@ const todayDate = new Date().toISOString().split('T')[0];
 
 
 const validationSchema = Yup.object({
-  name: Yup.string().min(4, 'Name must be at least 4 characters').matches(/^[A-Za-z\s]+$/, 'Name must contain only alphabets').required('Name is required'),
+  name: Yup.string()
+    .trim()
+    .min(4, 'Name must be at least 4 characters')
+    .matches(/^[A-Za-z\s]+$/, 'Name must contain only alphabets')
+    .required('Name is required'),
   mobile: Yup.string()
+    .trim()
     .matches(/^\d{10}$/, 'Mobile number must be 10 digits')
     .required('Mobile number is required'),
-  email: Yup.string().email('Invalid email address').required('Email is required'),
-  specilization: Yup.string().required('specilization is required'),
-  organization: Yup.string().required('organization is required'),
-  location: Yup.string().required('location is required'),
-
-  availableDate: Yup.string().required('availableDate is required'),
-  gender: Yup.string().required('Gender is required'),
-  password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
-  photo: Yup.mixed().required('Photo is required').test('fileType', 'Only .jpg, .jpeg, and .png files are allowed', value => {
-    return !value || ['image/jpeg', 'image/jpg', 'image/png'].includes(value.type);
-  })
+  email: Yup.string()
+    .trim()
+    .matches(/^[a-zA-Z0-9._%+-]+@gmail\.com$/, 'Email must be in the format')
+    .email('Invalid email address')
+    .required('Email is required'),
+  specilization: Yup.string()
+    .trim()
+    .min(4, 'Specilization must be at least 4 characters')
+    .matches(/^[A-Za-z\s]+$/, 'Specilization must contain only alphabets')
+    .required('Specilization is required'),
+  organization: Yup.string()
+    .trim()
+    .min(4, 'Organization must be at least 4 characters')
+    .matches(/^[A-Za-z\s]+$/, 'Organization must contain only alphabets')
+    .required('Organization is required'),
+  location: Yup.string()
+    .trim()
+    .min(4, 'Location must be at least 4 characters')
+    .required('Location is required'),
+  availableDate: Yup.string()
+    .required('Available Date is required'),
+  gender: Yup.string()
+    .required('Gender is required'),
+  password: Yup.string()
+    .trim()
+    .matches(/^(?!.*\s).+$/, 'Password must not contain spaces') // Updated regex to disallow spaces
+    .matches(/(?=.*[a-z])/, 'Must contain at least one lowercase letter')
+    .matches(/(?=.*[A-Z])/, 'Must contain at least one uppercase letter')
+    .matches(/(?=.*\d)/, 'Must contain at least one number')
+    .matches(/(?=.*[@$!%*?&])/, 'Must contain at least one special character')
+    .min(8, 'Password must be at least 8 characters long')
+    .required('Password is required'),
+  photo: Yup.mixed()
+    .required('Photo is required')
+    .test('fileType', 'Only .jpg, .jpeg, and .png files are allowed', value => {
+      return !value || ['image/jpeg', 'image/jpg', 'image/png'].includes(value.type);
+    })
 });
 function base64ToImageFile(base64String, fileName) {
     // Decode base64 string

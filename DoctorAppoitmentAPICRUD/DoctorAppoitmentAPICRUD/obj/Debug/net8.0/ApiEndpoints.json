@@ -1,6 +1,37 @@
 [
   {
     "ContainingType": "DoctorAppoitmentAPICRUD.Controllers.AdminController",
+    "Method": "GetContactForms",
+    "RelativePath": "api/Admin/contact-form",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DoctorAppoitmentAPICRUD.Controllers.AdminController",
+    "Method": "MarkAsRead",
+    "RelativePath": "api/Admin/contact-form/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "contactForms",
+        "Type": "DoctorAppoitmentAPICRUD.Models.ContactForm",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DoctorAppoitmentAPICRUD.Controllers.AdminController",
     "Method": "GetDashboardStats",
     "RelativePath": "api/Admin/dashboard-stats",
     "HttpMethod": "GET",
@@ -354,6 +385,22 @@
       {
         "Name": "loginRequest",
         "Type": "DoctorAppoitmentAPICRUD.Dtos.LoginRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DoctorAppoitmentAPICRUD.Controllers.LoginController",
+    "Method": "PostContactForm",
+    "RelativePath": "api/Login/ContactForm",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "contactForm",
+        "Type": "DoctorAppoitmentAPICRUD.Models.ContactForm",
         "IsRequired": true
       }
     ],

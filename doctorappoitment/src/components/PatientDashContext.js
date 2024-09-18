@@ -118,11 +118,16 @@ export const PatientProvider = ({ children }) => {
 
   const StyledButton = styled(Button)(({ theme }) => ({
     color: theme.palette.primary.contrastText,
+    backgroundColor: theme.palette.primary.main,
+    borderRadius: '8px',
     margin: theme.spacing(1),
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '0.75rem',
-      padding: theme.spacing(1),
+    padding: theme.spacing(1.5, 2),
+    '&:hover': {
+      backgroundColor: theme.palette.primary.dark,
     },
+    fontWeight: 'bold',
+    textTransform: 'none',
+  
   }));
 
   return (
@@ -135,7 +140,16 @@ export const PatientProvider = ({ children }) => {
         filters, setFilters
       }}
     >
-      <AppBar position="static" sx={{ paddingX: { xs: 1, sm: 2 }, paddingY: { xs: 1, sm: 2 } }}>
+      <AppBar  sx={{
+        bgcolor: 'transparent', // Make AppBar transparent to use the gradient background
+        boxShadow: 'none', // Remove default shadow
+        position: 'sticky', // Make navbar sticky
+        top: 0,
+        zIndex: 1000, // Ensure navbar stays above content
+        background: 'linear-gradient(90deg, #007bff, #00d084)', // Gradient background
+        padding: '1rem 2rem', // Adjusted padding
+        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // Subtle shadow
+      }}>
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawerOpen} sx={{ display: { sm: 'none' } }}>
             <MenuIcon />

@@ -20,21 +20,21 @@ const EmergencyComp = () => {
         if (!formData.name) {
             newErrors.name = 'Name is required';
         }
-        if(formData.name.length<=3)
+        if(formData.name.trim().length<=3)
         {
             newErrors.name = 'Name must be greater than 3 characters';
         }
-        if (!formData.email) {
+        if (!formData.email.trim()) {
             newErrors.email = 'Email is required';
         } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
             newErrors.email = 'Email is invalid';
         }
-        if (!formData.phone) {
+        if (!formData.phone.trim()) {
             newErrors.phone = 'Phone number is required';
         } else if (!/^\d{10}$/.test(formData.phone)) {  // Simple phone number validation
             newErrors.phone = 'Phone number must be 10 digits';
         }
-        if (!formData.message) {
+        if (!formData.message.trim()) {
             newErrors.message = 'Message is required';
         }
 
@@ -51,10 +51,17 @@ const EmergencyComp = () => {
         e.preventDefault();
         if (validateForm()) {
             try {
-                const response = await axios.post('https://localhost:7146/api/Login/ContactForm', formData);
+                const response = await axios.post('https://localhost:7146/api/Login/ContactForm', {
+"name" : formData.name,
+"email" : formData.email,
+"phone" : formData.phone,
+"message" : formData.message,
+"isRead" : false
+
+                });
                 if (response.status === 200) {
                     setSubmitted(true);
-                    alert(`Hey ${formData.name}, thank you for contacting us!`);
+                    alert(`Hey ${formData.name.trim()}, thank you for contacting us!`);
                     setFormData({
                         name: '',
                         email: '',

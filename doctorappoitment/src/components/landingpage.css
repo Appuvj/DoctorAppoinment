@@ -1,22 +1,44 @@
 .hospital-title {
-    font-size: 3rem; /* Large font size */
-    font-family: 'Poppins', sans-serif; /* Decorative font */
-    font-weight: bold; /* Make it bold */
-    color: #fff; /* Initial color */
-    transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
-    margin-left: 15px; /* Space between logo and title */
-  }
-  
-  .hospital-title:hover {
-    color: #ffdd57; /* Change color on hover */
-    transform: scale(1.1); /* Slightly enlarge on hover */
-    cursor: pointer; /* Change cursor to pointer */
-  }
-  
-  /* Optional: Add text shadow for more emphasis */
+  font-size: 3rem; /* Default font size for larger screens */
+  font-family: 'Poppins', sans-serif; /* Decorative font */
+  font-weight: bold; /* Make it bold */
+  color: #fff; /* Initial color */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
+  margin-left: 15px; /* Space between logo and title */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add subtle shadow */
+}
+
+.hospital-title:hover {
+  color: #ffdd57; /* Change color on hover */
+  transform: scale(1.1); /* Slightly enlarge on hover */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
   .hospital-title {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add subtle shadow */
+      font-size: 2.5rem; /* Reduce font size for tablets */
+      margin-left: 10px; /* Adjust spacing for smaller screens */
   }
+}
+
+/* Small devices (phones, 576px and up) */
+@media (max-width: 576px) {
+  .hospital-title {
+      font-size: 2rem; /* Further reduce font size for phones */
+      margin-left: 8px; /* Adjust margin to fit smaller screens */
+  }
+}
+
+/* Extra small devices (phones below 576px) */
+@media (max-width: 400px) {
+  .hospital-title {
+      font-size: 1.8rem; /* Smaller font for extra small devices */
+      margin-left: 5px; /* Minimal margin on very small devices */
+  }
+}
+
+
   
   
   .login-button {

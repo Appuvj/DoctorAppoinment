@@ -164,7 +164,7 @@ git clone https://github.com/your-username/doctor-appointment.git
 cd doctor-appointment
 npm install
 npm start
-
+```
 
 ## Backend API (DotNet)
 
@@ -193,6 +193,6 @@ cd doctor-appointment-api
 dotnet restore
 dotnet ef database update
 dotnet run
-
+```
 ## Conclusion
 The **Doctor Appointment System** streamlines the appointment booking process for both patients and doctors, with a dedicated admin panel for management and analytics. It ensures ease of use while providing robust functionality for all users involved.

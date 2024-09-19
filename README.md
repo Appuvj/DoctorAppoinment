@@ -21,7 +21,7 @@ Patients can perform various actions within the system, such as:
 ![Patient Dashboard](./screenshots/patientdoctors.png "Doctors Search")
 
 - **Book Appointment**: Patients can book an appointment with a selected doctor.
-![Patient Dashboard](./screenshots/patientdoctors.png "Book Appointment")
+![Patient Dashboard](./screenshots/patientappointment.png "Book Appointment")
 
 - **View Medical History**: Patients can view their medical history, including previous appointments and prescriptions.
 ![Patient Dashboard](./screenshots/patientmedicalhistory.png "Medical History Of Patient")

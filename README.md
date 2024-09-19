@@ -54,7 +54,7 @@ The admin dashboard provides complete oversight of the system:
 ![Admin Dashboard](./screenshots/adminanalytics.png "Analytics")
 
 - **Doctors List**: Admins can view and manage all registered doctors.
-![Admin Dashboard](./screenshots/admindoctorbookings.png "Doctors List")
+![Admin Dashboard](./screenshots/admindoctors.png "Doctors List")
 
 - **Patients List**: Admins can view and manage all registered patients.
 ![Admin Dashboard](./screenshots/adminpatients.png "Patients List")

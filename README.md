@@ -72,6 +72,13 @@ The admin dashboard provides complete oversight of the system:
 
 
 ---
+## Responsivne
+![Responsive](./screenshots/responsive1.png "Responsive")
+![Responsive](./screenshots/responsive2.png "Responsive")
+![Responsive](./screenshots/responsive3.png "Responsive")
+![Responsive](./screenshots/responsive4.png "Responsive")
+
+
 
 ## Features Breakdown
 
@@ -97,5 +104,64 @@ The admin dashboard provides complete oversight of the system:
 
 ---
 
-## Conclusion
-The **Doctor Appointment System** streamlines the appointment booking process for both patients and doctors, with a dedicated admin panel for management and analytics. It ensures ease of use while providing robust functionality for all users involved.
+## Project Dependencies
+
+This project uses a variety of libraries and tools to manage the front-end, handle forms, manage state, and integrate with external services. Below is an explanation of each dependency used in the project.
+
+### Main Packages
+
+- **React (`react`, `react-dom`)**: The core libraries for building the user interface using components and rendering them in the browser.
+- **react-scripts**: Scripts and configuration used by Create React App to handle development, testing, and building the project.
+- **react-router-dom**: Provides routing capabilities, allowing navigation between different pages and components within the application.
+
+### UI and Styling
+
+- **@mui/material, @mui/icons-material**: Material-UI (MUI) is a popular React component library that provides pre-designed, customizable components and icons for building responsive interfaces.
+- **@emotion/react, @emotion/styled**: Used with Material-UI to enable CSS-in-JS, allowing you to write CSS styles directly in JavaScript and apply them to React components.
+- **bootstrap, react-bootstrap**: Bootstrap is a widely used CSS framework, while `react-bootstrap` integrates Bootstrap components into React as reusable components.
+- **bootstrap-icons**: Provides icons that follow the Bootstrap style.
+- **slick-carousel, react-slick**: Used for creating carousels or sliders, enabling the display of items (like images or cards) in a scrollable view.
+- **swiper**: Another library for creating touch-friendly carousels and sliders.
+
+### Form Handling and Validation
+
+- **formik**: A library that simplifies form handling in React, helping manage form state, validation, and submission.
+- **react-hook-form**: Another form handling library that focuses on minimal re-renders and simplicity. It integrates well with various validation libraries.
+- **yup**: Used with `formik` and `react-hook-form` for form validation, allowing you to define schema-based validations.
+
+### Data Fetching and HTTP Requests
+
+- **axios**: A promise-based HTTP client for making API requests, allowing you to interact with external data sources and APIs.
+
+### Notifications and User Feedback
+
+- **react-toastify**: A library for displaying customizable toast notifications, useful for alerting users to success, error, or informational messages.
+
+### PDF Generation
+
+- **jspdf**: A library that allows you to generate PDF documents programmatically, useful for exporting information like prescriptions or reports.
+
+### Icons
+
+- **react-icons**: Provides access to various popular icon libraries directly in React components, enabling you to easily add icons to your UI.
+
+### Miscellaneous
+
+- **lineicons**: Another icon set used to provide additional icon styles.
+- **reactstrap**: A library that provides Bootstrap 4 components for React, enabling easier UI development using familiar Bootstrap styles.
+
+### Testing
+
+- **@testing-library/react, @testing-library/jest-dom, @testing-library/user-event**: These libraries provide utilities for testing React components, simulating user interactions, and checking DOM output in tests.
+
+## Installation and Setup
+
+To run this project locally, follow the steps below:
+
+
+```bash
+git clone https://github.com/your-username/doctor-appointment.git
+cd doctor-appointment
+npm install
+npm start
+

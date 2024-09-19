@@ -104,7 +104,7 @@ The admin dashboard provides complete oversight of the system:
 
 ---
 
-## Project Dependencies
+## Frontend Dependencies
 
 This project uses a variety of libraries and tools to manage the front-end, handle forms, manage state, and integrate with external services. Below is an explanation of each dependency used in the project.
 
@@ -165,3 +165,34 @@ cd doctor-appointment
 npm install
 npm start
 
+
+## Backend API (DotNet)
+
+This API is built with ASP.NET Core to manage doctor appointments, including authentication and role-based authorization for admins, doctors, and patients.
+
+## Features
+
+- **Authentication and Authorization**: JWT Bearer authentication with role-based authorization policies (`AdminOnly`, `DoctorOnly`, `PatientOnly`).
+- **Swagger/OpenAPI Integration**: API documentation and testing UI using Swagger, with JWT authentication supported in the UI.
+- **Entity Framework Core**: Database interaction is managed using Entity Framework Core with a SQL Server connection.
+- **CORS Policy**: Configured CORS policy to allow requests from any origin, method, and header, ensuring API accessibility.
+- **Dependency Injection**: Repositories and services (`IDoctorRepository`, `JwtService`) are injected into the application using ASP.NET Core's dependency injection.
+- **JSON Serialization**: The API uses `ReferenceHandler.Preserve` to handle circular references in JSON responses.
+- **HTTPS Redirection**: Enforces secure communication by redirecting HTTP requests to HTTPS.
+- **Swagger JWT Setup**: Configured Swagger UI to allow testing authenticated endpoints using JWT tokens.
+
+## Installation and Setup
+
+To run this API locally, follow these steps:
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/doctor-appointment-api.git
+cd doctor-appointment-api
+dotnet restore
+dotnet ef database update
+dotnet run
+
+## Conclusion
+The **Doctor Appointment System** streamlines the appointment booking process for both patients and doctors, with a dedicated admin panel for management and analytics. It ensures ease of use while providing robust functionality for all users involved.

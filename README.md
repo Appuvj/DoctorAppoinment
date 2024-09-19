@@ -17,6 +17,8 @@ Patients can perform various actions within the system, such as:
 - **Search Doctor**: Patients can search for doctors by:
   - Locality
   - Specialization
+![Patient Dashboard](./screenshots/patientdoctorsearch.png "Patient Landing")
+
 - **Book Appointment**: Patients can book an appointment with a selected doctor.
 - **View Medical History**: Patients can view their medical history, including previous appointments and prescriptions.
 - **Edit Profile**: Patients can update their profile information, such as contact details and personal information.

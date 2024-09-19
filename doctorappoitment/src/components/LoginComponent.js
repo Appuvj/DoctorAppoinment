@@ -22,18 +22,41 @@ const LoginComponent = () => {
     const validateForm = () => {
         let valid = true;
         let errorMsg = '';
-
+    
+        // Regular expression for a valid email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        // Check for spaces in the password
+        const hasSpaces = (str) => /\s/.test(str);
+    
+        // Validate email (username)
         if (!username) {
-            errorMsg = 'Username is required.';
+            errorMsg = 'Email is required.';
             valid = false;
-        } else if (!password) {
-            errorMsg = 'Password is required.';
+        } else if (hasSpaces(username)) {
+            errorMsg = 'Email must not contain spaces.';
+            valid = false;
+        } else if (!emailRegex.test(username)) {
+            errorMsg = 'Invalid email format.';
             valid = false;
         }
-
+    
+        // Validate password
+        if (!password) {
+            errorMsg = 'Password is required.';
+            valid = false;
+        } else if (hasSpaces(password)) {
+            errorMsg = 'Password must not contain spaces.';
+            valid = false;
+        } else if (password.length < 8) {
+            errorMsg = 'Password must be at least 8 characters long.';
+            valid = false;
+        }
+    
         setError(errorMsg);
         return valid;
     };
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
